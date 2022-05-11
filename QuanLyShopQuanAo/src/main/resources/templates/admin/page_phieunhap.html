@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="admin/layout">
+<title>Quản Lý Phiếu Nhập</title>
+
+<link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+ crossorigin="anonymous">
+<body>
+<div layout:fragment="content">
+	<!--Content of the page-->
+
+	<div class="container">
+ 		<h3>DANH SÁCH Phiếu Nhập</h1> 
+		  <table border="1" class = "table table-striped table-rePNonsive-md">
+		   <thead>
+		    <tr>
+		     <th>Mã Phiếu Nhập</th>
+		     <th>Ngày Nhập</th>
+		     <th>Nhân Viênt</th>
+		     <th>Nhà Cung Cấp</th>
+		    </tr>
+		   </thead>
+		   <tbody>
+		    <tr th:each="PhieuNhap : ${listPhieuNhaps}">
+		    	<td th:text="${PhieuNhap.maPN}"></td>
+			   	<td th:text="${PhieuNhap.ngayNhap}"></td>
+			   	<td th:text="${PhieuNhap.maNV}"></td>
+			   	<td th:text="${PhieuNhap.maNCC}"></td>
+			   	<td>
+			   		<a th:href="@{/showFormForUpdatePN/{maPN}(maPN=${PhieuNhap.maPN})}" class="btn btn-primary">Cập Nhật</a>
+			   		<a th:href="@{/deletePhieuNhap/{maPN}(maPN=${PhieuNhap.maPN})}" class="btn btn-danger">Xóa</a>
+			   	</td>
+		    </tr>
+		   </tbody>
+		  </table>
+		  <a th:href = "@{/showNewPhieuNhapForm}" class="btn btn-primary btn-sm mb-3"> Thêm Phiếu Nhập </a>
+		   <form th:action="@{searchPN}" method="get">
+		 	<input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Keyword" size="50">
+		 	<button type="submit" class="btn btn-primary">Search</button>
+		 	<button type="submit" class="btn btn-danger">Reset</button>
+		 </form>
+		 </br>
+ 	</div>
+</div>
+</body>
+</html>
