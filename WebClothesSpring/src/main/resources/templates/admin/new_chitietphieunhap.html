@@ -1,0 +1,32 @@
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="admin/layout">
+<title>Quản Lý Chi Tiết Phiếu Nhập</title>
+
+<link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+ crossorigin="anonymous">
+<body>
+<div layout:fragment="content">
+	<div class="container">
+        <h2>Thêm Chi Tiết Phiếu Nhập</h2>
+
+        <form action="#" th:action="@{/saveChiTietPhieuNhap}" th:object="${chitietphieunhap}" method="POST">
+
+			<input type="text" th:field="*{maPN}" placeholder="Mã Phiếu Nhập" class="form-control mb-4 col-4">
+			
+            <input type="text" th:field="*{maSP}" placeholder="Sản Phẩm" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{soLuongNhap}" placeholder="Số Lượng Nhập" class="form-control mb-4 col-4">
+            
+            <input type="text" th:field="*{donGiaNhap}" placeholder="Đơn Giá Nhập" class="form-control mb-4 col-4">
+
+            <button type="submit" class="btn btn-info col-2"> Thêm</button>
+        </form>
+        <hr>
+        <a th:href="@{/}"> Quay lại</a>
+    </div>
+</div>
+</body>
+</html>
