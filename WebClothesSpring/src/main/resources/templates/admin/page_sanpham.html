@@ -13,16 +13,16 @@
 	<!--Content of the page-->
 
 	<div class="container">
- 		<h3>DANH SÁCH Sản Phẩm</h1> 
+ 		<h3>DANH SÁCH SẢN PHẨM</h1> 
 		  <table border="1" class = "table table-striped table-responsive-md">
 		   <thead>
 		    <tr>
 		     <th>Mã Sản Phẩm</th>
 		     <th>Tên Sản Phẩm</th>
-		     <th>Đặc Điểm</th>
+<!-- 		     <th>Đặc Điểm</th> -->
 		     <th>Ảnh</th>
 		     <th>Đơn Giá</th>
-		     <th>Ghi Chú</th>
+<!-- 		     <th>Ghi Chú</th> -->
 		     <th>Size</th>
 		     <th>Loại Sản Phẩm</th>
 		     <th>Action</th>
@@ -32,15 +32,26 @@
 		    <tr th:each="SanPham : ${listSanPhams}">
 		    	<td th:text="${SanPham.maSP}"></td>
 			   	<td th:text="${SanPham.tenSP}"></td>
-			   	<td th:text="${SanPham.dacDiem}"></td>
-			   	<td th:text="${SanPham.anh}"></td>
-			   	<td th:text="${SanPham.donGia}"></td>
-			   	<td th:text="${SanPham.ghiChu}"></td>
-			   	<td th:text="${SanPham.maSize}"></td>
-			   	<td th:text="${SanPham.maLoaiSP}"></td>
+<!-- 			   	<td th:text="${SanPham.dacDiem}"></td> -->
 			   	<td>
-			   		<a th:href="@{/showFormForUpdateSP/{maSP}(maSP=${SanPham.maSP})}" class="btn btn-primary">Cập Nhật</a>
-			   		<a th:href="@{/deleteSanPham/{maSP}(maSP=${SanPham.maSP})}" class="btn btn-danger">Xóa</a>
+			   		<img th:src ="@{'/images/' + ${SanPham.anh}}" />
+			   	</td>
+			   	<td th:text="${SanPham.donGia}"></td>
+<!-- 			   	<td th:text="${SanPham.ghiChu}"></td> -->
+			   	
+			   	<th:block th:each="Size : ${listSizes}">
+			   		<th:block th:if="${Size.maSize == SanPham.maSize}">
+			   			<td th:text="${Size.tenSize}"></td>
+			   		</th:block>
+			   	</th:block>
+			   	<th:block th:each="LoaiSanPham : ${listLoaiSanPhams}">
+			   		<th:block th:if="${LoaiSanPham.maLoaiSP == SanPham.maLoaiSP}">
+			   			<td th:text="${LoaiSanPham.tenLoaiSP}"></td>
+			   		</th:block>
+			   	</th:block>
+			   	<td>
+			   		<a th:href="@{/showFormForUpdateSP/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/edit.png}" width="35"/></a>
+			   		<a th:href="@{/deleteSanPham/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
 			   	</td>
 		    </tr>
 		   </tbody>

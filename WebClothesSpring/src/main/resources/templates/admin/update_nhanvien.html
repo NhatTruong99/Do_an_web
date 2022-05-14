@@ -31,9 +31,12 @@
             
             <input type="text" th:field="*{matKhau}" class="form-control mb-4 col-4">
             
-            <input type="text" th:field="*{maQuyen}" class="form-control mb-4 col-4">
-            
-            
+            <select th:field="*{maQuyen}" class="form-select"> 
+            	<option th:each="Quyen : ${listQuyens}"
+                	th:value="${Quyen.maQuyen}"
+                    th:text="${Quyen.tenQuyen}" ></option>
+           	</select>
+           	</br>
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>
         </form>
         <hr>

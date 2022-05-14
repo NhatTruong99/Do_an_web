@@ -11,21 +11,30 @@
 <div layout:fragment="content">
 	<div class="container">
         <h2>Thêm Sản Phẩm</h2>
+	 <!-- Thêm enctype ="multipart/form-data mới upload được" -->
+        <form action="#" th:action="@{/saveSanPham}" th:object="${sanpham}" method="POST" enctype="multipart/form-data">
+            <input type="text" th:field="*{tenSP}" placeholder="Tên Sản Phẩm" class="form-control mb-4 col-4">
 
-        <form action="#" th:action="@{/saveSanPham}" th:object="${sanpham}" method="POST">
-            <input type="text" th:field="*{tenSP}" placeholder="Họ Tên" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{dacDiem}" placeholder="Đặc Điểm" class="form-control mb-4 col-4">
 
-            <input type="text" th:field="*{dacDiem}" placeholder="Email" class="form-control mb-4 col-4">
-
-            <input type="text" th:field="*{anh}" placeholder="SDT" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{anh}" placeholder="Ảnh" class="form-control mb-4 col-4">
             
-            <input type="text" th:field="*{donGia}" placeholder="Địa Chỉ" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{donGia}" placeholder="Đơn Giá" class="form-control mb-4 col-4">
             
-            <input type="text" th:field="*{ghiChu}" placeholder="CMND" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{ghiChu}" placeholder="Ghi Chú" class="form-control mb-4 col-4">
             
-            <input type="text" th:field="*{maSize}" placeholder="Tài Khoản" class="form-control mb-4 col-4">
-            
-            <input type="text" th:field="*{maLoaiSP}" placeholder="Mật Khẩu" class="form-control mb-4 col-4">
+            <select th:field="*{maSize}" class="form-select"> 
+            	<option th:each="Size : ${listSizes}"
+                	th:value="${Size.maSize}"
+                    th:text="${Size.tenSize}" ></option>
+           	</select>
+            </br>
+            <select th:field="*{maLoaiSP}" class="form-select"> 
+                <option th:each="LoaiSanPham : ${listLoaiSanPhams}"
+                    th:value="${LoaiSanPham.maLoaiSP}"
+                    th:text="${LoaiSanPham.tenLoaiSP}" ></option>
+            </select>
+            </br>
 
             <button type="submit" class="btn btn-info col-2"> Thêm</button>
         </form>

@@ -14,9 +14,18 @@
 
         <form action="#" th:action="@{/saveChiTietPhieuNhap}" th:object="${chitietphieunhap}" method="POST">
 
-			<input type="text" th:field="*{maPN}" placeholder="Mã Phiếu Nhập" class="form-control mb-4 col-4">
-			
-            <input type="text" th:field="*{maSP}" placeholder="Sản Phẩm" class="form-control mb-4 col-4">
+			<select th:field="*{maPN}" class="form-select"> 
+            	<option th:each="PhieuNhap : ${listPhieuNhaps}"
+                	th:value="${PhieuNhap.maPN}"
+                    th:text="${PhieuNhap.maPN}" ></option>
+           	</select>
+            </br>
+            <select th:field="*{maSP}" class="form-select"> 
+                <option th:each="SanPham : ${listSanPhams}"
+                    th:value="${SanPham.maSP}"
+                    th:text="${SanPham.tenSP}" ></option>
+            </select>
+            </br>
 
             <input type="text" th:field="*{soLuongNhap}" placeholder="Số Lượng Nhập" class="form-control mb-4 col-4">
             

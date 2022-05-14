@@ -13,9 +13,18 @@
         <h2>Thêm Chi Tiết Hoá Đơn</h2>
 
         <form action="#" th:action="@{/saveChiTietHoaDon}" th:object="${chitiethoadon}" method="POST">
-        	<input type="text" th:field="*{maHD}" placeholder="Mã Hoá Đơn" class="form-control mb-4 col-4">
-        	
-            <input type="text" th:field="*{maSP}" placeholder="Sản Phẩm" class="form-control mb-4 col-4">
+        	<select th:field="*{maHD}" class="form-select"> 
+            	<option th:each="HoaDon : ${listHoaDons}"
+                	th:value="${HoaDon.maHD}"
+                    th:text="${HoaDon.maHD}" ></option>
+           	</select>
+            </br>
+            <select th:field="*{maSP}" class="form-select"> 
+                <option th:each="SanPham : ${listSanPhams}"
+                    th:value="${SanPham.maSP}"
+                    th:text="${SanPham.tenSP}" ></option>
+            </select>
+            </br>
 
             <input type="text" th:field="*{soLuong}" placeholder="Số Lượng" class="form-control mb-4 col-4">
 

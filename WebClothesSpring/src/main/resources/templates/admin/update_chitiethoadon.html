@@ -17,7 +17,12 @@
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maHD}" />
 
-            <input type="text" th:field="*{maSP}" class="form-control mb-4 col-4">
+             <select th:field="*{maSP}" class="form-select"> 
+                <option th:each="SanPham : ${listSanPhams}"
+                    th:value="${SanPham.maSP}"
+                    th:text="${SanPham.tenSP}" ></option>
+            </select>
+            </br>
 
             <input type="text" th:field="*{soLuong}" class="form-control mb-4 col-4">
 

@@ -40,8 +40,7 @@ public class PhieuNhapController {
 	public String showNewPhieuNhapForm(Model model) {
 		PhieuNhap phieunhap = new PhieuNhap();
 	    model.addAttribute("phieunhap", phieunhap);
-	    List<NhanVien> listNV = NhanVienService.getAllNhanVien();
-		model.addAttribute("listNhanViens", listNV );
+		model.addAttribute("listNhanViens", NhanVienService.getAllNhanVien());
 		model.addAttribute("listNhaCungCaps", NhaCungCapService.getAllNhaCungCap());
 	    return "admin/new_phieunhap";
 	 }
@@ -56,7 +55,7 @@ public class PhieuNhapController {
 	public String showFormForUpdatePN(@PathVariable ( value = "maPN") long maPN, Model model) {
 		PhieuNhap phieunhap = PhieuNhapService.getPhieuNhapById(maPN);
 		model.addAttribute("phieunhap", phieunhap);
-		model.addAttribute("listPhieuNhaps", PhieuNhapService.getAllPhieuNhap());
+		model.addAttribute("listNhanViens", NhanVienService.getAllNhanVien());
 		model.addAttribute("listNhaCungCaps", NhaCungCapService.getAllNhaCungCap());
 		return "admin/update_phieunhap";
 	}

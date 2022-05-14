@@ -13,7 +13,7 @@
 	<!--Content of the page-->
 
 	<div class="container">
- 		<h3>DANH SÁCH Chi Tiết Phiếu Nhập</h1> 
+ 		<h3>DANH SÁCH CHI TIẾT PHIẾU NHẬP</h1> 
 		  <table border="1" class = "table table-striped table-reCTPNonsive-md">
 		   <thead>
 		    <tr>
@@ -21,18 +21,22 @@
 		     <th>Sản Phẩm</th>
 		     <th>Số Lượng Nhập</th>
 		     <th>Đơn Giá Nhập</th>
-		     <th>Action</th>
+		     <th>Chức Năng</th>
 		    </tr>
 		   </thead>
 		   <tbody>
 		    <tr th:each="ChiTietPhieuNhap : ${listChiTietPhieuNhaps}">
 		    	<td th:text="${ChiTietPhieuNhap.maPN}"></td>
-			   	<td th:text="${ChiTietPhieuNhap.maSP}"></td>
+			   	<th:block th:each="SanPham : ${listSanPhams}">
+			   		<th:block th:if="${SanPham.maSP == ChiTietPhieuNhap.maSP}">
+			   			<td th:text="${SanPham.tenSP}"></td>
+			   		</th:block>
+			   	</th:block>
 			   	<td th:text="${ChiTietPhieuNhap.soLuongNhap}"></td>
 			   	<td th:text="${ChiTietPhieuNhap.donGiaNhap}"></td>
 			   	<td>
-			   		<a th:href="@{/showFormForUpdateCTPN/{maPN}(maPN=${ChiTietPhieuNhap.maPN})}" class="btn btn-primary">Cập Nhật</a>
-			   		<a th:href="@{/deleteChiTietPhieuNhap/{maPN}(maPN=${ChiTietPhieuNhap.maPN})}" class="btn btn-danger">Xóa</a>
+			   		<a th:href="@{/showFormForUpdateCTPN/{maPN}(maPN=${ChiTietPhieuNhap.maPN})}"><img th:src ="@{/images/edit.png}" width="35"/></a>
+			   		<a th:href="@{/deleteChiTietPhieuNhap/{maPN}(maPN=${ChiTietPhieuNhap.maPN})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
 			   	</td>
 		    </tr>
 		   </tbody>

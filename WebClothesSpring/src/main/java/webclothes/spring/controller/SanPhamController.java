@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import webclothes.spring.model.SanPham;
+import webclothes.spring.service.LoaiSanPhamService;
 import webclothes.spring.service.SanPhamService;
+import webclothes.spring.service.SizeService;
 
 @Controller
 public class SanPhamController {
@@ -18,9 +20,17 @@ public class SanPhamController {
 	@Autowired
 	private SanPhamService SanPhamService;
 	
+	@Autowired
+	private SizeService SizeService;
+	
+	@Autowired
+	private LoaiSanPhamService LoaiSanPhamService;
+	
 	@GetMapping("/page_sanpham")
 	public String viewListSP(Model model) {
 		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
+		model.addAttribute("listSizes", SizeService.getAllSize());
+		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 		return "admin/page_sanpham";
 	}
 	
@@ -28,9 +38,12 @@ public class SanPhamController {
 	public String showNewSanPhamForm(Model model) {
 		SanPham sanpham = new SanPham();
 	    model.addAttribute("sanpham",sanpham);
+	    model.addAttribute("listSizes", SizeService.getAllSize());
+		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 	    return "admin/new_sanpham";
 	 }
 	 
+	
 	@PostMapping("/saveSanPham")
 	public String saveSP(@ModelAttribute("sanpham") SanPham sanpham) {
 		SanPhamService.saveSanPham(sanpham);
@@ -41,6 +54,8 @@ public class SanPhamController {
 	public String showFormForUpdateSP(@PathVariable ( value = "maSP") long maSP, Model model) {
 		SanPham sanpham = SanPhamService.getSanPhamById(maSP);
 		model.addAttribute("sanpham", sanpham);
+		model.addAttribute("listSizes", SizeService.getAllSize());
+		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 		return "admin/update_sanpham";
 	}
 	

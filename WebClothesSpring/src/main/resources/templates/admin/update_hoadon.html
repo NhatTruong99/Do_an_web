@@ -19,9 +19,16 @@
 
             <input type="text" th:field="*{shd}" class="form-control mb-4 col-4">
 
-            <input type="text" th:field="*{ngayDat}" class="form-control mb-4 col-4">
-
-            <input type="text" th:field="*{ngayGiao}" class="form-control mb-4 col-4">
+			<div>
+        		<label for="ngayDat">Ngày đặt:</label>
+        		<input type="date" th:field="*{ngayDat}" id="ngayDat"/>
+    		</div>
+    		</br>
+    		<div>
+        		<label for="ngayGiao">Ngày giao:</label>
+        		<input type="date" th:field="*{ngayGiao}" id="ngayGiao"/>
+    		</div>
+    		</br>
             
             <input type="text" th:field="*{diaChiNhan}" class="form-control mb-4 col-4">
             
@@ -29,7 +36,12 @@
             
             <input type="text" th:field="*{daThanhToan}" class="form-control mb-4 col-4">
             
-            <input type="text" th:field="*{maKH}" class="form-control mb-4 col-4">
+            <select th:field="*{maKH}" class="form-select"> 
+                <option th:each="KhachHang : ${listKhachHangs}"
+                    th:value="${KhachHang.maKH}"
+                    th:text="${KhachHang.hoTen}" ></option>
+            </select>
+            </br>
      
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>
         </form>

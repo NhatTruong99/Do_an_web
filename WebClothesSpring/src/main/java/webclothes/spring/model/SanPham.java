@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 @Table(name = "SanPham")
 public class SanPham {
@@ -36,6 +38,7 @@ public class SanPham {
 	  
 	  @Column(name = "MaLoaiSP")
 	  private long maLoaiSP;
+	  
 
 	public long getMaSP() {
 		return maSP;

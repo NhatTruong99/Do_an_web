@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import webclothes.spring.model.NhanVien;
 import webclothes.spring.service.NhanVienService;
+import webclothes.spring.service.QuyenService;
 
 @Controller
 public class NhanVienController {
@@ -18,9 +19,12 @@ public class NhanVienController {
 	@Autowired
 	private NhanVienService NhanVienService;
 	
+	@Autowired QuyenService QuyenService;
+	
 	@GetMapping("/page_nhanvien")
 	public String viewListNV(Model model) {
 		model.addAttribute("listNhanViens", NhanVienService.getAllNhanVien());
+		model.addAttribute("listQuyens", QuyenService.getAllQuyen());
 		return "admin/page_nhanvien";
 	}
 	
@@ -28,6 +32,7 @@ public class NhanVienController {
 	public String showNewNhanVienForm(Model model) {
 		NhanVien nhanvien = new NhanVien();
 	    model.addAttribute("nhanvien",nhanvien);
+	    model.addAttribute("listQuyens", QuyenService.getAllQuyen());
 	    return "admin/new_nhanvien";
 	 }
 	 
@@ -41,6 +46,7 @@ public class NhanVienController {
 	public String showFormForUpdateNV(@PathVariable ( value = "maNV") long maNV, Model model) {
 		NhanVien nhanvien = NhanVienService.getNhanVienById(maNV);
 		model.addAttribute("nhanvien", nhanvien);
+		model.addAttribute("listQuyens", QuyenService.getAllQuyen());
 		return "admin/update_nhanvien";
 	}
 	

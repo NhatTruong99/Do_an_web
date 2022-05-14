@@ -21,7 +21,7 @@
 		    <tr>
 		     <th>Mã Nhà Cung Cấp</th>
 		     <th>Tên Nhà Cung Cấp</th>
-		     <th>Action</th>
+		     <th>Chức Năng</th>
 		    </tr>
 		   </thead>
 		   <tbody>
@@ -29,8 +29,8 @@
 		    	<td th:text="${NhaCungCap.maNCC}"></td>
 			   	<td th:text="${NhaCungCap.tenNCC}"></td>
 			   	<td>
-			   		<a th:href="@{/showFormForUpdateNCC/{maNCC}(maNCC=${NhaCungCap.maNCC})}" class="btn btn-primary">Cập Nhật</a>
-			   		<a th:href="@{/deleteNCC/{maNCC}(maNCC=${NhaCungCap.maNCC})}" class="btn btn-danger">Xóa</a>
+			   		<a th:href="@{/showFormForUpdateNCC/{maNCC}(maNCC=${NhaCungCap.maNCC})}"><img th:src ="@{/images/edit.png}" width="35"/></a>
+			   		<a th:href="@{/deleteNCC/{maNCC}(maNCC=${NhaCungCap.maNCC})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
 			   	</td>
 		    </tr>
 		   </tbody>

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import webclothes.spring.model.ChiTietPhieuNhap;
 import webclothes.spring.service.ChiTietPhieuNhapService;
+import webclothes.spring.service.PhieuNhapService;
+import webclothes.spring.service.SanPhamService;
 
 @Controller
 public class ChiTietPhieuNhapController {
@@ -18,9 +20,17 @@ public class ChiTietPhieuNhapController {
 	@Autowired
 	private ChiTietPhieuNhapService ChiTietPhieuNhapService;
 	
+	@Autowired
+	private PhieuNhapService PhieuNhapService;;
+	
+	@Autowired
+	private SanPhamService SanPhamService;
+	
 	@GetMapping("/page_chitietphieunhap")
 	public String viewListCTPN(Model model) {
 		model.addAttribute("listChiTietPhieuNhaps", ChiTietPhieuNhapService.getAllChiTietPhieuNhap());
+		model.addAttribute("listPhieuNhaps", PhieuNhapService.getAllPhieuNhap());
+		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
 		return "admin/page_chitietphieunhap";
 	}
 	
@@ -28,6 +38,8 @@ public class ChiTietPhieuNhapController {
 	public String showNewChiTietPhieuNhapForm(Model model) {
 		ChiTietPhieuNhap chitietphieunhap = new ChiTietPhieuNhap();
 	    model.addAttribute("chitietphieunhap", chitietphieunhap);
+	    model.addAttribute("listPhieuNhaps", PhieuNhapService.getAllPhieuNhap());
+		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
 	    return "admin/new_chitietphieunhap";
 	 }
 	 
@@ -41,6 +53,8 @@ public class ChiTietPhieuNhapController {
 	public String showFormForUpdateCTPN(@PathVariable ( value = "maPN") long maPN, Model model) {
 		ChiTietPhieuNhap chitietphieunhap = ChiTietPhieuNhapService.getChiTietPhieuNhapById(maPN);
 		model.addAttribute("chitietphieunhap", chitietphieunhap);
+		model.addAttribute("listPhieuNhaps", PhieuNhapService.getAllPhieuNhap());
+		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
 		return "admin/update_chitietphieunhap";
 	}
 	

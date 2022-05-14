@@ -12,16 +12,26 @@
 	<div class="container">
         <h2>Thêm Phiếu Nhập</h2>
         <form action="#" th:action="@{/savePhieuNhap}" th:object="${phieunhap}" method="POST">
-            <input type="text" th:field="*{ngayNhap}" placeholder="Ngày Nhập" class="form-control mb-4 col-4">
-
-            <!-- <input type="text" th:field="*{maNV}" placeholder="Nhân Viên" class="form-control mb-4 col-4"> -->
- 					<select th:field="*{maNV}" class="form-select"> 
-                         <option th:each="nhanvien : ${listNhanViens}"
-                            th:value="${nhanvien.maNV}"
-                            th:text="${nhanvien.hoTen}" ></option>
-                  </select>
-            <input type="text" th:field="*{maNCC}" placeholder="Nhà Cung Cấp" class="form-control mb-4 col-4">
+        
             
+
+ 			<select th:field="*{maNV}" class="form-select"> 
+            	<option th:each="NhanVien : ${listNhanViens}"
+                	th:value="${NhanVien.maNV}"
+                    th:text="${NhanVien.hoTen}" ></option>
+           	</select>
+            </br>
+            <select th:field="*{maNCC}" class="form-select"> 
+                <option th:each="NhaCungCap : ${listNhaCungCaps}"
+                    th:value="${NhaCungCap.maNCC}"
+                    th:text="${NhaCungCap.tenNCC}" ></option>
+            </select>
+            </br>
+            <div>
+        		<label for="ngayNhap">Ngày nhập:</label>
+        		<input type="date" th:field="*{ngayNhap}" id="ngayNhap"/>
+    		</div>
+    		</br>
             <button type="submit" value="submit"  class="btn btn-info col-2"> Thêm</button>
         </form>
         <hr>

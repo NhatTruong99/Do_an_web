@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import webclothes.spring.model.ChiTietHoaDon;
 import webclothes.spring.service.ChiTietHoaDonService;
+import webclothes.spring.service.HoaDonService;
+import webclothes.spring.service.SanPhamService;
 
 @Controller
 public class ChiTietHoaDonController {
@@ -20,9 +21,17 @@ public class ChiTietHoaDonController {
 	@Autowired
 	private ChiTietHoaDonService ChiTietHoaDonService;
 	
+	@Autowired
+	private HoaDonService HoaDonService;
+	
+	@Autowired
+	private SanPhamService SanPhamService;
+	
 	@GetMapping("/page_chitiethoadon")
 	public String viewListCTHD(Model model) {
 		model.addAttribute("listChiTietHoaDons", ChiTietHoaDonService.getAllChiTietHoaDon());
+		model.addAttribute("listHoaDons", HoaDonService.getAllHoaDon());
+		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
 		return "admin/page_chitiethoadon";
 	}
 	
@@ -30,6 +39,8 @@ public class ChiTietHoaDonController {
 	public String showNewChiTietHoaDonForm(Model model) {
 		ChiTietHoaDon chitiethoadon = new ChiTietHoaDon();
 	    model.addAttribute("chitiethoadon", chitiethoadon);
+	    model.addAttribute("listHoaDons", HoaDonService.getAllHoaDon());
+		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
 	    return "admin/new_chitiethoadon";
 	 }
 	 
@@ -43,6 +54,8 @@ public class ChiTietHoaDonController {
 	public String showFormForUpdateCTHD(@PathVariable ( value = "maHD") long maHD, Model model) {
 		ChiTietHoaDon chitiethoadon = ChiTietHoaDonService.getChiTietHoaDonById(maHD);
 		model.addAttribute("chitiethoadon", chitiethoadon);
+		model.addAttribute("listHoaDons", HoaDonService.getAllHoaDon());
+		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
 		return "admin/update_chitiethoadon";
 	}
 	

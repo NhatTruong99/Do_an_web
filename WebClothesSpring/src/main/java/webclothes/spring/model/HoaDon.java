@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 @Entity
 @Table(name = "hoadon")
 public class HoaDon {
@@ -20,7 +23,8 @@ public class HoaDon {
 	/* Tránh viết cả 2 trùng nhau sẽ bị lỗi */
 	  @Column(name = "SHD")
 	  private String shd;
-
+	  
+	/* Bỏ @DateTimeFormat vào sẽ lỗi không New với Update Hoá Đơn mới được */
 	  @Column(name = "NgayDat")
 	  private Date ngayDat;
 
