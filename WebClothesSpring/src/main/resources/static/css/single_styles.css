@@ -38,7 +38,7 @@ COLOR PALETTE
 ***********/
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,900');
-
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300;400;500;600;700&display=swap');
 /*********************************
 2. Body and some general stuff
 *********************************/
@@ -50,7 +50,7 @@ COLOR PALETTE
 }
 body
 {
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	font-size: 14px;
 	line-height: 23px;
 	font-weight: 400;
@@ -72,7 +72,7 @@ ul
 }
 p
 {
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	font-size: 14px;
 	line-height: 1.7;
 	font-weight: 500;
@@ -131,7 +131,7 @@ h5{font-size: 16px;}
 h6{font-size: 14px;}
 h1, h2, h3, h4, h5, h6
 {
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	color: #282828;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
@@ -554,7 +554,7 @@ section
 {
 	display: block;
 	color: #1e1e27;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: 500;
 	text-transform: uppercase;
 	padding: 20px;
@@ -827,7 +827,7 @@ section
 	justify-content: center;
 	align-items: center;
 	width: auto;
-	height: 40px;
+	height: 50px;
 	background: #fe4c50;
 	border-radius: 3px;
 	-webkit-transition: all 0.3s ease;
@@ -845,11 +845,18 @@ section
 	display: block;
 	color: #FFFFFF;
 	text-transform: uppercase;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 500;
 	text-align: center;
 	line-height: 40px;
 	width: 100%;
+}
+.red_2{
+	background: #FFFFFF;
+	border: 2px solid #fe4c50;
+}
+.red_2 a{
+	color: #fe4c50;
 }
 .shop_now_button
 {
@@ -881,9 +888,10 @@ section
 	background: #fe4c50;
 	content: '';
 }
+
 .product_details_title p
 {
-	color: #;
+
 }
 
 /*********************************
@@ -896,24 +904,26 @@ section
 	height: 60px;
 	border-bottom: solid 1px #ebebeb;
 	margin-bottom: 79px;
+	font-size: 1.1rem;
 }
 .breadcrumbs ul li
 {
 	display: inline-block;
 	margin-right: 17px;
 }
-.breadcrumbs ul li.active a
+.breadcrumbs ul li a
 {
-	color: #b9b4c7;
+	color: #2766d2;
+}
+.breadcrumbs .active a
+{
+	color: #aaa4bb;
 }
 .breadcrumbs ul li i
 {
 	margin-right: 17px;
 }
-.breadcrumbs ul li a
-{
-	color: #51545f;
-}
+
 
 /*********************************
 5. Single Product Section
@@ -923,7 +933,7 @@ section
 {
 	margin-top: 150px;
 	padding-bottom: 80px;
-	border-bottom: solid 1px #ebebeb;
+
 }
 .single_product_thumbnails
 {
@@ -961,10 +971,10 @@ section
 {
 	padding-right: 30px;
 }
-.single_product_image
+.single_product_image img
 {
-	width: 100%;
 	height: 527px;
+	width: 453px;
 }
 .single_product_image_background
 {
@@ -1037,7 +1047,7 @@ section
 	color: #fe4c50;
 	font-weight: 500;
 	line-height: 30px;
-	margin-top: 2px;
+	margin-top: 20px;
 }
 .star_rating
 {
@@ -1112,9 +1122,12 @@ section
 }
 .add_to_cart_button
 {
+	
+	align-items: center;
 	width: 160px;
-	margin-left: 19px;
-	font-size: 12px !important;
+	/* margin-left: 19px; */
+	margin: auto;
+	font-size: 14px !important;
 }
 .product_favorite
 {
@@ -1200,41 +1213,47 @@ section
 7.1 Description
 *********************************/
 
-.desc_col
-{
 
+
+
+.title ul{
+    margin-top: 20px;
 }
-.tab_title
-{
-	margin-bottom: 98px;
+.title ul li{
+    list-style: none;
+    padding: 10px 15px;
+    border: 1px solid rgb(180, 177, 177);
+    border-bottom: 2px solid red;
+    width:  250px;
 }
-.tab_title h4
-{
-	display: inline-block;
-	color: #fe4c50;
-	border-bottom: solid 1px #fe4c50;
+.title ul li a{
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: black;
 }
-.tab_text_block
-{
-	margin-bottom: 133px;
+.title hr{
+    margin: 0 auto;
+    width: 95%;
 }
-.tab_text_block p
-{
+.thongtinsp table{
+    margin: 30px 30px;
+    font-size: 1.1rem;
+}
+.thongtinsp tr th{
+    border: 1px solid rgb(180, 177, 177);
+    padding:12px 5px 12px 8px;
+}
+.thongtinsp ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.thongtinsp .tieude{
+	width: 200px;
+}
+.thongtinsp .noidung{
 	font-weight: 400;
-	margin-top: 10px;
-}
-.tab_image
-{
-	width: 100%;
-	margin-bottom: 131px;
-}
-.tab_image img
-{
-	width: 100%;
-}
-.desc_last
-{
-	margin-bottom: 0px;
 }
 
 /*********************************

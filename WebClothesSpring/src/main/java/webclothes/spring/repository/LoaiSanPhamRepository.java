@@ -14,4 +14,13 @@ public interface LoaiSanPhamRepository extends JpaRepository<LoaiSanPham, Long> 
 	//Custom query
 	@Query(value = "SELECT * FROM loaisanpham lsp WHERE lsp.MaLoaiSP like %:keyword% or lsp.TenLoaiSP like %:keyword%", nativeQuery = true)
 	List<LoaiSanPham> findByKeyword(@Param("keyword") String keyword);
+	
+	/*
+	 * //Lấy thông tin loại sản phẩm từ sản phẩm
+	 * 
+	 * @Query(value =
+	 * "SELECT lsp.MaLoaiSP,lsp.TenLoaiSP FROM loaisanpham lsp JOIN sanpham sp WHERE sp.MaLoaiSP = lsp.MaLoaiSP AND sp.MaSP LIKE %:maSP%"
+	 * , nativeQuery = true) LoaiSanPham findByIdSanPham(@Param("maSP") long maSP);
+	 */
+	
 }

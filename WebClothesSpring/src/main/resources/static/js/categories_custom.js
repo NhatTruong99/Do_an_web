@@ -35,6 +35,7 @@ jQuery(document).ready(function($)
 	var menuActive = false;
 	var hamburgerClose = $('.hamburger_close');
 	var fsOverlay = $('.fs_menu_overlay');
+	console.log("hello");
 
 	setHeader();
 

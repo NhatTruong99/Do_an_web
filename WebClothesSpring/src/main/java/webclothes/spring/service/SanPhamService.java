@@ -44,4 +44,8 @@ public class SanPhamService {
 	public List<SanPham> getByKeyword(String keyword) {
 		return SanPhamRepository.findByKeyword(keyword);
 	}
+	
+	public List<SanPham> getByCategoryID(long idCategory){
+		return SanPhamRepository.findByCategoryID(idCategory);
+	}
 }

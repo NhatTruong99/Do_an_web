@@ -14,5 +14,7 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Long> {
 	//Custom query
 	@Query(value = "SELECT * FROM sanpham sp WHERE sp.MaSP like %:keyword% or sp.TenSP like %:keyword% or sp.DacDiem like %:keyword% or sp.Anh like %:keyword% or sp.DonGia like %:keyword% or sp.GhiChu like %:keyword% or sp.MaSize like %:keyword% or sp.MaLoaiSP like %:keyword% ", nativeQuery = true)
 	List<SanPham> findByKeyword(@Param("keyword") String keyword);
-
+	
+	@Query(value = "SELECT * FROM sanpham sp WHERE sp.MaLoaiSP like %:idCategory%", nativeQuery = true)
+	List<SanPham> findByCategoryID(@Param("idCategory") long idCategory);
 }

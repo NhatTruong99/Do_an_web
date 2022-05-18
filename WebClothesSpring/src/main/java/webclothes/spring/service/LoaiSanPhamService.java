@@ -49,4 +49,12 @@ public class LoaiSanPhamService{
 		return LoaiSanPhamRepository.findByKeyword(keyword);
 	}
 
+	/*
+	 * public LoaiSanPham getByIdSanPham(long maSP) { Optional<LoaiSanPham> optional
+	 * = Optional.ofNullable(LoaiSanPhamRepository.findByIdSanPham(maSP));
+	 * LoaiSanPham loaisanpham = null; if (optional.isPresent()) { loaisanpham =
+	 * optional.get(); } else { throw new
+	 * RuntimeException(" Không tìm thấy loại sản phẩm với mã sản phẩm: " + maSP); }
+	 * return loaisanpham; }
+	 */
 }

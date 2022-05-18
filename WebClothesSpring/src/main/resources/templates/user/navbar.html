@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+a<!DOCTYPE html>
 <html lang = "en" xmlns:th = "http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -19,12 +19,12 @@
 						<nav class="navbar">
 							<ul class="navbar_menu">
 								<li><a th:href="@{/}">Trang chủ</a></li>
-								
+								<li><a th:href="@{/categories}" style="padding-right: 5px;">Sản phẩm</a></li>
 								<li class="dropdown" style="cursor: pointer">
-									<a  class="dropdown-toggle p-0"  id="dropdownMenuButton" data-toggle="dropdown" >Sản phẩm</a>
+									<a  class="dropdown-toggle p-0"  id="dropdownMenuButton" data-toggle="dropdown" ></a>
 									<div class="dropdown-menu">
-										<th:block th:each="loaiSP : ${listLoaiSanPhams}">
-											<a class="dropdown-item p-3" th:href="@{/categories}" th:text = "${loaiSP.tenLoaiSP}"></a>
+										<th:block th:each="loaiSP : ${listLoaiSanPhams}">										
+											<a class="dropdown-item p-3" th:href="@{/categories/{maLoaiSP}(maLoaiSP=${loaiSP.maLoaiSP})}" th:text = "${loaiSP.tenLoaiSP}"></a>
 										</th:block>
 									</div>
 								</li>

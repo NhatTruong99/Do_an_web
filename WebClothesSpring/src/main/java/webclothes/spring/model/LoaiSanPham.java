@@ -19,6 +19,14 @@ public class LoaiSanPham {
 	  @Column(name = "TenLoaiSP")
 	  private String tenLoaiSP;
 
+	public LoaiSanPham(long maLoaiSP, String tenLoaiSP) {
+		this.maLoaiSP = maLoaiSP;
+		this.tenLoaiSP = tenLoaiSP;
+	}
+
+	public LoaiSanPham() {
+	}
+
 	public long getMaLoaiSP() {
 		return maLoaiSP;
 	}
