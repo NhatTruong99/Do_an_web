@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: May 11, 2022 at 11:05 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- Host: 127.0.0.1
+-- Generation Time: May 20, 2022 at 09:42 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,14 +34,6 @@ CREATE TABLE `chitiethoadon` (
   `DonGia` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `chitiethoadon`
---
-
-INSERT INTO `chitiethoadon` (`MaHD`, `MaSP`, `SoLuong`, `DonGia`) VALUES
-(1, 1, 3000, 20000),
-(2, 2, 9, 30000);
-
 -- --------------------------------------------------------
 
 --
@@ -54,14 +46,6 @@ CREATE TABLE `chitietphieunhap` (
   `SoLuongNhap` int(10) NOT NULL,
   `DonGiaNhap` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `chitietphieunhap`
---
-
-INSERT INTO `chitietphieunhap` (`MaPN`, `MaSP`, `SoLuongNhap`, `DonGiaNhap`) VALUES
-(1, 1, 3000, 30000),
-(2, 2, 5, 20000);
 
 -- --------------------------------------------------------
 
@@ -85,7 +69,9 @@ CREATE TABLE `hoadon` (
 --
 
 INSERT INTO `hoadon` (`MaHD`, `SHD`, `NgayDat`, `NgayGiao`, `DiaChiNhan`, `TinhTrang`, `DaThanhToan`, `MaKH`) VALUES
-(1, 'abc123', '2022-05-05', '2022-05-08', 'Nha Trang', 1, 1, 1);
+(1, 'abc123', '2022-05-05', '2022-05-10', 'Nha Trang', 0, 1, 1),
+(2, '2', '2022-05-05', '2022-05-08', '123', 1, 1, 1),
+(3, '123', '2022-05-03', '2022-05-03', '123', 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -106,8 +92,8 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`MaKH`, `HoTen`, `Email`, `SDT`, `DiaChi`) VALUES
-(1, 'Nguyễn Văn Thạch', 'thach2001@gmail.com', 768686861, 'Nope'),
-(5, 'Trần Minh Trọng', 'trong@gmail.com', 123456789, 'Nha Trang');
+(1, 'Nguyễn Văn Thạch', 'thach2001@gmail.com', 768686861, 'Nope123'),
+(2, 'Trần Minh Trọng', 'trong@gmail.com', 123456789, 'Nha Trang');
 
 -- --------------------------------------------------------
 
@@ -125,8 +111,11 @@ CREATE TABLE `loaisanpham` (
 --
 
 INSERT INTO `loaisanpham` (`MaLoaiSP`, `TenLoaiSP`) VALUES
-(1, 'Áo len'),
-(4, 'Áo dài tay');
+(1, 'Áo sơ mi'),
+(2, 'Áo thun'),
+(3, 'Áo khoác'),
+(4, 'Quần short'),
+(5, 'Quần dài');
 
 -- --------------------------------------------------------
 
@@ -192,7 +181,7 @@ CREATE TABLE `phieunhap` (
 
 INSERT INTO `phieunhap` (`MaPN`, `NgayNhap`, `MaNV`, `MaNCC`) VALUES
 (1, '2022-05-06', 1, 1),
-(2, '2022-05-15', 2, 1);
+(2, '2022-05-15', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -235,8 +224,16 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`MaSP`, `TenSP`, `DacDiem`, `Anh`, `DonGia`, `GhiChu`, `MaSize`, `MaLoaiSP`) VALUES
-(1, 'Áo dài tay', 'Rẻ', 'aodaitay.jpg', 30000, 'Nope', 6, 4),
-(2, 'Áo len', 'Rẻ', 'aolen.jpg', 100000, 'Nope', 1, 1);
+(1, 'Áo thun LocalBrand Cemmery \" SIGNATURE TEE 2.0 \"', 'Chất liệu vải : 100% PREMIUM COTTON co giãn 4 chiều thoáng mát. Công nghệ : In nổi cao cấp, bảo quản tốt khi giặt máy, không bong tróc phai màu.', 'spNo1.jpg', 159000, '', 2, 2),
+(2, 'Áo thun LocalBrand Cemmery ', 'Chất liệu vải : 100% PREMIUM COTTON co giãn 4 chiều thoáng mát. Công nghệ : In nổi cao cấp, bảo quản tốt khi giặt máy, không bong tróc phai màu.', 'spNo2.jpg', 149000, '', 2, 2),
+(3, 'Áo thun tay ngắn Local Brand \"TIDY SHIRT\"', 'Chất liệu : Lụa mềm mịn, siêu mát, thấm hút mồ hôi nhanh chống nhăn, đường may sắc sảo, chi tiết Công nghệ : Thêu bằng đường nét chắc chắn, bảo quản tốt khi giặt máy.', 'spNo3.jpg', 129000, '', 3, 2),
+(4, 'Áo sơ mi nam FEAER chất lụa họa tiết lá đen Boo Boo', 'Chất liệu: Lụa Twill chéo mềm mịn, thoáng mát - Hàng còn nguyên tem mác, cực sang chảnh (xem video trên ảnh sản phẩm). - Họa tiết sọc trắng đen Khách hàng phối Jeans, Kaki, Short đều đẹp. Mặc dạo phố, du lịch hay đến các buổi tiệc đều mang đến sự tự tin đẳng cấp dành cho khách hàng.', 'spNo4.jpg', 300000, '', 3, 1),
+(5, 'Áo sơ mi tay ngắn nam nữ form rộng sơ mi cổ ', 'Kiểu dáng : Thời trang unisex dành cho Nam và Nữ,( lớn hơn form thường ). Chất liệu : Lụa CNK 100%', 'spNo5.jpg', 200000, '', 2, 1),
+(6, 'Áo sơ mi nữ form rộng dài tay kiểu công sở', 'Chất liệu : Lụa Chéo Ý (Không nhăn, Dày Dặn, Thời trang )', 'spNo6.jpg', 230000, '', 2, 1),
+(7, 'Áo Khoác Bomber A - phong cách nam nữ chất nỉ bông cotton', 'Áo khoác BOMBER vải nỉ bông cotton, đẹp, không co rút, Hình in không bong tróc, đặc biệt không những giúp bạn giữ ấm trong mùa lạnh mà còn có thể chống nắng, chống gió, chống bụi, chống rét, chống tia UV cực tốt, rất tiện lợi.', 'spNo7.jpg', 350000, '', 3, 3),
+(8, 'Quần baggy kaki nam nữ Nasa - Kiểu quần ống rộng basic', '- Chất liệu: Kaki cao cấp - Mực in cao cấp không bong tróc, hình in sắc nét, không phai màu, không gây hại cho da. - Đường may chuẩn chỉnh, tỉ mỉ, chắc chắn.', 'spNo8.jpg', 250000, '', 1, 5),
+(9, 'Quần Short Đùi Trơn thể thao basic nam nữ oversize ', 'Hàng chuẩn N7 sản xuất, tem mác chuẩn chính hãng. - Chất liệu: Nỉ cotton - Đường may chuẩn chỉnh, tỉ mỉ, chắc chắn.', 'spNo9.jpg', 200000, '', 2, 4),
+(10, 'Quần short nam ROWAY Fullbox, vải Umi co giãn nhẹ ', 'Chất liệu:Umi co giãn nhẹ không nhăn form regular suông mặc thoải mái\r\n- Hàng còn nguyên tem mác, cực sang chảnh \r\n-Basic phối Sơ mi hay áo phông đều đẹp. Mặc dạo phố, du lịch hay đến các buổi tiệc đều mang đến sự tự tin đẳng cấp dành cho khách hàng.\r\n', 'spNo10.jpg', 170000, '', 4, 4);
 
 -- --------------------------------------------------------
 
@@ -256,13 +253,10 @@ CREATE TABLE `size` (
 --
 
 INSERT INTO `size` (`MaSize`, `TenSize`, `ChieuCao`, `CanNang`) VALUES
-(1, 'Size XXS', '...', '...'),
-(2, 'Size XS', '...', '...'),
-(3, 'Size S', '...', '...'),
-(4, 'Size M', '...', '...'),
-(5, 'Size L', '...', '...'),
-(6, 'Size XL', '...', '...'),
-(7, 'Size XXL', '...', '...');
+(1, 'Size S', '1M40 - 1M45', '38 - 41'),
+(2, 'Size M', '1M45 - 1M50', '41 - 45'),
+(3, 'Size L', '1M50 - 1M60', '46 - 53'),
+(4, 'Size XL', '1M60 - 1M70', '53 - 62');
 
 --
 -- Indexes for dumped tables
@@ -334,7 +328,10 @@ ALTER TABLE `quyen`
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`MaSP`),
   ADD KEY `FK_SanPham_LoaiSP` (`MaLoaiSP`),
-  ADD KEY `FK_SanPham_Size` (`MaSize`);
+  ADD KEY `FK_SanPham_Size` (`MaSize`),
+  ADD KEY `MaLoaiSP` (`MaLoaiSP`),
+  ADD KEY `MaSize` (`MaSize`),
+  ADD KEY `MaSize_2` (`MaSize`);
 
 --
 -- Indexes for table `size`
@@ -350,19 +347,19 @@ ALTER TABLE `size`
 -- AUTO_INCREMENT for table `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `MaHD` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `MaHD` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `MaKH` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `MaKH` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `loaisanpham`
 --
 ALTER TABLE `loaisanpham`
-  MODIFY `MaLoaiSP` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `MaLoaiSP` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `nhacungcap`
@@ -392,13 +389,13 @@ ALTER TABLE `quyen`
 -- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `MaSP` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `MaSP` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `size`
 --
 ALTER TABLE `size`
-  MODIFY `MaSize` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `MaSize` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -439,8 +436,8 @@ ALTER TABLE `phieunhap`
 -- Constraints for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  ADD CONSTRAINT `FK_SanPham_LoaiSP` FOREIGN KEY (`MaLoaiSP`) REFERENCES `loaisanpham` (`MaLoaiSP`),
-  ADD CONSTRAINT `FK_SanPham_Size` FOREIGN KEY (`MaSize`) REFERENCES `size` (`MaSize`);
+  ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`MaLoaiSP`) REFERENCES `loaisanpham` (`MaLoaiSP`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`MaSize`) REFERENCES `size` (`MaSize`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
