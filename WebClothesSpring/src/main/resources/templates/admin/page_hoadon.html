@@ -23,7 +23,6 @@
 		     <th>Ngày Giao</th>
 		     <th>Địa Chỉ Nhận</th>
 		     <th>Tình Trạng</th>
-		     <th>Đã Thanh Toán</th>
 		     <th>Khách Hàng</th>
 		     <th>Chức Năng</th>
 		    </tr>
@@ -36,7 +35,6 @@
 			   	<td th:text="${#dates.format(HoaDon.ngayGiao, 'dd-MM-yyyy')}"></td>
 			   	<td th:text="${HoaDon.diaChiNhan}"></td>
 			   	<td th:text="${HoaDon.tinhTrang}"></td>
-			   	<td th:text="${HoaDon.daThanhToan}"></td>
 			   	<th:block th:each="KhachHang : ${listKhachHangs}">
 			   		<th:block th:if="${KhachHang.maKH == HoaDon.maKH}">
 			   			<td th:text="${KhachHang.hoTen}"></td>

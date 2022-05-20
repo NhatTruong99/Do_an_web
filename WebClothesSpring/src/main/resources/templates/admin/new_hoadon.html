@@ -28,10 +28,14 @@
             
             <input type="text" th:field="*{diaChiNhan}" placeholder="Địa Chỉ Nhận" class="form-control mb-4 col-4">
             
-            <input type="text" th:field="*{tinhTrang}" placeholder="Tình Trạng" class="form-control mb-4 col-4">
-            
-            <input type="text" th:field="*{daThanhToan}" placeholder="Đã Thanh Toán" class="form-control mb-4 col-4">
-            
+<!--             <input type="text" th:field="*{tinhTrang}" placeholder="Tình Trạng" class="form-control mb-4 col-4"> -->
+          	<select th:field="*{tinhTrang}" class="form-select" aria-label="Default select example">
+				  <option value="Chưa xác nhận">Chưa xác nhận</option>
+				  <option value="Xác nhận">Xác nhận</option>
+				  <option value="Đang giao">Đang giao</option>
+				  <option value="Giao thành công">Giao thành công</option>
+			</select>
+            </br>
              <select th:field="*{maKH}" class="form-select"> 
                 <option th:each="KhachHang : ${listKhachHangs}"
                     th:value="${KhachHang.maKH}"

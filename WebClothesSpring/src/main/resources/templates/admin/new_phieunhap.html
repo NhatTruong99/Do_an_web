@@ -21,16 +21,17 @@
                     th:text="${NhanVien.hoTen}" ></option>
            	</select>
             </br>
+            <div>
+        		<label for="ngayNhap">Ngày nhập:</label>
+        		<input type="date" th:field="*{ngayNhap}" id="ngayNhap"/>
+    		</div>
+    		</br>
             <select th:field="*{maNCC}" class="form-select"> 
                 <option th:each="NhaCungCap : ${listNhaCungCaps}"
                     th:value="${NhaCungCap.maNCC}"
                     th:text="${NhaCungCap.tenNCC}" ></option>
             </select>
             </br>
-            <div>
-        		<label for="ngayNhap">Ngày nhập:</label>
-        		<input type="date" th:field="*{ngayNhap}" id="ngayNhap"/>
-    		</div>
     		</br>
             <button type="submit" value="submit"  class="btn btn-info col-2"> Thêm</button>
         </form>
