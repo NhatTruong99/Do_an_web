@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import webclothes.spring.model.SanPham;
 import webclothes.spring.repository.SanPhamRepository;
@@ -47,5 +50,16 @@ public class SanPhamService {
 	
 	public List<SanPham> getByCategoryID(long idCategory){
 		return SanPhamRepository.findByCategoryID(idCategory);
+	}
+	
+	//Phân trang
+	public Page<SanPham> findPaginated(int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return this.SanPhamRepository.findAll(pageable);
+	}
+	
+	public Page<SanPham> findPaginatedWithCategoryID(int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return this.SanPhamRepository.findAll(pageable);
 	}
 }
