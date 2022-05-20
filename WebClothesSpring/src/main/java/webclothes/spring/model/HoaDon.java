@@ -35,10 +35,7 @@ public class HoaDon {
 	  private String diaChiNhan;
 	  
 	  @Column(name = "TinhTrang")
-	  private Boolean tinhTrang;
-	  
-	  @Column(name = "DaThanhToan")
-	  private Boolean daThanhToan;
+	  private String tinhTrang;
 	  
 	  @Column(name = "MaKH")
 	  private long maKH;
@@ -83,20 +80,12 @@ public class HoaDon {
 		this.diaChiNhan = diaChiNhan;
 	}
 
-	public Boolean getTinhTrang() {
+	public String getTinhTrang() {
 		return tinhTrang;
 	}
 
-	public void setTinhTrang(Boolean tinhTrang) {
+	public void setTinhTrang(String tinhTrang) {
 		this.tinhTrang = tinhTrang;
-	}
-
-	public Boolean getDaThanhToan() {
-		return daThanhToan;
-	}
-
-	public void setDaThanhToan(Boolean daThanhToan) {
-		this.daThanhToan = daThanhToan;
 	}
 
 	public long getMaKH() {
@@ -106,6 +95,8 @@ public class HoaDon {
 	public void setMaKH(long maKH) {
 		this.maKH = maKH;
 	}
+
+	
 
 	
 
