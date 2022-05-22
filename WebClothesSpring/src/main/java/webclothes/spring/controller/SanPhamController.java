@@ -71,7 +71,6 @@ public class SanPhamController {
          
         SanPham savedSanPham = SanPhamRepository.save(sanpham);
  
-//        String uploadDir = "user-photos/" + savedSanPham.getMaSP();
         String uploadDir = "src/main/resources/static/images";
  
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);

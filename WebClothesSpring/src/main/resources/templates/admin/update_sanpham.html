@@ -7,6 +7,8 @@
  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
  crossorigin="anonymous">
+ 
+</script>
 <body>
 <div layout:fragment="content">
 	<div class="container">
@@ -22,7 +24,7 @@
             <input type="text" th:field="*{dacDiem}" class="form-control mb-4 col-4" >
             
 			<label>Ảnh sản phẩm: </label>
-			<input type="file" th:field="*{anh}" name="image" accept="image/png, image/jpeg, image/jpg" class="mb-3"/>
+			<input type="file" name="image" accept="image/png, image/jpeg, image/jpg" class="mb-3"/>
             
             <input type="text" th:field="*{donGia}" class="form-control mb-4 col-4">
             
