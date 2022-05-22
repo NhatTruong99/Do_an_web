@@ -1,18 +1,25 @@
 package webclothes.spring.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.data.domain.Page;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
+import webclothes.spring.model.FileUploadUtil;
 import webclothes.spring.model.SanPham;
+import webclothes.spring.repository.SanPhamRepository;
 import webclothes.spring.service.LoaiSanPhamService;
 import webclothes.spring.service.SanPhamService;
 import webclothes.spring.service.SizeService;
@@ -28,6 +35,9 @@ public class SanPhamController {
 	
 	@Autowired
 	private LoaiSanPhamService LoaiSanPhamService;
+	
+	@Autowired
+	private SanPhamRepository SanPhamRepository;
 	
 	@GetMapping("/page_sanpham")
 	public String viewListSP(Model model) {
@@ -47,11 +57,28 @@ public class SanPhamController {
 	 }
 	 
 	
+//	@PostMapping("/saveSanPham")
+//	public String saveSP(@ModelAttribute("sanpham") SanPham sanpham) {
+//		SanPhamService.saveSanPham(sanpham);
+//		return "redirect:/page_sanpham";
+//	 }
 	@PostMapping("/saveSanPham")
-	public String saveSP(@ModelAttribute("sanpham") SanPham sanpham) {
-		SanPhamService.saveSanPham(sanpham);
-		return "redirect:/page_sanpham";
-	 }
+    public RedirectView saveSP(SanPham sanpham,
+            @RequestParam("image") MultipartFile multipartFile) throws IOException {
+         
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        sanpham.setAnh(fileName);
+         
+        SanPham savedSanPham = SanPhamRepository.save(sanpham);
+ 
+//        String uploadDir = "user-photos/" + savedSanPham.getMaSP();
+        String uploadDir = "src/main/resources/static/images";
+ 
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+         
+        return new RedirectView("/page_sanpham", true);
+    }
+	
 	
 	@GetMapping("/showFormForUpdateSP/{maSP}")
 	public String showFormForUpdateSP(@PathVariable ( value = "maSP") long maSP, Model model) {

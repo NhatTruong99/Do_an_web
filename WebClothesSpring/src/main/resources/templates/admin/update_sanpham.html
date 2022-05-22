@@ -12,16 +12,17 @@
 	<div class="container">
         <h2>Cập Nhật Sản Phẩm</h2>
 
-        <form action="#" th:action="@{/saveSanPham}" th:object="${sanpham}" method="POST">
+		<form action="#" th:action="@{/saveSanPham}" th:object="${sanpham}" method="POST" enctype="multipart/form-data">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maSP}" />
+            
+           	<input type="text" th:field="*{tenSP}" class="form-control mb-4 col-4">	
 
-            <input type="text" th:field="*{tenSP}" class="form-control mb-4 col-4">
-
-            <input type="text" th:field="*{dacDiem}" class="form-control mb-4 col-4">
-
-            <input type="text" th:field="*{anh}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{dacDiem}" class="form-control mb-4 col-4" >
+            
+			<label>Ảnh sản phẩm: </label>
+			<input type="file" th:field="*{anh}" name="image" accept="image/png, image/jpeg, image/jpg" class="mb-3"/>
             
             <input type="text" th:field="*{donGia}" class="form-control mb-4 col-4">
             

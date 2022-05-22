@@ -1,5 +1,7 @@
 package webclothes.spring.model;
 
+import java.beans.Transient;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,6 +41,11 @@ public class SanPham {
 	  @Column(name = "MaLoaiSP")
 	  private long maLoaiSP;
 	  
+	 @Transient
+	 public String getPhotosImagePath() {
+		 if (anh == null) return null;
+	     	return "src/main/resources/static/images" + anh;
+	    }  
 
 	public long getMaSP() {
 		return maSP;
