@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SanPhamConfig implements WebMvcConfigurer {
 	 @Override
 	 public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		 exposeDirectory("src/main/resources/static/images", registry);
+		 exposeDirectory("/images", registry);
 	 }
 	     
 	    private void exposeDirectory(String dirName, ResourceHandlerRegistry registry) {

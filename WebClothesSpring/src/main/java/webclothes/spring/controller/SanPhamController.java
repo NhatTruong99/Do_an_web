@@ -73,9 +73,11 @@ public class SanPhamController {
  
 //        String uploadDir = "user-photos/" + savedSanPham.getMaSP();
         String uploadDir = "src/main/resources/static/images";
- 
+        String uploadDir1 = "target/classes/static/images";
+
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-         
+        FileUploadUtil.saveFile(uploadDir1, fileName, multipartFile);
+
         return new RedirectView("/page_sanpham", true);
     }
 	
