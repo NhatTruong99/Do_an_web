@@ -1303,7 +1303,8 @@ section
 }
 .product-item
 {
-	width: 25%;
+		margin-right: 5px;
+	width: 24%;
 	height: 380px;
 	cursor: pointer;
 }
