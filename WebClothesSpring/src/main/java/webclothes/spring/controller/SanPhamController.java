@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import webclothes.spring.model.FileUploadUtil;
 import webclothes.spring.model.SanPham;
+import webclothes.spring.model.Size;
 import webclothes.spring.repository.SanPhamRepository;
 import webclothes.spring.service.LoaiSanPhamService;
 import webclothes.spring.service.SanPhamService;
@@ -71,13 +72,27 @@ public class SanPhamController {
          
         SanPham savedSanPham = SanPhamRepository.save(sanpham);
  
-        String uploadDir = "src/main/resources/static/images";
+        // Up vào cả 2 folder    
+        String uploadDir = "target/classes/static/images";
+        String uploadDir1 = "src/main/resources/static/images";
  
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        FileUploadUtil.saveFile(uploadDir1, fileName, multipartFile);
+        
          
         return new RedirectView("/page_sanpham", true);
     }
 	
+
+	@GetMapping("/showFormForDetailSP/{maSP}")
+	public String showFormForDetailSP(@PathVariable ( value = "maSP") long maSP, Model model) {
+		SanPham sanpham = SanPhamService.getSanPhamById(maSP);
+		model.addAttribute("sanpham", sanpham);
+		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
+		model.addAttribute("listSizes", SizeService.getAllSize());
+		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
+		return "admin/detail_sanpham";
+	}
 	
 	@GetMapping("/showFormForUpdateSP/{maSP}")
 	public String showFormForUpdateSP(@PathVariable ( value = "maSP") long maSP, Model model) {

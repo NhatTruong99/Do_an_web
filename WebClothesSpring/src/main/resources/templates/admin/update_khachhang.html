@@ -10,19 +10,23 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Cập Nhật Khách Hàng</h2>
+        <h2 class="mb-3">Cập Nhật Khách Hàng</h2>
 
         <form action="#" th:action="@{/saveKhachHang}" th:object="${khachhang}" method="POST">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maKH}" />
 
+			<label for="hoTen"><strong>Khách hàng:</strong></label>
             <input type="text" th:field="*{hoTen}" class="form-control mb-4 col-4">
 
+			<label for="email"><strong>Email:</strong></label>
             <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
 
+			<label for="sdt"><strong>SĐT:</strong></label>
             <input type="text" th:field="*{sdt}" class="form-control mb-4 col-4">
             
+            <label for="diaChi"><strong>Địa chỉ:</strong></label>
             <input type="text" th:field="*{diaChi}" class="form-control mb-4 col-4">
             
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>

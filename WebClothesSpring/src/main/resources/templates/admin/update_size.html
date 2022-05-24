@@ -10,17 +10,20 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Cập Nhật Size</h2>
+        <h2 class="mb-3">Cập Nhật Size</h2>
 
         <form action="#" th:action="@{/saveSize}" th:object="${size}" method="POST">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maSize}" />
 
+			<label for="tenSize"><strong>Size:</strong></label>
             <input type="text" th:field="*{tenSize}" class="form-control mb-4 col-4">
             
+            <label for="chieuCao"><strong>Chiều cao:</strong></label>
             <input type="text" th:field="*{chieuCao}" class="form-control mb-4 col-4">
             
+            <label for="canNang"><strong>Cân nặng:</strong></label>
             <input type="text" th:field="*{canNang}" class="form-control mb-4 col-4">
             
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>

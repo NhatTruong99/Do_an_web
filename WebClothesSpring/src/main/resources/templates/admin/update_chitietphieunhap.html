@@ -10,13 +10,14 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Cập Nhật Chi Tiết Phiếu Nhập</h2>
+        <h2 class="mb-3">Cập Nhật Chi Tiết Phiếu Nhập</h2>
 
         <form action="#" th:action="@{/saveChiTietPhieuNhap}" th:object="${chitietphieunhap}" method="POST">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maPN}" />
 
+			<label for="maSP"><strong>Sản phẩm:</strong></label>
              <select th:field="*{maSP}" class="form-select"> 
                 <option th:each="SanPham : ${listSanPhams}"
                     th:value="${SanPham.maSP}"
@@ -24,8 +25,10 @@
             </select>
             </br>
 
+			<label for="soLuongNhap"><strong>Số lượng nhập:</strong></label>
             <input type="text" th:field="*{soLuongNhap}" class="form-control mb-4 col-4">
 
+			<label for="donGiaNhap"><strong>Đơn giá nhập:</strong></label>
             <input type="text" th:field="*{donGiaNhap}" class="form-control mb-4 col-4">
      
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>

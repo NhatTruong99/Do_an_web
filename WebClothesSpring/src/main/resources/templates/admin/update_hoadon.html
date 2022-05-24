@@ -10,7 +10,7 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Cập Nhật Hoá Đơn</h2>
+        <h2 class="mb-3">Cập Nhật Hoá Đơn</h2>
 
         <form action="#" th:action="@{/saveHoaDon}" th:object="${HoaDon}" method="POST">
 
@@ -23,23 +23,23 @@
             </div>
             
 			<div>
-        		<label for="ngayDat">Ngày đặt:</label>
+        		<label for="ngayDat"><strong>Ngày đặt:</strong></label>
         		<input type="date" readonly th:field="*{ngayDat}" id="ngayDat" />
     		</div>
     		</br>
     		<div>
-        		<label for="ngayGiao">Ngày giao:</label>
+        		<label for="ngayGiao"><strong>Ngày giao:</strong></label>
         		<input type="date" readonly th:field="*{ngayGiao}" id="ngayGiao"/>
     		</div>
     		</br>
             
             
             <div>
-	            <label for="diaChiNhan">Địa chỉ nhận:</label>
+	            <label for="diaChiNhan"><strong>Địa chỉ nhận:</strong></label>
 	            <input type="text" readonly th:field="*{diaChiNhan}" class="form-control mb-4 col-4">
             </div>
             
-            <label for="tinhTrangDonHang">Tình trạng đơn hàng:</label>
+            <label for="tinhTrangDonHang"><strong>Tình trạng đơn hàng:</strong></label>
             <select th:field="*{tinhTrang}" class="form-select" aria-label="Default select example">
 				  <option value="Chưa xác nhận">Chưa xác nhận</option>
 				  <option value="Xác nhận">Xác nhận</option>
@@ -48,16 +48,18 @@
 			</select>
             </br>
             
-            <th:block th:each="KhachHang : ${listKhachHangs}">
-	             <th:block th:if="${HoaDon.maKH == KhachHang.maKH}">
-	             <label for="khachHang">Khách Hàng:</label>
-	            	  <input type="hidden" th:field="*{maKH}" class="form-control mb-4 col-4" th:value="${HoaDon.maKH}" th:text="${KhachHang.hoTen}">
-	            </th:block>
-            </th:block>
-           
-            </br>
-            </br>
-     
+            <!-- disabled field rồi thêm hidden input để lấy giá trị -->
+            <input type="hidden" th:field="*{maKH}" />
+            <fieldset disabled>
+            	<label for="maKH"><strong>Khách hàng:</strong></label>
+	            <select th:field="*{maKH}" class="form-select"> 
+	                <option th:each="KhachHang : ${listKhachHangs}"
+	                    th:value="${KhachHang.maKH}"
+	                    th:text="${KhachHang.hoTen}" ></option>
+	            </select>
+	            </br>
+            </fieldset>
+    
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>
         </form>
         <hr>

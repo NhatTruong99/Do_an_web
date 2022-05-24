@@ -10,13 +10,14 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Cập Nhật Quyền</h2>
+        <h2 class="mb-3">Cập Nhật Quyền</h2>
 
         <form action="#" th:action="@{/saveQuyen}" th:object="${quyen}" method="POST">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maQuyen}" />
 
+			<label for="tenQuyen"><strong>Quyền:</strong></label>
             <input type="text" th:field="*{tenQuyen}" class="form-control mb-4 col-4">
             
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>
