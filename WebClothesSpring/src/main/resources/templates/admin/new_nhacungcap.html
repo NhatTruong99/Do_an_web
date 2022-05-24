@@ -10,9 +10,10 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Thêm Nhà Cung Cấp</h2>
+        <h2 class="mb-3">Thêm Nhà Cung Cấp</h2>
 
         <form action="#" th:action="@{/saveNhaCungCap}" th:object="${nhacungcap}" method="POST">
+        	<label for="tenNCC"><strong>Nhà cung cấp:</strong></label>
             <input type="text" th:field="*{tenNCC}" placeholder="Tên Nhà Cung Cấp" class="form-control mb-4 col-4">
             <button type="submit" class="btn btn-info col-2"> Thêm</button>
         </form>

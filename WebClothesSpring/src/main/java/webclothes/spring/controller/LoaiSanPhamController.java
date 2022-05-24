@@ -1,6 +1,9 @@
 package webclothes.spring.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,9 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import webclothes.spring.model.KhachHang;
 import webclothes.spring.model.LoaiSanPham;
+import webclothes.spring.model.SanPham;
 import webclothes.spring.service.LoaiSanPhamService;
 
 @Controller
@@ -22,7 +27,8 @@ public class LoaiSanPhamController {
 	@GetMapping("/page_loaisanpham")
 	public String viewListLSP(Model model) {
 		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
-		return "admin/page_loaisanpham";
+		return findPaginatedLoaiSanPham(1, "maLoaiSP", "asc", model);
+	//  	"admin/page_loaisanpham";
 	}
 	
 	@GetMapping("/showNewLoaiSanPhamForm")
@@ -63,4 +69,25 @@ public class LoaiSanPhamController {
 		return "admin/page_loaisanpham";
 	 }
 	 
+	@GetMapping("/pageLSP/{pageNo}")
+	public String findPaginatedLoaiSanPham(@PathVariable(value = "pageNo") int pageNo,
+	    @RequestParam("sortField") String sortField,
+	    @RequestParam("sortDir") String sortDir,
+	    Model model) {
+	    int pageSize = 3;
+
+	    Page<LoaiSanPham> page = LoaiSanPhamService.findPaginatedLoaiSanPham(pageNo, pageSize, sortField, sortDir);
+	    List<LoaiSanPham> listLoaiSanPhams = page.getContent();
+
+	    model.addAttribute("currentPage", pageNo);
+	    model.addAttribute("totalPages", page.getTotalPages());
+	    model.addAttribute("totalItems", page.getTotalElements());
+
+	    model.addAttribute("sortField", sortField);
+	    model.addAttribute("sortDir", sortDir);
+	    model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+	    model.addAttribute("listLoaiSanPhams", listLoaiSanPhams);
+	    return "admin/page_loaisanpham";
+	}
 }

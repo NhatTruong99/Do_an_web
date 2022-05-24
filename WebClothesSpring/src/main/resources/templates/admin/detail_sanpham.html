@@ -46,7 +46,7 @@
 		            <label for="ghiChu"><strong>Ghi chú:</strong></label>
 		            <input type="text" th:field="*{ghiChu}" class="form-control mb-4 col-4">
 		            
-		            <label for="maSize"><strong>Tên size:</strong></label>
+		            <label for="maSize"><strong>Size:</strong></label>
 		            <select th:field="*{maSize}" class="form-select"> 
 		            	<option th:each="Size : ${listSizes}"
 		                	th:value="${Size.maSize}"
@@ -54,7 +54,7 @@
 		           	</select>
 		            </br>
 		            
-		            <label for="maLoaiSP"><strong>Tên loại sản phẩm:</strong></label>
+		            <label for="maLoaiSP"><strong>Loại sản phẩm:</strong></label>
 		            <select th:field="*{maLoaiSP}" class="form-select"> 
 		                <option th:each="LoaiSanPham : ${listLoaiSanPhams}"
 		                    th:value="${LoaiSanPham.maLoaiSP}"

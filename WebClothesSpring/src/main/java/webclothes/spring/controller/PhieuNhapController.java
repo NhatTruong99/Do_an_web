@@ -3,6 +3,7 @@ package webclothes.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import webclothes.spring.model.NhaCungCap;
 import webclothes.spring.model.NhanVien;
 import webclothes.spring.model.PhieuNhap;
 import webclothes.spring.service.PhieuNhapService;
@@ -33,7 +36,8 @@ public class PhieuNhapController {
 		model.addAttribute("listPhieuNhaps", PhieuNhapService.getAllPhieuNhap());
 		model.addAttribute("listNhaCungCaps", NhaCungCapService.getAllNhaCungCap());
 		model.addAttribute("listNhanViens", NhanVienService.getAllNhanVien());
-		return "admin/page_phieunhap";
+		return findPaginatedPhieuNhap(1, "maPN", "asc", model); 
+		//	"admin/page_phieunhap";
 	}
 	
 	@GetMapping("/showNewPhieuNhapForm")
@@ -77,4 +81,26 @@ public class PhieuNhapController {
 			model.addAttribute("listPhieuNhaps", PhieuNhapService.getAllPhieuNhap());}
 		return "admin/page_phieunhap";
 	 }
+	
+	@GetMapping("/pagePN/{pageNo}")
+	public String findPaginatedPhieuNhap(@PathVariable(value = "pageNo") int pageNo,
+	    @RequestParam("sortField") String sortField,
+	    @RequestParam("sortDir") String sortDir,
+	    Model model) {
+	    int pageSize = 3;
+
+	    Page<PhieuNhap> page = PhieuNhapService.findPaginatedPhieuNhap(pageNo, pageSize, sortField, sortDir);
+	    List<PhieuNhap> listPhieuNhaps = page.getContent();
+
+	    model.addAttribute("currentPage", pageNo);
+	    model.addAttribute("totalPages", page.getTotalPages());
+	    model.addAttribute("totalItems", page.getTotalElements());
+
+	    model.addAttribute("sortField", sortField);
+	    model.addAttribute("sortDir", sortDir);
+	    model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+	    model.addAttribute("listPhieuNhaps", listPhieuNhaps);
+	    return "admin/page_phieunhap";
+	}
 }

@@ -45,7 +45,8 @@ public class SanPhamController {
 		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
 		model.addAttribute("listSizes", SizeService.getAllSize());
 		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
-		return "admin/page_sanpham";
+		return findPaginatedSanPham(1, "maSP", "asc", model);
+//		"admin/page_sanpham";
 	}
 	
 	@GetMapping("/showNewSanPhamForm")
@@ -121,5 +122,26 @@ public class SanPhamController {
 		return "admin/page_sanpham";
 	 }
 	
+	@GetMapping("/pageSP/{pageNo}")
+	public String findPaginatedSanPham(@PathVariable(value = "pageNo") int pageNo,
+	    @RequestParam("sortField") String sortField,
+	    @RequestParam("sortDir") String sortDir,
+	    Model model) {
+	    int pageSize = 3;
+
+	    Page<SanPham> page = SanPhamService.findPaginatedSanPham(pageNo, pageSize, sortField, sortDir);
+	    List<SanPham> listSanPhams = page.getContent();
+
+	    model.addAttribute("currentPage", pageNo);
+	    model.addAttribute("totalPages", page.getTotalPages());
+	    model.addAttribute("totalItems", page.getTotalElements());
+
+	    model.addAttribute("sortField", sortField);
+	    model.addAttribute("sortDir", sortDir);
+	    model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+	    model.addAttribute("listSanPhams", listSanPhams);
+	    return "admin/page_sanpham";
+	}
 
 }

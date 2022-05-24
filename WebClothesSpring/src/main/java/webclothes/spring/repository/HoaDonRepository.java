@@ -13,6 +13,6 @@ import webclothes.spring.model.HoaDon;
 public interface HoaDonRepository extends JpaRepository<HoaDon, Long> {
 
 	 //Custom query
-	 @Query(value = "SELECT * FROM hoadon hd WHERE hd.MaHD like %:keyword% or hd.SHD like %:keyword% or hd.NgayDat like %:keyword% or hd.NgayGiao like %:keyword% or hd.DiaChiNhan like %:keyword% or hd.TinhTrang like %:keyword% or hd.DaThanhToan like %:keyword% or hd.MaKH like %:keyword%", nativeQuery = true)
+	 @Query(value = "SELECT * FROM hoadon hd WHERE hd.MaHD like %:keyword% or hd.SHD like %:keyword% or hd.NgayDat like %:keyword% or hd.NgayGiao like %:keyword% or hd.DiaChiNhan like %:keyword% or hd.TinhTrang like %:keyword% or hd.MaKH like %:keyword%", nativeQuery = true)
 	 List<HoaDon> findByKeyword(@Param("keyword") String keyword);
 }

@@ -10,15 +10,19 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Thêm Khách Hàng</h2>
+        <h2 class="mb-3">Thêm Khách Hàng</h2>
 
         <form action="#" th:action="@{/saveKhachHang}" th:object="${khachhang}" method="POST">
+       	 	<label for="hoTen"><strong>Khách hàng:</strong></label>
             <input type="text" th:field="*{hoTen}" placeholder="Họ Tên" class="form-control mb-4 col-4">
 
+			<label for="email"><strong>Email:</strong></label>
             <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
 
+			<label for="sdt"><strong>SĐT:</strong></label>
             <input type="text" th:field="*{sdt}" placeholder="SDT" class="form-control mb-4 col-4">
             
+            <label for="diaChi"><strong>Địa chỉ:</strong></label>
             <input type="text" th:field="*{diaChi}" placeholder="Địa Chỉ" class="form-control mb-4 col-4">
             
 

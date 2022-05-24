@@ -10,9 +10,10 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Thêm Quyền</h2>
+        <h2 class="mb-3">Thêm Quyền</h2>
 
         <form action="#" th:action="@{/saveQuyen}" th:object="${quyen}" method="POST">
+        	<label for="tenQuyen"><strong>Quyền:</strong></label>
             <input type="text" th:field="*{tenQuyen}" placeholder="Tên Quyền" class="form-control mb-4 col-4">
 
             <button type="submit" class="btn btn-info col-2"> Thêm</button>

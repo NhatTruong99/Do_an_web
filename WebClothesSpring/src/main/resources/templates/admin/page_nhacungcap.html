@@ -14,13 +14,23 @@
 
 	<div class="container">
  		<h3>DANH SÁCH NHÀ CUNG CẤP</h1> 
- 
+ 		   <form th:action="@{searchNCC}" method="get">
+		 	<input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Keyword" size="50">
+		 	<button type="submit" class="btn btn-primary">Search</button>
+		 	<button type="submit" class="btn btn-danger">Reset</button>
+		 </form>
+		 </br>
+		 
+  		 <a th:href = "@{/showNewNhaCungCapForm}" class="btn btn-primary btn-sm mb-3"> Thêm Nhà Cung Cấp </a>
+		
 		 
 		  <table border="1" class = "table table-striped table-responsive-md">
 		   <thead>
 		    <tr>
-		     <th>Mã Nhà Cung Cấp</th>
-		     <th>Tên Nhà Cung Cấp</th>
+		     <th> <a th:href="@{'/pageNCC/' + ${currentPage} + '?sortField=maNCC&sortDir=' + ${reverseSortDir}}">
+      			Mã Nhà Cung Cấp</a></th>
+		     <th> <a th:href="@{'/pageNCC/' + ${currentPage} + '?sortField=tenNCC&sortDir=' + ${reverseSortDir}}">
+      			Tên Nhà Cung Cấp</a></th>
 		     <th>Chức Năng</th>
 		    </tr>
 		   </thead>
@@ -35,13 +45,29 @@
 		    </tr>
 		   </tbody>
 		  </table>
-		  <a th:href = "@{/showNewNhaCungCapForm}" class="btn btn-primary btn-sm mb-3"> Thêm Nhà Cung Cấp </a>
-		   <form th:action="@{searchNCC}" method="get">
-		 	<input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Keyword" size="50">
-		 	<button type="submit" class="btn btn-primary">Search</button>
-		 	<button type="submit" class="btn btn-danger">Reset</button>
-		 </form>
-		 </br>
+		
+		 <div th:if = "${totalPages > 1}">
+		   <div class = "row col-sm-10">
+		    <div class = "col-sm-2">
+		     Total Rows: [[${totalItems}]] 
+		    </div>
+		    <div class = "col-sm-1">
+		     <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+		      <a th:if="${currentPage != i}" th:href="@{'/pageNCC/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+		      <span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+		     </span>
+		    </div>
+		    <div class = "col-sm-1">
+		     <a th:if="${currentPage < totalPages}" th:href="@{'/pageNCC/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+		     <span th:unless="${currentPage < totalPages}">Next</span>
+		    </div>
+		    
+		     <div class="col-sm-1">
+		        <a th:if="${currentPage < totalPages}" th:href="@{'/pageNCC/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+		     <span th:unless="${currentPage < totalPages}">Last</span>
+		        </div>
+		   </div>
+ 		 </div>	
  	</div>
 </div>
 </body>
