@@ -116,11 +116,12 @@ public class HomeController {
 				break;
 			}
 		}
-
 		model.addAttribute("sanPham", sanPham);
 		model.addAttribute("donGia", donGia);
 		model.addAttribute("loaiSanPham", loaiSanPham);
+		model.addAttribute("listLoaiSanPhams",listLoaiSP);
 		model.addAttribute("listSizes", sizeService.getAllSize());
+		model.addAttribute("listSanPhams", sanPhamService.getAllSanPham());
 		return "user/single";
 	}
 
