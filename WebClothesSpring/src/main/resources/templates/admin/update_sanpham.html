@@ -7,33 +7,43 @@
  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
  crossorigin="anonymous">
+ 
+</script>
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Cập Nhật Sản Phẩm</h2>
+        <h2 class="mb-3">Cập Nhật Sản Phẩm</h2>
 
 		<form action="#" th:action="@{/saveSanPham}" th:object="${sanpham}" method="POST" enctype="multipart/form-data">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maSP}" />
             
+            <label for="tenSP"><strong>Sản phẩm:</strong></label>
            	<input type="text" th:field="*{tenSP}" class="form-control mb-4 col-4">	
 
+			<label for="dacDiem"><strong>Đặc điểm:</strong></label>
             <input type="text" th:field="*{dacDiem}" class="form-control mb-4 col-4" >
             
-			<label>Ảnh sản phẩm: </label>
-			<input type="file" th:field="*{anh}" name="image" accept="image/png, image/jpeg, image/jpg" class="mb-3"/>
+			<label for="anh"><strong>Ảnh sản phẩm:</strong></label>
+			<input type="file" name="image" accept="image/png, image/jpeg, image/jpg" class="mb-3"/>
+            </br>
             
+            <label for="donGia"><strong>Đơn giá:</strong></label>
             <input type="text" th:field="*{donGia}" class="form-control mb-4 col-4">
             
+            <label for="ghiChu"><strong>Ghi chú:</strong></label>
             <input type="text" th:field="*{ghiChu}" class="form-control mb-4 col-4">
             
+            <label for="maSize"><strong>Size:</strong></label>
  			<select th:field="*{maSize}" class="form-select"> 
             	<option th:each="Size : ${listSizes}"
                 	th:value="${Size.maSize}"
                     th:text="${Size.tenSize}" ></option>
            	</select>
             </br>
+            
+            <label for="maLoaiSP"><strong>Loại sản phẩm:</strong></label>
             <select th:field="*{maLoaiSP}" class="form-select"> 
                 <option th:each="LoaiSanPham : ${listLoaiSanPhams}"
                     th:value="${LoaiSanPham.maLoaiSP}"

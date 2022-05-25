@@ -10,15 +10,18 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Thêm Chi Tiết Hoá Đơn</h2>
+        <h2 class="mb-3">Thêm Chi Tiết Hoá Đơn</h2>
 
         <form action="#" th:action="@{/saveChiTietHoaDon}" th:object="${chitiethoadon}" method="POST">
+        	<label for="maHD"><strong>Mã hoá đơn:</strong></label>
         	<select th:field="*{maHD}" class="form-select"> 
             	<option th:each="HoaDon : ${listHoaDons}"
                 	th:value="${HoaDon.maHD}"
                     th:text="${HoaDon.maHD}" ></option>
            	</select>
             </br>
+            
+            <label for="maSP"><strong>Sản phẩm:</strong></label>
             <select th:field="*{maSP}" class="form-select"> 
                 <option th:each="SanPham : ${listSanPhams}"
                     th:value="${SanPham.maSP}"
@@ -26,8 +29,10 @@
             </select>
             </br>
 
+			<label for="soLuong"><strong>Số lượng:</strong></label>
             <input type="text" th:field="*{soLuong}" placeholder="Số Lượng" class="form-control mb-4 col-4">
 
+			<label for="donGia"><strong>Đơn giá:</strong></label>
             <input type="text" th:field="*{donGia}" placeholder="Đơn Giá" class="form-control mb-4 col-4">
 
             <button type="submit" class="btn btn-info col-2"> Thêm</button>

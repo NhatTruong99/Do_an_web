@@ -1,6 +1,9 @@
 package webclothes.spring.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import webclothes.spring.model.NhaCungCap;
 import webclothes.spring.model.NhanVien;
 import webclothes.spring.service.NhanVienService;
 import webclothes.spring.service.QuyenService;
@@ -25,7 +30,8 @@ public class NhanVienController {
 	public String viewListNV(Model model) {
 		model.addAttribute("listNhanViens", NhanVienService.getAllNhanVien());
 		model.addAttribute("listQuyens", QuyenService.getAllQuyen());
-		return "admin/page_nhanvien";
+		return findPaginatedNhanVien(1, "maNV", "asc", model);
+      //	"admin/page_nhanvien";
 	}
 	
 	@GetMapping("/showNewNhanVienForm")
@@ -67,4 +73,26 @@ public class NhanVienController {
 			model.addAttribute("listNhanViens", NhanVienService.getAllNhanVien());}
 		return "admin/page_nhanvien";
 	 }
+	
+	@GetMapping("/pageNV/{pageNo}")
+	public String findPaginatedNhanVien(@PathVariable(value = "pageNo") int pageNo,
+	    @RequestParam("sortField") String sortField,
+	    @RequestParam("sortDir") String sortDir,
+	    Model model) {
+	    int pageSize = 3;
+
+	    Page<NhanVien> page = NhanVienService.findPaginatedNhaCungCap(pageNo, pageSize, sortField, sortDir);
+	    List<NhanVien> listNhanViens = page.getContent();
+
+	    model.addAttribute("currentPage", pageNo);
+	    model.addAttribute("totalPages", page.getTotalPages());
+	    model.addAttribute("totalItems", page.getTotalElements());
+
+	    model.addAttribute("sortField", sortField);
+	    model.addAttribute("sortDir", sortDir);
+	    model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+	    model.addAttribute("listNhanViens", listNhanViens);
+	    return "admin/page_nhanvien";
+	}
 }

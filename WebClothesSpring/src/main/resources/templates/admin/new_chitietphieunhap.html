@@ -10,25 +10,30 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Thêm Chi Tiết Phiếu Nhập</h2>
+        <h2 class="mb-3">Thêm Chi Tiết Phiếu Nhập</h2>
 
         <form action="#" th:action="@{/saveChiTietPhieuNhap}" th:object="${chitietphieunhap}" method="POST">
 
+			<label for="maPN"><strong>Mã phiếu nhập:</strong></label>
 			<select th:field="*{maPN}" class="form-select"> 
             	<option th:each="PhieuNhap : ${listPhieuNhaps}"
                 	th:value="${PhieuNhap.maPN}"
                     th:text="${PhieuNhap.maPN}" ></option>
            	</select>
             </br>
+            
+            <label for="maSP"><strong>Sản phẩm:</strong></label>
             <select th:field="*{maSP}" class="form-select"> 
                 <option th:each="SanPham : ${listSanPhams}"
                     th:value="${SanPham.maSP}"
                     th:text="${SanPham.tenSP}" ></option>
             </select>
             </br>
-
+            
+            <label for="soLuongNhap"><strong>Số lượng nhập:</strong></label>
             <input type="text" th:field="*{soLuongNhap}" placeholder="Số Lượng Nhập" class="form-control mb-4 col-4">
             
+            <label for="donGiaNhap"><strong>Đơn giá nhập:</strong></label>
             <input type="text" th:field="*{donGiaNhap}" placeholder="Đơn Giá Nhập" class="form-control mb-4 col-4">
 
             <button type="submit" class="btn btn-info col-2"> Thêm</button>

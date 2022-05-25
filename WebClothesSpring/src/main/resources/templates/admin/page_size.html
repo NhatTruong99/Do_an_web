@@ -14,14 +14,28 @@
 	
 	<div class="container">
  		<h3>DANH SÁCH SIZE</h1> 
+ 		
+ 		  <form th:action="@{/searchSize}" method="get"> <!-- Phải ghi đúng bên Controller  -->
+		 	<input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Keyword" size="50">
+		 	<button type="submit" class="btn btn-primary">Search</button>
+		 	<button type="submit" class="btn btn-danger">Reset</button>
+		 </form>
+		 </br>
+		 
+ 		  <a th:href = "@{/showNewSizeForm}" class="btn btn-primary btn-sm mb-3"> Thêm Size</a>
+		 
  		 
 		  <table border="1" class = "table table-striped table-responsive-md">
 		   <thead>
 		    <tr>
-		     <th>Mã Size</th>
-		     <th>Tên Size</th>
-		     <th>Chiều Cao</th>
-		     <th>Cân Nặng</th>
+		      <th> <a th:href="@{'/pageSize/' + ${currentPage} + '?sortField=maSize&sortDir=' + ${reverseSortDir}}">
+      			Mã Size</a></th>
+		      <th> <a th:href="@{'/pageSize/' + ${currentPage} + '?sortField=tenSize&sortDir=' + ${reverseSortDir}}">
+      			Tên Size</a></th>
+		      <th> <a th:href="@{'/pageSize/' + ${currentPage} + '?sortField=chieuCao&sortDir=' + ${reverseSortDir}}">
+      			Chiều Cao</a></th>
+		      <th> <a th:href="@{'/pageSize/' + ${currentPage} + '?sortField=canNang&sortDir=' + ${reverseSortDir}}">
+      			Cân Nặng</a></th>
 		     <th>Action</th>
 		    </tr>
 		   </thead>
@@ -38,13 +52,29 @@
 		    </tr>
 		   </tbody>
 		  </table>
-		  <a th:href = "@{/showNewSizeForm}" class="btn btn-primary btn-sm mb-3"> Thêm Size</a>
-		   <form th:action="@{/searchSize}" method="get"> <!-- Phải ghi đúng bên Controller  -->
-		 	<input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Keyword" size="50">
-		 	<button type="submit" class="btn btn-primary">Search</button>
-		 	<button type="submit" class="btn btn-danger">Reset</button>
-		 </form>
-		 </br>
+		  
+		<div th:if = "${totalPages > 1}">
+		   <div class = "row col-sm-10">
+		    <div class = "col-sm-2">
+		     Total Rows: [[${totalItems}]] 
+		    </div>
+		    <div class = "col-sm-1">
+		     <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+		      <a th:if="${currentPage != i}" th:href="@{'/pageSize/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+		      <span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+		     </span>
+		    </div>
+		    <div class = "col-sm-1">
+		     <a th:if="${currentPage < totalPages}" th:href="@{'/pageSize/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+		     <span th:unless="${currentPage < totalPages}">Next</span>
+		    </div>
+		    
+		     <div class="col-sm-1">
+		        <a th:if="${currentPage < totalPages}" th:href="@{'/pageSize/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+		     <span th:unless="${currentPage < totalPages}">Last</span>
+		        </div>
+		   </div>
+ 		 </div>	
  	</div>
 </div>
 </body>

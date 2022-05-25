@@ -10,27 +10,35 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Cập Nhật Nhân Viên</h2>
+        <h2 class="mb-3">Cập Nhật Nhân Viên</h2>
 
         <form action="#" th:action="@{/saveNhanVien}" th:object="${nhanvien}" method="POST">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maNV}" />
 
+			<label for="hoTen"><strong>Họ tên:</strong></label>
             <input type="text" th:field="*{hoTen}" class="form-control mb-4 col-4">
 
+			<label for="email"><strong>Email:</strong></label>
             <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
 
+			<label for="sdt"><strong>SĐT:</strong></label>
             <input type="text" th:field="*{sdt}" class="form-control mb-4 col-4">
             
+            <label for="diaChi"><strong>Địa chỉ:</strong></label>
             <input type="text" th:field="*{diaChi}" class="form-control mb-4 col-4">
             
+            <label for="cmnd"><strong>CMND:</strong></label>
             <input type="text" th:field="*{cmnd}" class="form-control mb-4 col-4">
             
+            <label for="taiKhoan"><strong>Tài khoản:</strong></label>
             <input type="text" th:field="*{taiKhoan}" class="form-control mb-4 col-4">
             
+            <label for="matKhau"><strong>Mật khẩu:</strong></label>
             <input type="text" th:field="*{matKhau}" class="form-control mb-4 col-4">
             
+            <label for="maQuyen"><strong>Tên quyền:</strong></label>
             <select th:field="*{maQuyen}" class="form-select"> 
             	<option th:each="Quyen : ${listQuyens}"
                 	th:value="${Quyen.maQuyen}"

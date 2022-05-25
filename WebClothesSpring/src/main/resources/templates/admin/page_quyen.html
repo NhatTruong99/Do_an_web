@@ -15,11 +15,22 @@
 	<div class="container">
  		<h3>DANH SÁCH QUYỀN</h1> 
 
+ 		<form th:action="@{/searchQuyen}" method="get"> <!-- Phải ghi đúng bên Controller  -->
+		 	<input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Keyword" size="50">
+		 	<button type="submit" class="btn btn-primary">Search</button>
+		 	<button type="submit" class="btn btn-danger">Reset</button>
+		 </form>
+		 </br>
+		 
+ 		 <a th:href = "@{/showNewQuyenForm}" class="btn btn-primary btn-sm mb-3"> Thêm Quyền</a>
+		  
 		  <table border="1" class = "table table-striped table-responsive-md">
 		   <thead>
 		    <tr>
-		     <th>Mã Quyền</th>
-		     <th>Tên Quyền</th>
+		     <th> <a th:href="@{'/pageQuyen/' + ${currentPage} + '?sortField=maQuyen&sortDir=' + ${reverseSortDir}}">
+      			Mã Quyền</a></th>
+		     <th> <a th:href="@{'/pageQuyen/' + ${currentPage} + '?sortField=tenQuyen&sortDir=' + ${reverseSortDir}}">
+      			Tên Quyền</a></th>
 		     <th>Chức Năng</th>
 		    </tr>
 		   </thead>
@@ -34,13 +45,29 @@
 		    </tr>
 		   </tbody>
 		  </table>
-		  <a th:href = "@{/showNewQuyenForm}" class="btn btn-primary btn-sm mb-3"> Thêm Quyền</a>
-		   <form th:action="@{/searchQuyen}" method="get"> <!-- Phải ghi đúng bên Controller  -->
-		 	<input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Keyword" size="50">
-		 	<button type="submit" class="btn btn-primary">Search</button>
-		 	<button type="submit" class="btn btn-danger">Reset</button>
-		 </form>
-		 </br>
+		
+		 <div th:if = "${totalPages > 1}">
+		   <div class = "row col-sm-10">
+		    <div class = "col-sm-2">
+		     Total Rows: [[${totalItems}]] 
+		    </div>
+		    <div class = "col-sm-1">
+		     <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+		      <a th:if="${currentPage != i}" th:href="@{'/pageQuyen/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+		      <span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+		     </span>
+		    </div>
+		    <div class = "col-sm-1">
+		     <a th:if="${currentPage < totalPages}" th:href="@{'/pageQuyen/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+		     <span th:unless="${currentPage < totalPages}">Next</span>
+		    </div>
+		    
+		     <div class="col-sm-1">
+		        <a th:if="${currentPage < totalPages}" th:href="@{'/pageQuyen/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+		     <span th:unless="${currentPage < totalPages}">Last</span>
+		        </div>
+		   </div>
+ 		 </div>	
  	</div>
 </div>
 </body>

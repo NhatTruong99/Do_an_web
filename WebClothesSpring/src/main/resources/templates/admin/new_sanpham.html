@@ -10,27 +10,35 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Thêm Sản Phẩm</h2>
+        <h2 class="mb-3">Thêm Sản Phẩm</h2>
 	 <!-- Thêm enctype ="multipart/form-data mới upload được" -->
         <form action="#" th:action="@{/saveSanPham}" th:object="${sanpham}" method="POST" enctype="multipart/form-data">
+        
+       		<label for="tenSP"><strong>Tên sản phẩm:</strong></label>
             <input type="text" th:field="*{tenSP}" placeholder="Tên Sản Phẩm" class="form-control mb-4 col-4">
 
+			<label for="dacDiem"><strong>Đặc điểm:</strong></label>
             <input type="text" th:field="*{dacDiem}" placeholder="Đặc Điểm" class="form-control mb-4 col-4">
 
-			<label>Ảnh sản phẩm: </label>
+			<label for="anh"><strong>Ảnh sản phẩm:</strong></label>
    		 	<input type="file" name="image" accept="image/png, image/jpeg, image/jpg" class="mb-3"/>
+   		 	</br>
 			
-            
+            <label for="donGia"><strong>Đơn giá:</strong></label>
             <input type="text" th:field="*{donGia}" placeholder="Đơn Giá" class="form-control mb-4 col-4">
             
+            <label for="ghiChu"><strong>Ghi chú:</strong></label>
             <input type="text" th:field="*{ghiChu}" placeholder="Ghi Chú" class="form-control mb-4 col-4">
             
+            <label for="maSize"><strong>Size:</strong></label>
             <select th:field="*{maSize}" class="form-select"> 
             	<option th:each="Size : ${listSizes}"
                 	th:value="${Size.maSize}"
                     th:text="${Size.tenSize}" ></option>
            	</select>
             </br>
+            
+            <label for="maLoaiSP"><strong>Loại sản phẩm:</strong></label>    
             <select th:field="*{maLoaiSP}" class="form-select"> 
                 <option th:each="LoaiSanPham : ${listLoaiSanPhams}"
                     th:value="${LoaiSanPham.maLoaiSP}"

@@ -10,13 +10,14 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Cập Nhật Nhà Cung Cấp</h2>
+        <h2 class="mb-3">Cập Nhật Nhà Cung Cấp</h2>
 
         <form action="#" th:action="@{/saveNhaCungCap}" th:object="${nhacungcap}" method="POST">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maNCC}" />
 
+			<label for="tenNCC"><strong>Nhà cung cấp:</strong></label>
             <input type="text" th:field="*{tenNCC}" class="form-control mb-4 col-4">
 
             

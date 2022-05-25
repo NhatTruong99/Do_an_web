@@ -14,14 +14,22 @@
 	
 	<div class="container">
  		<h3>DANH SÁCH LOẠI SẢN PHẨM</h1> 
- 		 
-		
+ 		 	<form th:action="@{/searchLSP}" method="get"> <!-- Phải ghi đúng bên Controller  -->
+		 	<input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Keyword" size="50">
+		 	<button type="submit" class="btn btn-primary">Search</button>
+		 	<button type="submit" class="btn btn-danger">Reset</button>
+		 </form>
+		 </br>
 		 
+		<a th:href = "@{/showNewLoaiSanPhamForm}" class="btn btn-primary btn-sm mb-3"> Thêm Loại Sản Phẩm</a>
+	
 		  <table border="1" class = "table table-striped table-responsive-md">
 		   <thead>
 		    <tr>
-		     <th>Mã Loại Sản Phẩm</th>
-		     <th>Tên Loại Sản Phẩm</th>
+		     <th> <a th:href="@{'/pageLSP/' + ${currentPage} + '?sortField=maLoaiSP&sortDir=' + ${reverseSortDir}}">
+      			Mã Loại Sản Phẩm</a></th>
+		     <th> <a th:href="@{'/pageLSP/' + ${currentPage} + '?sortField=tenLoaiSP&sortDir=' + ${reverseSortDir}}">
+      			Tên Loại Sản Phẩm</a></th>
 		     <th>Chức Năng</th>
 		    </tr>
 		   </thead>
@@ -35,13 +43,29 @@
 		    </tr>
 		   </tbody>
 		  </table>
-		  <a th:href = "@{/showNewLoaiSanPhamForm}" class="btn btn-primary btn-sm mb-3"> Thêm Loại Sản Phẩm</a>
-		   <form th:action="@{/searchLSP}" method="get"> <!-- Phải ghi đúng bên Controller  -->
-		 	<input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Keyword" size="50">
-		 	<button type="submit" class="btn btn-primary">Search</button>
-		 	<button type="submit" class="btn btn-danger">Reset</button>
-		 </form>
-		 </br>
+		  
+		  <div th:if = "${totalPages > 1}">
+		   <div class = "row col-sm-10">
+		    <div class = "col-sm-2">
+		     Total Rows: [[${totalItems}]] 
+		    </div>
+		    <div class = "col-sm-1">
+		     <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+		      <a th:if="${currentPage != i}" th:href="@{'/pageLSP/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+		      <span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+		     </span>
+		    </div>
+		    <div class = "col-sm-1">
+		     <a th:if="${currentPage < totalPages}" th:href="@{'/pageLSP/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+		     <span th:unless="${currentPage < totalPages}">Next</span>
+		    </div>
+		    
+		     <div class="col-sm-1">
+		        <a th:if="${currentPage < totalPages}" th:href="@{'/pageLSP/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+		     <span th:unless="${currentPage < totalPages}">Last</span>
+		        </div>
+		   </div>
+	
  	</div>
 </div>
 </body>

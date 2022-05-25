@@ -10,11 +10,16 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Thêm Size</h2>
+        <h2 class="mb-3">Thêm Size</h2>
 
         <form action="#" th:action="@{/saveSize}" th:object="${size}" method="POST">
+        	<label for="tenSize"><strong>Size:</strong></label>
             <input type="text" th:field="*{tenSize}" placeholder="Tên Size" class="form-control mb-4 col-4">
+            
+            <label for="chieuCao"><strong>Chiều cao:</strong></label>
             <input type="text" th:field="*{chieuCao}" placeholder="Chiều Cao" class="form-control mb-4 col-4">
+            
+            <label for="canNang"><strong>Cân nặng:</strong></label>
             <input type="text" th:field="*{canNang}" placeholder="Cân Nặng" class="form-control mb-4 col-4">
             <button type="submit" class="btn btn-info col-2"> Thêm</button>
         </form>

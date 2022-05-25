@@ -10,30 +10,37 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Thêm Nhân Viên</h2>
+        <h2 class="mb-3">Thêm Nhân Viên</h2>
 
         <form action="#" th:action="@{/saveNhanVien}" th:object="${nhanvien}" method="POST">
+        	<label for="hoTen"><strong>Nhân viên:</strong></label>
             <input type="text" th:field="*{hoTen}" placeholder="Họ Tên" class="form-control mb-4 col-4">
 
+			<label for="email"><strong>Email:</strong></label>
             <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
 
+			<label for="sdt"><strong>SĐT:</strong></label>
             <input type="text" th:field="*{sdt}" placeholder="SDT" class="form-control mb-4 col-4">
             
+            <label for="diaChi"><strong>Địa chỉ:</strong></label>
             <input type="text" th:field="*{diaChi}" placeholder="Địa Chỉ" class="form-control mb-4 col-4">
             
+            <label for="cmnd"><strong>CMND:</strong></label>
             <input type="text" th:field="*{cmnd}" placeholder="CMND" class="form-control mb-4 col-4">
             
+            <label for="taiKhoan"><strong>Tài khoản:</strong></label>
             <input type="text" th:field="*{taiKhoan}" placeholder="Tài Khoản" class="form-control mb-4 col-4">
             
+            <label for="matKhau"><strong>Mật khẩu:</strong></label>
             <input type="text" th:field="*{matKhau}" placeholder="Mật Khẩu" class="form-control mb-4 col-4">
             
+            <label for="maQuyen"><strong>Quyền:</strong></label>
             <select th:field="*{maQuyen}" class="form-select"> 
             	<option th:each="Quyen : ${listQuyens}"
                 	th:value="${Quyen.maQuyen}"
                     th:text="${Quyen.tenQuyen}" ></option>
            	</select>
             </br>
-            
 
             <button type="submit" class="btn btn-info col-2"> Thêm</button>
         </form>

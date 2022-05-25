@@ -10,22 +10,23 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2>Thêm Phiếu Nhập</h2>
+        <h2 class="mb-3">Thêm Phiếu Nhập</h2>
         <form action="#" th:action="@{/savePhieuNhap}" th:object="${phieunhap}" method="POST">
-        
-            
-
+			<label for="maNV"><strong>Nhân viên:</strong></label>
  			<select th:field="*{maNV}" class="form-select"> 
             	<option th:each="NhanVien : ${listNhanViens}"
                 	th:value="${NhanVien.maNV}"
                     th:text="${NhanVien.hoTen}" ></option>
            	</select>
             </br>
+            
             <div>
-        		<label for="ngayNhap">Ngày nhập:</label>
+        		<label for="ngayNhap"><strong>Ngày nhập:</strong></label>
         		<input type="date" th:field="*{ngayNhap}" id="ngayNhap"/>
     		</div>
     		</br>
+    		
+    		<label for="maNCC"><strong>Nhà cung cấp:</strong></label>
             <select th:field="*{maNCC}" class="form-select"> 
                 <option th:each="NhaCungCap : ${listNhaCungCaps}"
                     th:value="${NhaCungCap.maNCC}"
@@ -33,6 +34,7 @@
             </select>
             </br>
     		</br>
+    		
             <button type="submit" value="submit"  class="btn btn-info col-2"> Thêm</button>
         </form>
         <hr>
