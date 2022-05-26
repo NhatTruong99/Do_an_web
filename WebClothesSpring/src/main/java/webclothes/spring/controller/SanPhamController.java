@@ -81,7 +81,6 @@ public class SanPhamController {
          
         return new RedirectView("/page_sanpham", true);
     }
-
 	@GetMapping("/showFormForDetailSP/{maSP}")
 	public String showFormForDetailSP(@PathVariable(value = "maSP") long maSP, Model model) {
 		SanPham sanpham = SanPhamService.getSanPhamById(maSP);
