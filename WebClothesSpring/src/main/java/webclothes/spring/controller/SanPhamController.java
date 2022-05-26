@@ -64,7 +64,6 @@ public class SanPhamController {
 	// return "redirect:/page_sanpham";
 	// }
 	@PostMapping("/saveSanPham")
-<<<<<<< HEAD
     public RedirectView saveSP(SanPham sanpham,
             @RequestParam("image") MultipartFile multipartFile) throws IOException {
          
@@ -74,7 +73,7 @@ public class SanPhamController {
         SanPham savedSanPham = SanPhamRepository.save(sanpham);
  
         // Up vào cả 2 folder, để cả 2 hoặc để resources folder sẽ báo lỗi nhưng vẫn được nếu F5 lại  
-//        String uploadDir = "src/main/resources/static/images";
+//      String uploadDir = "src/main/resources/static/images";
         String uploadDir1 = "target/classes/static/images";
  
 //        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
@@ -82,26 +81,6 @@ public class SanPhamController {
          
         return new RedirectView("/page_sanpham", true);
     }
-	
-=======
-	public RedirectView saveSP(SanPham sanpham,
-			@RequestParam("image") MultipartFile multipartFile) throws IOException {
-
-		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-		sanpham.setAnh(fileName);
-
-		SanPham savedSanPham = SanPhamRepository.save(sanpham);
-
-		// Up vào cả 2 folder
-		String uploadDir = "target/classes/static/images";
-		String uploadDir1 = "src/main/resources/static/images";
-
-		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-		FileUploadUtil.saveFile(uploadDir1, fileName, multipartFile);
-
-		return new RedirectView("/page_sanpham", true);
-	}
->>>>>>> dcc7a2f607e9e6be409dff412211c78856b39164
 
 	@GetMapping("/showFormForDetailSP/{maSP}")
 	public String showFormForDetailSP(@PathVariable(value = "maSP") long maSP, Model model) {
@@ -129,7 +108,7 @@ public class SanPhamController {
 	}
 
 	/*
-	 * SPông được trùng nên phải ghi search... để phân biệt (Nhớ ghi đúng bên html
+	 * Không được trùng nên phải ghi search... để phân biệt (Nhớ ghi đúng bên html
 	 * mới search được)
 	 */
 	@RequestMapping({ "/searchSP" })
