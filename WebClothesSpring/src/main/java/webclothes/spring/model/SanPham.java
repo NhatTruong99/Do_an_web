@@ -44,7 +44,7 @@ public class SanPham {
 	 @Transient
 	 public String getPhotosImagePath() {
 		 if (anh == null) return null;
-	     	return "src/main/resources/static/images" + anh;
+	     	return "/images/" + anh;
 	    }  
 
 	public long getMaSP() {

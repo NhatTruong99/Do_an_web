@@ -257,6 +257,44 @@ section
 3. Home
 *********************************/
 
+.product
+{
+	width: 100%;
+	height: 340px;
+	border-right: solid 1px #e9e9e9;
+}
+.product_image
+{
+	width: 100%;
+}
+.product_image img
+{
+	width: 100%;
+}
+.product_info
+{
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.product_name
+{
+	margin-top: 18px;
+	max-height: 55px;
+	min-height: 55px;
+	overflow: hidden;
+}
+.product_name a
+{
+	font-size: 15px;
+	color: #1e1e27;
+	line-height: 20px;
+}
+.product_info .product_price
+{
+	font-size: 15px;
+	margin-top: 0px;
+}
 .header
 {
 	position: fixed;
@@ -904,7 +942,7 @@ section
 	height: 60px;
 	border-bottom: solid 1px #ebebeb;
 	margin-bottom: 79px;
-	font-size: 1.1rem;
+	font-size: 1.05rem;
 }
 .breadcrumbs ul li
 {
@@ -1128,6 +1166,8 @@ section
 	/* margin-left: 19px; */
 	margin: auto;
 	font-size: 14px !important;
+	opacity: 1;
+	visibility: visible;
 }
 .product_favorite
 {

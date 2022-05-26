@@ -253,6 +253,29 @@ section
 	overflow: hidden;
 }
 
+
+/*********************************
+## Pagination
+*********************************/
+.page-list{
+    color: rgb(122, 113, 113) !important;
+    margin-top: 30px;
+}
+.page-list .active a{
+    background: rgba(109, 81, 81) !important;
+    background-color: rgb(92, 170, 235) !important;
+}
+.page-list ul li a{
+   
+    color: rgb(32, 87, 136) !important;
+    padding: 10px 12px;
+    font-size: 1.1rem;
+}
+.page-list .disable{
+	color: rgb(212, 220, 227) !important;
+	
+}
+
 /*********************************
 3. Home
 *********************************/
@@ -1124,7 +1147,7 @@ section
 .breadcrumbs ul li
 {
 	display: inline-block;
-	margin-right: 17px;
+	margin-right: 5px;
 }
 .breadcrumbs ul li.active a
 {
@@ -1136,7 +1159,7 @@ section
 }
 .breadcrumbs ul li a
 {
-	color: #51545f;
+	color: #2766d2;
 }
 
 /*********************************
