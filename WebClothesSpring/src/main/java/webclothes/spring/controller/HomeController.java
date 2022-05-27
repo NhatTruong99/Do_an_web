@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import webclothes.spring.model.LoaiSanPham;
 import webclothes.spring.model.SanPham;
@@ -99,6 +100,16 @@ public class HomeController {
 	 * "user/categories"; }
 	 */
 	
+	//Hiển thị sản phẩm theo giá
+	@GetMapping("/categories/price/{idPrice}")
+	public String showProductWithMinMaxPrice(@PathVariable ( value = "idPrice") int idPrice, @RequestParam (value = "minPrice") int minPrice,
+			@RequestParam (value = "maxPrice") int maxPrice, Model model) {
+		List<SanPham> listSP = sanPhamService.getByMinMaxPrice(minPrice, maxPrice);
+		model.addAttribute("listSanPhams",listSP);
+		model.addAttribute("idPriceCheck",idPrice);
+		model.addAttribute("listLoaiSanPhams",loaiSanPhamService.getAllLoaiSanPham());
+		return "user/categories";
+	}
 	 //Hiển thị sản phẩm theo loại
 	  
 	 @GetMapping("/categories/{maLoaiSP}") 

@@ -5,7 +5,7 @@
 	<title th:text="${loaiSanPham.tenLoaiSP}"></title>						
 </th:block>
 <th:block th:unless="${maLoaiSP}">
-	<title>Tất cả sản phẩm</title>
+	<title>Danh mục sản phẩm</title>
 </th:block>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,7 +70,24 @@
 					</div>
 
 
+				<!-- Price -->
+					<div class="sidebar_section">
+						<div class="sidebar_title">
+							<h5>Giá cả</h5>
+						</div>
+						<ul class="sidebar_categories" >
+							<li th:classappend="${idPriceCheck == 1} ? active"><a th:href="@{/categories/price/{idPrice}(idPrice=1,minPrice = 0,maxPrice=100000)}">Dưới 100.000VND </a> </li>
+							<li th:classappend="${idPriceCheck == 2} ? active"><a th:href="@{/categories/price/{idPrice}(idPrice=2,minPrice = 100000,maxPrice=200000)}">100.000 - 200.000 VND </a> </li>
+							<li th:classappend="${idPriceCheck == 3} ? active"><a th:href="@{/categories/price/{idPrice}(idPrice=3,minPrice = 200000,maxPrice=500000)}">200.000 - 500.000VND </a> </li>
+							<li th:classappend="${idPriceCheck == 4} ? active"><a th:href="@{/categories/price/{idPrice}(idPrice=4,minPrice = 500000,maxPrice=100000000)}">Trên 500.000VND </a> </li>
+						</ul>
+					</div>
 				</div>
+				
+				
+
+
+
 
 				<!-- Main Content -->
 

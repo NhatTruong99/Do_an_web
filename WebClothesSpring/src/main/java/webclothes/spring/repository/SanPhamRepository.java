@@ -20,4 +20,7 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Long> {
 	
 	@Query(value = "SELECT * FROM sanpham sp WHERE sp.MaLoaiSP like %:idCategory%", nativeQuery = true)
 	List<SanPham> findByCategoryID(@Param("idCategory") long idCategory);
+	
+	@Query(value = "SELECT * FROM sanpham sp WHERE :minPrice < sp.DonGia and sp.DonGia < :maxPrice", nativeQuery = true)
+	List<SanPham> findByPrice(@Param("minPrice") int minPrice, @Param("maxPrice") int maxPrice );
 }
