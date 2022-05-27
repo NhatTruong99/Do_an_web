@@ -4,14 +4,19 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import webclothes.spring.model.LoaiSanPham;
+import webclothes.spring.model.NhanVien;
 import webclothes.spring.model.SanPham;
+import webclothes.spring.repository.NhanVienRepository;
 import webclothes.spring.service.LoaiSanPhamService;
+import webclothes.spring.service.QuyenService;
 import webclothes.spring.service.SanPhamService;
 import webclothes.spring.service.SizeService;
 
@@ -26,7 +31,37 @@ public class HomeController {
 
 	@Autowired
 	private SizeService sizeService;
+	
+	@Autowired 
+	private QuyenService QuyenService;
 
+	@Autowired
+	private NhanVienRepository NhanVienRepository;
+
+    @GetMapping("/login") 
+    public String getLogin() {
+        return "login";
+    }
+    
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new NhanVien());
+        model.addAttribute("listQuyens", QuyenService.getAllQuyen());
+        return "signup_form";
+    }
+    
+    @PostMapping("/process_register")
+    public String processRegister(NhanVien user) {
+    	// Mã hoá mật khẩu lưu vào Database
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getMatKhau());
+        user.setMatKhau(encodedPassword);
+         
+        NhanVienRepository.save(user);
+         
+        return "register_success";
+    }
+    
 	@GetMapping("/")
 	public String viewIndex(Model model) {
 		model.addAttribute("listLoaiSanPhams", loaiSanPhamService.getAllLoaiSanPham());

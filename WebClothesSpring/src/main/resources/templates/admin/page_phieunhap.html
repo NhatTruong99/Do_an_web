@@ -41,16 +41,22 @@
 		    <tr th:each="PhieuNhap : ${listPhieuNhaps}">
 		    	<td th:text="${PhieuNhap.maPN}"></td>
 			   	<td th:text="${#dates.format(PhieuNhap.ngayNhap, 'dd-MM-yyyy')}"></td>
-			   	<th:block th:each="NhanVien : ${listNhanViens}">
-			   		<th:block th:if="${NhanVien.maNV == PhieuNhap.maNV}">
-			   			<td th:text="${NhanVien.hoTen}"></td>
-			   		</th:block>
-			   	</th:block>
-			   	<th:block th:each="NhaCungCap : ${listNhaCungCaps}">
-			   		<th:block th:if="${NhaCungCap.maNCC == PhieuNhap.maNCC}">
-			   			<td th:text="${NhaCungCap.tenNCC}"></td>
-			   		</th:block>
-			   	</th:block>
+			   	
+			   	<td th:text="${PhieuNhap.maNV}"></td>
+			   	<td th:text="${PhieuNhap.maNCC}"></td>
+			   	
+<!-- 			   	<th:block th:each="NhanVien : ${listNhanViens}"> -->
+<!-- 			   		<th:block th:if="${NhanVien.maNV == PhieuNhap.maNV}"> -->
+<!-- 			   			<td th:text="${NhanVien.hoTen}"></td> -->
+<!-- 			   		</th:block>		   		 -->
+<!-- 			   	</th:block> -->
+			   	
+<!-- 			   	<th:block th:each="NhaCungCap : ${listNhaCungCaps}"> -->
+<!-- 			   		<th:block th:if="${NhaCungCap.maNCC == PhieuNhap.maNCC}"> -->
+<!-- 			   			<td th:text="${NhaCungCap.tenNCC}"></td> -->
+<!-- 			   		</th:block> -->
+<!-- 			   	</th:block> -->
+
 			   	<td>
 			   		<a th:href="@{/showFormForUpdatePN/{maPN}(maPN=${PhieuNhap.maPN})}"><img th:src ="@{/images/edit.png}" width="35"/></a>
 			   		<a th:href="@{/deletePhieuNhap/{maPN}(maPN=${PhieuNhap.maPN})}"><img th:src ="@{/images/delete.png}" width="35"/></a>

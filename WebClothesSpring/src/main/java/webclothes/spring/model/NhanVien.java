@@ -1,16 +1,23 @@
 package webclothes.spring.model;
 
+import java.io.Serializable;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "nhanvien")
-public class NhanVien {
-	
+public class NhanVien{
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	  private long maNV;
@@ -39,6 +46,22 @@ public class NhanVien {
 	  
 	  @Column(name = "MaQuyen")
 	  private long maQuyen;
+	  
+	  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	  @JoinTable(
+			  name = "nhanvien_quyen",
+	          joinColumns = @JoinColumn(name = "nhanvien_id"),
+	          inverseJoinColumns = @JoinColumn(name = "quyen_id")
+			  )
+	  private Set<Quyen> quyens;
+	  
+	public Set<Quyen> getQuyens() {
+		return quyens;
+	}
+
+	public void setQuyens(Set<Quyen> quyens) {
+		this.quyens = quyens;
+	}
 
 	public long getMaNV() {
 		return maNV;

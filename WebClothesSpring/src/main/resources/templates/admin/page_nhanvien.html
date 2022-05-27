@@ -55,11 +55,13 @@
 			   	<td th:text="${NhanVien.cmnd}"></td>
 <!-- 			   	<td th:text="${NhanVien.taiKhoan}"></td> -->
 <!-- 			   	<td th:text="${NhanVien.matKhau}"></td> -->
-				<th:block th:each="Quyen : ${listQuyens}">
-			   		<th:block th:if="${Quyen.maQuyen == NhanVien.maQuyen}">
-			   			<td th:text="${Quyen.tenQuyen}"></td>
-			   		</th:block>
-			   	</th:block>			   	
+				<td th:text="${NhanVien.maQuyen}"></td>
+				
+<!-- 				<th:block th:each="Quyen : ${listQuyens}"> -->
+<!-- 			   		<th:block th:if="${Quyen.maQuyen == NhanVien.maQuyen}"> -->
+<!-- 			   			<td th:text="${Quyen.tenQuyen}"></td> -->
+<!-- 			   		</th:block> -->
+<!-- 			   	</th:block>			   	 -->
 			   	
 			   	<td>
 			   		<a th:href="@{/showFormForUpdateNV/{maNV}(maNV=${NhanVien.maNV})}"><img th:src ="@{/images/edit.png}" width="35"/></a>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,8 @@ public class NhanVienController {
 	@Autowired
 	private NhanVienService NhanVienService;
 	
-	@Autowired QuyenService QuyenService;
+	@Autowired 
+	private QuyenService QuyenService;
 	
 	@GetMapping("/page_nhanvien")
 	public String viewListNV(Model model) {
@@ -44,6 +46,11 @@ public class NhanVienController {
 	 
 	@PostMapping("/saveNhanVien")
 	public String saveNV(@ModelAttribute("nhanvien") NhanVien nhanvien) {
+		// Mã hoá mật khẩu lưu vào Database
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(nhanvien.getMatKhau());
+        nhanvien.setMatKhau(encodedPassword);
+        
 		NhanVienService.saveNhanVien(nhanvien);
 		return "redirect:/page_nhanvien";
 	 }

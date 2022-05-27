@@ -1,6 +1,6 @@
-<html lang="en" 
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="admin/layout">
+<html lang="en"> 
+<!--       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" -->
+<!--       layout:decorate="admin/layout"> -->
 <title>Quản Lý Nhân Viên</title>
 
 <link rel="stylesheet"
@@ -10,14 +10,14 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-        <h2 class="mb-3">Thêm Nhân Viên</h2>
+        <h2 class="mb-3">Signup Form</h2>
 
-        <form action="#" th:action="@{/saveNhanVien}" th:object="${nhanvien}" method="POST">
+        <form action="#" th:action="@{/process_register}" th:object="${user}" method="POST">
         	<label for="hoTen"><strong>Nhân viên:</strong></label>
             <input type="text" th:field="*{hoTen}" placeholder="Họ Tên" class="form-control mb-4 col-4">
 
 			<label for="email"><strong>Email:</strong></label>
-            <input type="email" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
+            <input type="email" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4" required>
 
 			<label for="sdt"><strong>SĐT:</strong></label>
             <input type="text" th:field="*{sdt}" placeholder="SDT" class="form-control mb-4 col-4">
@@ -32,17 +32,19 @@
             <input type="text" th:field="*{taiKhoan}" placeholder="Tài Khoản" class="form-control mb-4 col-4">
             
             <label for="matKhau"><strong>Mật khẩu:</strong></label>
-            <input type="password" th:field="*{matKhau}" placeholder="Mật Khẩu" class="form-control mb-4 col-4">
+            <input type="password" th:field="*{matKhau}" class="form-control mb-4 col-4" placeholder="Mật Khẩu"
+                            required minlength="6" maxlength="10"/>
             
-            <label for="maQuyen"><strong>Quyền:</strong></label>
-            <select th:field="*{maQuyen}" class="form-select"> 
-            	<option th:each="Quyen : ${listQuyens}"
-                	th:value="${Quyen.maQuyen}"
-                    th:text="${Quyen.tenQuyen}" ></option>
-           	</select>
-            </br>
+            <label for="maQuyen"><strong>Mã quyền:</strong></label>
+            <input type="text" th:field="*{maQuyen}" placeholder="Quyền" class="form-control mb-4 col-4">
+<!-- 			<select th:field="*{maQuyen}" class="form-select mb-3">  -->
+<!--             	<option th:each="Quyen : ${listQuyens}" -->
+<!--                 	th:value="${Quyen.maQuyen}" -->
+<!--                     th:text="${Quyen.tenQuyen}" ></option> -->
+<!--            	</select> -->
+<!--             </br> -->
 
-            <button type="submit" class="btn btn-info col-2"> Thêm</button>
+            <button type="submit" class="btn btn-info col-2"> Sign Up</button>
         </form>
 
         <hr>
