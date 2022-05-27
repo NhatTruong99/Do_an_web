@@ -5,7 +5,7 @@
 	<title th:text="${loaiSanPham.tenLoaiSP}"></title>						
 </th:block>
 <th:block th:unless="${maLoaiSP}">
-	<title>Tất cả sản phẩm</title>
+	<title>Danh mục sản phẩm</title>
 </th:block>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,7 @@
 
 				<!-- Breadcrumbs -->
 
-				<div class="breadcrumbs d-flex flex-row align-items-center">
+				<div class="breadcrumbs d-flex flex-row align-items-center" th:unless="${keyword}">
 					<ul>
 						<li><a th:href="@{/}">Trang chủ</a></li>
 						<span>/</span>
@@ -69,20 +69,25 @@
 						</ul>
 					</div>
 
-					<!-- Sizes -->
+
+				<!-- Price -->
 					<div class="sidebar_section">
 						<div class="sidebar_title">
-							<h5>Sizes</h5>
+							<h5>Giá cả</h5>
 						</div>
 						<ul class="sidebar_categories" >
-							<th:block th:each="size : ${listSizes}">
-								<li><a th:text="${size.tenSize}"></a></li>
-							</th:block>
+							<li th:classappend="${idPriceCheck == 1} ? active"><a th:href="@{/categories/price/{idPrice}(idPrice=1,minPrice = 0,maxPrice=100000)}">Dưới 100.000VND </a> </li>
+							<li th:classappend="${idPriceCheck == 2} ? active"><a th:href="@{/categories/price/{idPrice}(idPrice=2,minPrice = 100000,maxPrice=200000)}">100.000 - 200.000 VND </a> </li>
+							<li th:classappend="${idPriceCheck == 3} ? active"><a th:href="@{/categories/price/{idPrice}(idPrice=3,minPrice = 200000,maxPrice=500000)}">200.000 - 500.000VND </a> </li>
+							<li th:classappend="${idPriceCheck == 4} ? active"><a th:href="@{/categories/price/{idPrice}(idPrice=4,minPrice = 500000,maxPrice=100000000)}">Trên 500.000VND </a> </li>
 						</ul>
 					</div>
-
-
 				</div>
+				
+				
+
+
+
 
 				<!-- Main Content -->
 
@@ -93,8 +98,14 @@
 					<div class="products_iso">
 						<div class="row">
 							<div class="col">
+							<th:block th:if="${keyword}">
+								<div class="d-flex">
+									<h4 style="color: #424547;">Kết quả tìm kiếm cho từ khóa:</h4>&nbsp&nbsp
+									<h4 th:text="${keyword}" style="color: #1a0dab;"></h4>
+								</div>
+									
 
-
+							</th:block>
 
 								<!-- Product Grid -->
 

@@ -53,6 +53,15 @@ public class SanPhamService {
 		return SanPhamRepository.findByCategoryID(idCategory);
 	}
 	
+	public List<SanPham> getByKeywordWithUserPage(String keyword) {
+		return SanPhamRepository.findByKeywordWithUserPage(keyword);
+	}
+
+	//Tìm theo giá cả
+	public List<SanPham> getByMinMaxPrice(int minPrice, int maxPrice){
+		return SanPhamRepository.findByPrice(minPrice, maxPrice);
+	}
+	
 	//Phân trang
 	public Page<SanPham> findPaginated(int pageNo, int pageSize) {
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
@@ -66,9 +75,6 @@ public class SanPhamService {
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
 		return this.SanPhamRepository.findAll(pageable);
 	}
-	
-	public Page<SanPham> findPaginatedWithCategoryID(int pageNo, int pageSize) {
-		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-		return this.SanPhamRepository.findAll(pageable);
-	}
+
+
 }

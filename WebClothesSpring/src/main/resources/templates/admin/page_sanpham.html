@@ -31,8 +31,6 @@
 		     <th>Ảnh</th>
 		     <th> <a th:href="@{'/pageSP/' + ${currentPage} + '?sortField=donGia&sortDir=' + ${reverseSortDir}}">
       			Đơn Giá</a></th>
-		     <th> <a th:href="@{'/pageSP/' + ${currentPage} + '?sortField=maSize&sortDir=' + ${reverseSortDir}}">
-      			Size</a></th>
 		     <th> <a th:href="@{'/pageSP/' + ${currentPage} + '?sortField=maLoaiSP&sortDir=' + ${reverseSortDir}}">
       			Loại Sản Phẩm</a></th>
 		     <th>Chức Năng</th>
@@ -49,7 +47,6 @@
 			   	<td th:text="${SanPham.donGia}"></td>
 <!-- 			   	<td th:text="${SanPham.ghiChu}"></td> -->
 			   	
-			   	<td th:text="${SanPham.maSize}"></td>
 			   	
 			   	<td th:text="${SanPham.maLoaiSP}"></td>
 			   	

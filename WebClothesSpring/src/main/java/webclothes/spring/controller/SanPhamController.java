@@ -19,11 +19,10 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import webclothes.spring.model.FileUploadUtil;
 import webclothes.spring.model.SanPham;
-import webclothes.spring.model.Size;
 import webclothes.spring.repository.SanPhamRepository;
 import webclothes.spring.service.LoaiSanPhamService;
 import webclothes.spring.service.SanPhamService;
-import webclothes.spring.service.SizeService;
+
 
 @Controller
 public class SanPhamController {
@@ -31,8 +30,6 @@ public class SanPhamController {
 	@Autowired
 	private SanPhamService SanPhamService;
 
-	@Autowired
-	private SizeService SizeService;
 
 	@Autowired
 	private LoaiSanPhamService LoaiSanPhamService;
@@ -43,7 +40,6 @@ public class SanPhamController {
 	@GetMapping("/page_sanpham")
 	public String viewListSP(Model model) {
 		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
-		model.addAttribute("listSizes", SizeService.getAllSize());
 		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 		return findPaginatedSanPham(1, "maSP", "asc", model);
 		// "admin/page_sanpham";
@@ -53,7 +49,6 @@ public class SanPhamController {
 	public String showNewSanPhamForm(Model model) {
 		SanPham sanpham = new SanPham();
 		model.addAttribute("sanpham", sanpham);
-		model.addAttribute("listSizes", SizeService.getAllSize());
 		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 		return "admin/new_sanpham";
 	}
@@ -86,7 +81,6 @@ public class SanPhamController {
 		SanPham sanpham = SanPhamService.getSanPhamById(maSP);
 		model.addAttribute("sanpham", sanpham);
 		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
-		model.addAttribute("listSizes", SizeService.getAllSize());
 		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 		return "admin/detail_sanpham";
 	}
@@ -95,7 +89,6 @@ public class SanPhamController {
 	public String showFormForUpdateSP(@PathVariable(value = "maSP") long maSP, Model model) {
 		SanPham sanpham = SanPhamService.getSanPhamById(maSP);
 		model.addAttribute("sanpham", sanpham);
-		model.addAttribute("listSizes", SizeService.getAllSize());
 		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 		return "admin/update_sanpham";
 	}

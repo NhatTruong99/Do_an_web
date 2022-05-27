@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import webclothes.spring.service.LoaiSanPhamService;
 import webclothes.spring.service.SanPhamService;
-import webclothes.spring.service.SizeService;
 
 @Controller
 public class GioHangController {
@@ -18,8 +17,6 @@ public class GioHangController {
 	@Autowired
 	private LoaiSanPhamService loaiSanPhamService;
 
-	@Autowired
-	private SizeService sizeService;
 	
 	@GetMapping("/shopcart")
 	public String ShopCart() {
