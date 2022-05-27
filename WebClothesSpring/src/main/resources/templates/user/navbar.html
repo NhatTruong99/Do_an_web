@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
+
 <body>
     <header class="header trans_300" th:fragment="copy">
 
 		<!-- Main Navigation -->
 
 		<div class="main_nav_container">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 text-right">
-						<div class="logo_container">
+			<div class="container-fluid">
+					<div class="row d-flex justify-content-end ">
+						<div class="logo_container pl-5  col-4">
 							<a th:href="@{/}">candy<span>shop</span></a>
 						</div>
-						<nav class="navbar">
+						<nav class="navbar col-7 mr-5" >
 							<ul class="navbar_menu">
 								<li><a th:href="@{/}">Trang chủ</a></li>
 								<li><a th:href="@{/categories}" style="padding-right: 5px;">Sản phẩm</a></li>
@@ -28,12 +29,21 @@
 										</th:block>
 									</div>
 								</li>
-								<li><a href="#">Chi tiết size</a></li>
 								<li><a href="#">Về chúng tôi</a></li>
 								<li><a th:href="@{/contact}">Liên hệ</a></li>
 							</ul>
 							<ul class="navbar_user">
-								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+								<li>
+									<div>
+									 	<form th:action="@{/searchSpUser}" method="get">
+									 	<div class="d-flex">
+									 		<input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="Nhập nội dung cần tìm" >
+										 	<button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+									 	</div>
+
+		 								</form>
+									</div>
+								</li>
 								<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
 								<li class="checkout">
 									<a th:href="@{/shopcart}">
@@ -48,7 +58,6 @@
 						</nav>
 					</div>
 				</div>
-			</div>
 		</div>
 
 	</header>

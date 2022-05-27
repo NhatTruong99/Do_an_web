@@ -35,9 +35,6 @@ public class SanPham {
 	  @Column(name = "GhiChu")
 	  private String ghiChu;
 	  
-	  @Column(name = "MaSize")
-	  private long maSize;
-	  
 	  @Column(name = "MaLoaiSP")
 	  private long maLoaiSP;
 	  
@@ -71,9 +68,6 @@ public class SanPham {
 		return ghiChu;
 	}
 
-	public long getMaSize() {
-		return maSize;
-	}
 
 	public long getMaLoaiSP() {
 		return maLoaiSP;
@@ -103,9 +97,6 @@ public class SanPham {
 		this.ghiChu = ghiChu;
 	}
 
-	public void setMaSize(long maSize) {
-		this.maSize = maSize;
-	}
 
 	public void setMaLoaiSP(long maLoaiSP) {
 		this.maLoaiSP = maLoaiSP;

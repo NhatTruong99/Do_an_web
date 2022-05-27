@@ -8,12 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import webclothes.spring.model.LoaiSanPham;
 import webclothes.spring.model.SanPham;
 import webclothes.spring.service.LoaiSanPhamService;
 import webclothes.spring.service.SanPhamService;
-import webclothes.spring.service.SizeService;
 
 @Controller
 public class HomeController {
@@ -24,8 +24,7 @@ public class HomeController {
 	@Autowired
 	private LoaiSanPhamService loaiSanPhamService;
 
-	@Autowired
-	private SizeService sizeService;
+
 
 	@GetMapping("/")
 	public String viewIndex(Model model) {
@@ -63,6 +62,19 @@ public class HomeController {
 	 * "user/categories"; }
 	 */
 
+	//Tìm kiếm sản phẩm
+	@RequestMapping({ "/searchSpUser" })
+	public String searchSpUser(SanPham SanPham, Model model, String keyword) {
+		if (keyword != null) {
+			model.addAttribute("listSanPhams", sanPhamService.getByKeywordWithUserPage(keyword));
+			model.addAttribute("keyword",keyword);
+		} else {
+			model.addAttribute("listSanPhams", null);
+		}
+		model.addAttribute("listLoaiSanPhams", loaiSanPhamService.getAllLoaiSanPham());
+		return "user/categories";
+	}
+	
 	@GetMapping("/categories")
 	public String Categories(Model model) {
 		return findPaginated(1, model);
@@ -96,7 +108,6 @@ public class HomeController {
 		  model.addAttribute("listSanPhams",listSP);
 		  model.addAttribute("listLoaiSanPhams",loaiSanPhamService.getAllLoaiSanPham());
 		  model.addAttribute("loaiSanPham",loaiSanPhamService.getLoaiSanPhamById(maLoaiSP));
-		  model.addAttribute("listSizes",sizeService.getAllSize()); 
 		  return "user/categories"; 
 	 }
 
@@ -120,7 +131,6 @@ public class HomeController {
 		model.addAttribute("donGia", donGia);
 		model.addAttribute("loaiSanPham", loaiSanPham);
 		model.addAttribute("listLoaiSanPhams",listLoaiSP);
-		model.addAttribute("listSizes", sizeService.getAllSize());
 		model.addAttribute("listSanPhams", sanPhamService.getAllSanPham());
 		return "user/single";
 	}
@@ -139,7 +149,6 @@ public class HomeController {
 
 		// model.addAttribute("listSanPhams",sanPhamService.getAllSanPham());
 		model.addAttribute("listLoaiSanPhams", loaiSanPhamService.getAllLoaiSanPham());
-		model.addAttribute("listSizes", sizeService.getAllSize());
 
 		return "user/categories";
 	}
@@ -158,7 +167,6 @@ public class HomeController {
 
 		// model.addAttribute("listSanPhams",sanPhamService.getAllSanPham());
 		model.addAttribute("listLoaiSanPhams", loaiSanPhamService.getAllLoaiSanPham());
-		model.addAttribute("listSizes", sizeService.getAllSize());
 
 		return "user/categories";
 	}

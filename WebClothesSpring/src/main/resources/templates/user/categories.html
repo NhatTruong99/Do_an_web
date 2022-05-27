@@ -34,7 +34,7 @@
 
 				<!-- Breadcrumbs -->
 
-				<div class="breadcrumbs d-flex flex-row align-items-center">
+				<div class="breadcrumbs d-flex flex-row align-items-center" th:unless="${keyword}">
 					<ul>
 						<li><a th:href="@{/}">Trang chủ</a></li>
 						<span>/</span>
@@ -69,18 +69,6 @@
 						</ul>
 					</div>
 
-					<!-- Sizes -->
-					<div class="sidebar_section">
-						<div class="sidebar_title">
-							<h5>Sizes</h5>
-						</div>
-						<ul class="sidebar_categories" >
-							<th:block th:each="size : ${listSizes}">
-								<li><a th:text="${size.tenSize}"></a></li>
-							</th:block>
-						</ul>
-					</div>
-
 
 				</div>
 
@@ -93,8 +81,14 @@
 					<div class="products_iso">
 						<div class="row">
 							<div class="col">
+							<th:block th:if="${keyword}">
+								<div class="d-flex">
+									<h4 style="color: #424547;">Kết quả tìm kiếm cho từ khóa:</h4>&nbsp&nbsp
+									<h4 th:text="${keyword}" style="color: #1a0dab;"></h4>
+								</div>
+									
 
-
+							</th:block>
 
 								<!-- Product Grid -->
 
