@@ -32,9 +32,7 @@
 								<li><a href="#">Về chúng tôi</a></li>
 								<li><a th:href="@{/contact}">Liên hệ</a></li>
 							</ul>
-							<ul class="navbar_user">
-								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-								<li><a href="/login"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+							<ul class="navbar_user">				
 								<li>
 									<div>
 									 	<form th:action="@{/searchSpUser}" method="get">
@@ -46,7 +44,7 @@
 		 								</form>
 									</div>
 								</li>
-								<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+								<li><a href="/login"><i class="fa fa-user" aria-hidden="true"></i></a></li>
 								<li class="checkout">
 									<a th:href="@{/shopcart}">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>

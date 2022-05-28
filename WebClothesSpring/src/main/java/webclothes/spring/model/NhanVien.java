@@ -1,6 +1,7 @@
 package webclothes.spring.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -53,7 +54,7 @@ public class NhanVien{
 	          joinColumns = @JoinColumn(name = "nhanvien_id"),
 	          inverseJoinColumns = @JoinColumn(name = "quyen_id")
 			  )
-	  private Set<Quyen> quyens;
+	  private Set<Quyen> quyens = new HashSet<>();
 	  
 	public Set<Quyen> getQuyens() {
 		return quyens;

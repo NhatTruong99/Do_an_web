@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -18,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import webclothes.spring.model.FileUploadUtil;
+import webclothes.spring.model.MyUserDetails;
+import webclothes.spring.model.NhanVien;
 import webclothes.spring.model.SanPham;
 import webclothes.spring.repository.SanPhamRepository;
 import webclothes.spring.service.LoaiSanPhamService;
@@ -38,7 +42,8 @@ public class SanPhamController {
 	private SanPhamRepository SanPhamRepository;
 
 	@GetMapping("/page_sanpham")
-	public String viewListSP(Model model) {
+	public String viewListSP(@AuthenticationPrincipal MyUserDetails user, Model model) {
+		model.addAttribute("user", user);
 		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
 		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 		return findPaginatedSanPham(1, "maSP", "asc", model);

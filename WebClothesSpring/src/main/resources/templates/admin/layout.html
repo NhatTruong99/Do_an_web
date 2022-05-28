@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				xmlsn:sec="htpp://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Trang Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,8 +56,16 @@
                     <ul class="nav in" id="side-menu" style="display:block"> <!-- display:block để xuống hàng hết -->
                     
                    <!--  Request bên Controller rồi gọi lại bên này -->
+                   	<form>
+					 		<span style="color: white" class="nav-link">Welcome [[${#request.remoteUser}]]</span>
+					 		<span style="color: white" class="nav-link">Welcome [[${#request.userPrincipal.principal.hoTen}]]</span>
+					 		<span style="color: white" class="nav-link">Welcome [[${#request.userPrincipal.principal.maQuyen}]]</span>
+					 		
+					 		<span style="color: white" class="nav-link" sec:authentication="principal.authorities"></span>
+
+					 </form>
                        	<li>
-                            <a th:href="@{/}"><i class="fas fa-home nav_icon"></i>Trang Chủ</a>
+                       		 <a th:href="@{/}"><i class="fas fa-home nav_icon"></i>Trang Chủ</a>
                         </li>
                         <li>
                             <a th:href="@{/page_sanpham}"><i class="fas fa-laptop nav_icon"></i>Quản Lý Sản Phẩm</a>
