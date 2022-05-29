@@ -29,6 +29,11 @@ public class HoaDonController {
 	@Autowired
 	private KhachHangService KhachHangService;
 	
+	@GetMapping("/403/HD")
+	public String error403_HD() {
+		return "admin/403";
+	}
+	
 	@GetMapping("/page_hoadon")
 	public String viewListHD(Model model) {
 		model.addAttribute("listHoaDons", HoaDonService.getAllHoaDon());

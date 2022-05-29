@@ -33,7 +33,7 @@
       			Đơn Giá</a></th>
 		     <th> <a th:href="@{'/pageSP/' + ${currentPage} + '?sortField=maLoaiSP&sortDir=' + ${reverseSortDir}}">
       			Loại Sản Phẩm</a></th>
-		     <th>Chức Năng</th>
+		     <th sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_NhapHang', 'User_ThongKe')">Chức Năng</th>
 		    </tr>
 		   </thead>
 		   <tbody>
@@ -51,10 +51,10 @@
 			   	<td th:text="${SanPham.maLoaiSP}"></td>
 			   	
 			   	
-			   	<td>
+			   	<td sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_NhapHang', 'User_ThongKe')">
 			   		<a th:href="@{/showFormForDetailSP/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/details.png}" width="30"/></a>
-			   		<a th:href="@{/showFormForUpdateSP/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/edit.png}" width="30"/></a>
-			   		<a th:href="@{/deleteSanPham/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/delete.png}" width="30"/></a>
+			   		<a sec:authorize="hasAnyAuthority('Admin', 'Editor')" th:href="@{/showFormForUpdateSP/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/edit.png}" width="30"/></a>
+			   		<a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/deleteSanPham/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/delete.png}" width="30"/></a>
 			   	</td>
 		    </tr>
 		   </tbody>

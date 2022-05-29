@@ -40,9 +40,9 @@
       			CMND</a></th>
 <!-- 		     <th>Tài Khoản</th> -->
 <!-- 		     <th>Mật Khẩu</th> -->
- 			 <th> <a th:href="@{'/pageNV/' + ${currentPage} + '?sortField=maQuyen&sortDir=' + ${reverseSortDir}}">
-      			Quyền</a></th>
-		     <th>Chức Năng</th>
+<!--  			 <th> <a th:href="@{'/pageNV/' + ${currentPage} + '?sortField=maQuyen&sortDir=' + ${reverseSortDir}}"> -->
+<!--       			Quyền</a></th> -->
+		     <th sec:authorize="hasAnyAuthority('Admin', 'Editor')">Chức Năng</th>
 		    </tr>
 		   </thead>
 		   <tbody>
@@ -55,7 +55,7 @@
 			   	<td th:text="${NhanVien.cmnd}"></td>
 <!-- 			   	<td th:text="${NhanVien.taiKhoan}"></td> -->
 <!-- 			   	<td th:text="${NhanVien.matKhau}"></td> -->
-				<td th:text="${NhanVien.maQuyen}"></td>
+<!-- 				<td th:text="${NhanVien.maQuyen}"></td> -->
 				
 <!-- 				<th:block th:each="Quyen : ${listQuyens}"> -->
 <!-- 			   		<th:block th:if="${Quyen.maQuyen == NhanVien.maQuyen}"> -->
@@ -63,9 +63,9 @@
 <!-- 			   		</th:block> -->
 <!-- 			   	</th:block>			   	 -->
 			   	
-			   	<td>
+			   	<td sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 			   		<a th:href="@{/showFormForUpdateNV/{maNV}(maNV=${NhanVien.maNV})}"><img th:src ="@{/images/edit.png}" width="35"/></a>
-			   		<a th:href="@{/deleteNhanVien/{maNV}(maNV=${NhanVien.maNV})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
+			   		<a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/deleteNhanVien/{maNV}(maNV=${NhanVien.maNV})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
 			   	</td>
 		    </tr>
 		   </tbody>

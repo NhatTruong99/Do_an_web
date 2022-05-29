@@ -38,10 +38,6 @@ public class MyUserDetails implements UserDetails {
     public String getHoTen() {
         return user.getHoTen();
     }
-    
-    public long getMaQuyen() {
-        return user.getMaQuyen();
-    }
  
     @Override
     public boolean isAccountNonExpired() {

@@ -38,7 +38,7 @@
       			SĐT</a></th>
 		     <th> <a th:href="@{'/pageKH/' + ${currentPage} + '?sortField=diaChi&sortDir=' + ${reverseSortDir}}">
       			Địa Chỉ</a></th>
-		     <th>Chức Năng</th>
+		     <th sec:authorize="hasAnyAuthority('Admin', 'Editor')">Chức Năng</th>
 		    </tr>
 		   </thead>
 		   <tbody>
@@ -48,9 +48,9 @@
 			   	<td th:text="${KhachHang.email}"></td>
 			   	<td th:text="${KhachHang.sdt}"></td>
 			   	<td th:text="${KhachHang.diaChi}"></td>
-			   	<td>
+			   	<td sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 			   		<a th:href="@{/showFormForUpdateKH/{maKH}(maKH=${KhachHang.maKH})}"><img th:src ="@{/images/edit.png}" width="35"/></a>
-			   		<a th:href="@{/deleteKhachHang/{maKH}(maKH=${KhachHang.maKH})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
+			   		<a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/deleteKhachHang/{maKH}(maKH=${KhachHang.maKH})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
 			   	</td>
 		    </tr>
 		   </tbody>

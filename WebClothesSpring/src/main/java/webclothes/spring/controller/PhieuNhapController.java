@@ -31,6 +31,11 @@ public class PhieuNhapController {
 	@Autowired
 	private NhanVienService NhanVienService;
 	
+	@GetMapping("/403/PN")
+	public String error403_PN() {
+		return "admin/403";
+	}
+	
 	@GetMapping("/page_phieunhap")
 	public String viewListPN(Model model) {
 		model.addAttribute("listPhieuNhaps", PhieuNhapService.getAllPhieuNhap());

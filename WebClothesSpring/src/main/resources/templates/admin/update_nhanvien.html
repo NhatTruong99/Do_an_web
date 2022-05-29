@@ -38,13 +38,13 @@
             <label for="matKhau"><strong>Mật khẩu:</strong></label>
             <input type="text" th:field="*{matKhau}" class="form-control mb-4 col-4">
             
-            <label for="maQuyen"><strong>Tên quyền:</strong></label>
-            <select th:field="*{maQuyen}" class="form-select"> 
-            	<option th:each="Quyen : ${listQuyens}"
-                	th:value="${Quyen.maQuyen}"
-                    th:text="${Quyen.tenQuyen}" ></option>
-           	</select>
-           	</br>
+<!--             <label for="maQuyen"><strong>Tên quyền:</strong></label> -->
+<!--             <select th:field="*{maQuyen}" class="form-select">  -->
+<!--             	<option th:each="Quyen : ${listQuyens}" -->
+<!--                 	th:value="${Quyen.maQuyen}" -->
+<!--                     th:text="${Quyen.tenQuyen}" ></option> -->
+<!--            	</select> -->
+<!--            	</br> -->
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>
         </form>
         <hr>

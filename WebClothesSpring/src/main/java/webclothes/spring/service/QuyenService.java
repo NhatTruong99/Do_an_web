@@ -52,7 +52,7 @@ public class QuyenService{
 	}
 
 	// Phân trang
-	public Page<Quyen> findPaginatedNhaCungCap(int pageNo, int pageSize, String sortField, String sortDirection) {
+	public Page<Quyen> findPaginatedQuyen(int pageNo, int pageSize, String sortField, String sortDirection) {
 		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
 		Sort.by(sortField).descending(); 
 			

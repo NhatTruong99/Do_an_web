@@ -23,6 +23,11 @@ public class KhachHangController {
 	@Autowired
 	private KhachHangService KhachHangService;
 	
+	@GetMapping("/403/KH")
+	public String error403_KH() {
+		return "admin/403";
+	}
+	
 	@GetMapping("/page_khachhang")
 	public String viewListKH(Model model) {
 		model.addAttribute("listKhachHangs", KhachHangService.getAllKhachHang());

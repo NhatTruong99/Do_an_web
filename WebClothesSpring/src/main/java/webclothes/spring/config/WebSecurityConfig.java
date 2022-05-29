@@ -42,8 +42,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-	        .antMatchers("/users").authenticated()
-	        .anyRequest().permitAll()
+//	        .antMatchers("/users").authenticated()
+//        ** để tự động lấy nốt VD: NV, SP, HD, ...
+        	.antMatchers("/delete**/**").hasAuthority("Admin")
+        	.antMatchers("/showFormForUpdate**/**").hasAnyAuthority("Admin", "Editor")
+	        .anyRequest().authenticated()
             .and()
             .formLogin()
 //            	.loginPage("/login")

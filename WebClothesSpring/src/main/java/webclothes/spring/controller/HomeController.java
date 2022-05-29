@@ -36,6 +36,7 @@ public class HomeController {
 	@Autowired
 	private NhanVienRepository NhanVienRepository;
 
+	
     @GetMapping("/login") 
     public String getLogin() {
         return "login";

@@ -34,7 +34,7 @@
       			Nhân Viên</a></th>
 		      <th> <a th:href="@{'/pagePN/' + ${currentPage} + '?sortField=maNCC&sortDir=' + ${reverseSortDir}}">
       			Nhà Cung Cấp</a></th>
-		     <th>Chức Năng</th>
+		     <th sec:authorize="hasAnyAuthority('Admin', 'Editor')">Chức Năng</th>
 		    </tr>
 		   </thead>
 		   <tbody>
@@ -57,9 +57,9 @@
 <!-- 			   		</th:block> -->
 <!-- 			   	</th:block> -->
 
-			   	<td>
+			   	<td sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 			   		<a th:href="@{/showFormForUpdatePN/{maPN}(maPN=${PhieuNhap.maPN})}"><img th:src ="@{/images/edit.png}" width="35"/></a>
-			   		<a th:href="@{/deletePhieuNhap/{maPN}(maPN=${PhieuNhap.maPN})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
+			   		<a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/deletePhieuNhap/{maPN}(maPN=${PhieuNhap.maPN})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
 			   	</td>
 		    </tr>
 		   </tbody>

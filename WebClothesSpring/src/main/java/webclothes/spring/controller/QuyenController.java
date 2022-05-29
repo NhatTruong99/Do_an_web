@@ -23,6 +23,11 @@ public class QuyenController {
 	@Autowired
 	private QuyenService QuyenService;
 	
+	@GetMapping("/403/Q")
+	public String error403_Quyen() {
+		return "admin/403";
+	}
+	
 	@GetMapping("/page_quyen")
 	public String viewListQuyen(Model model) {
 		model.addAttribute("listQuyens", QuyenService.getAllQuyen());
@@ -75,7 +80,7 @@ public class QuyenController {
 	    Model model) {
 	    int pageSize = 3;
 
-	    Page<Quyen> page = QuyenService.findPaginatedNhaCungCap(pageNo, pageSize, sortField, sortDir);
+	    Page<Quyen> page = QuyenService.findPaginatedQuyen(pageNo, pageSize, sortField, sortDir);
 	    List<Quyen> listQuyens = page.getContent();
 
 	    model.addAttribute("currentPage", pageNo);

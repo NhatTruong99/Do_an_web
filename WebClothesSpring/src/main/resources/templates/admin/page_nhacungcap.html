@@ -31,16 +31,16 @@
       			Mã Nhà Cung Cấp</a></th>
 		     <th> <a th:href="@{'/pageNCC/' + ${currentPage} + '?sortField=tenNCC&sortDir=' + ${reverseSortDir}}">
       			Tên Nhà Cung Cấp</a></th>
-		     <th>Chức Năng</th>
+		     <th sec:authorize="hasAnyAuthority('Admin', 'Editor')">Chức Năng</th>
 		    </tr>
 		   </thead>
 		   <tbody>
 		    <tr th:each="NhaCungCap : ${listNhaCungCaps}">
 		    	<td th:text="${NhaCungCap.maNCC}"></td>
 			   	<td th:text="${NhaCungCap.tenNCC}"></td>
-			   	<td>
+			   	<td sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 			   		<a th:href="@{/showFormForUpdateNCC/{maNCC}(maNCC=${NhaCungCap.maNCC})}"><img th:src ="@{/images/edit.png}" width="35"/></a>
-			   		<a th:href="@{/deleteNCC/{maNCC}(maNCC=${NhaCungCap.maNCC})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
+			   		<a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/deleteNCC/{maNCC}(maNCC=${NhaCungCap.maNCC})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
 			   	</td>
 		    </tr>
 		   </tbody>

@@ -28,6 +28,11 @@ public class NhanVienController {
 	@Autowired 
 	private QuyenService QuyenService;
 	
+	@GetMapping("/403")
+	public String error403_NV() {
+		return "admin/403";
+	}
+	
 	@GetMapping("/page_nhanvien")
 	public String viewListNV(Model model) {
 		model.addAttribute("listNhanViens", NhanVienService.getAllNhanVien());

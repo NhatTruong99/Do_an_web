@@ -22,4 +22,5 @@ public interface NhanVienRepository extends JpaRepository<NhanVien, Long>{
 	
 	@Query("SELECT nv FROM NhanVien nv WHERE nv.taiKhoan = ?1")
 	public NhanVien findByTaiKhoan(String taikhoan);
+	
 }

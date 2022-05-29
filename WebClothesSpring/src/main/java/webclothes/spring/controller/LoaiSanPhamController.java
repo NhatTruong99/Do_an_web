@@ -24,6 +24,11 @@ public class LoaiSanPhamController {
 	@Autowired
 	private LoaiSanPhamService LoaiSanPhamService;
 	
+	@GetMapping("/403/LSP")
+	public String error403_LSP() {
+		return "admin/403";
+	}
+	
 	@GetMapping("/page_loaisanpham")
 	public String viewListLSP(Model model) {
 		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());

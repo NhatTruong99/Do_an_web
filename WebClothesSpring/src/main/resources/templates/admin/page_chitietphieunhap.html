@@ -30,7 +30,7 @@
 		     <th>Sản Phẩm</th>
 		     <th>Số Lượng Nhập</th>
 		     <th>Đơn Giá Nhập</th>
-		     <th>Chức Năng</th>
+		     <th sec:authorize="hasAnyAuthority('Admin', 'Editor')">Chức Năng</th>
 		    </tr>
 		   </thead>
 		   <tbody>
@@ -43,9 +43,9 @@
 			   	</th:block>
 			   	<td th:text="${ChiTietPhieuNhap.soLuongNhap}"></td>
 			   	<td th:text="${ChiTietPhieuNhap.donGiaNhap}"></td>
-			   	<td>
+			   	<td sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 			   		<a th:href="@{/showFormForUpdateCTPN/{maPN}(maPN=${ChiTietPhieuNhap.maPN})}"><img th:src ="@{/images/edit.png}" width="35"/></a>
-			   		<a th:href="@{/deleteChiTietPhieuNhap/{maPN}(maPN=${ChiTietPhieuNhap.maPN})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
+			   		<a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/deleteChiTietPhieuNhap/{maPN}(maPN=${ChiTietPhieuNhap.maPN})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
 			   	</td>
 		    </tr>
 		   </tbody>

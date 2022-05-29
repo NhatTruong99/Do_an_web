@@ -45,9 +45,6 @@ public class NhanVien{
 	  @Column(name = "MatKhau")
 	  private String matKhau;
 	  
-	  @Column(name = "MaQuyen")
-	  private long maQuyen;
-	  
 	  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	  @JoinTable(
 			  name = "nhanvien_quyen",
@@ -126,14 +123,6 @@ public class NhanVien{
 
 	public void setMatKhau(String matKhau) {
 		this.matKhau = matKhau;
-	}
-
-	public long getMaQuyen() {
-		return maQuyen;
-	}
-
-	public void setMaQuyen(long maQuyen) {
-		this.maQuyen = maQuyen;
 	}
 	  
 }

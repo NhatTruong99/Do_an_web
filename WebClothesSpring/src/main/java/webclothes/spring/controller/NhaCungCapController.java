@@ -23,6 +23,11 @@ public class NhaCungCapController {
 	@Autowired
 	private NhaCungCapService NhaCungCapService;
 	
+	@GetMapping("/403/NCC")
+	public String error403_NCC() {
+		return "admin/403";
+	}
+	
 	@GetMapping("/page_nhacungcap")
 	public String viewListNCC(Model model) {
 		model.addAttribute("listNhaCungCaps", NhaCungCapService.getAllNhaCungCap());

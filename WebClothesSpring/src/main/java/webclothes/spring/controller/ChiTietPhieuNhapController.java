@@ -25,6 +25,8 @@ public class ChiTietPhieuNhapController {
 	
 	@Autowired
 	private SanPhamService SanPhamService;
+
+
 	
 	@GetMapping("/page_chitietphieunhap")
 	public String viewListCTPN(Model model) {

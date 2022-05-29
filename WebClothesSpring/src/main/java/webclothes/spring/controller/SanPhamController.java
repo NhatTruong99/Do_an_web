@@ -34,13 +34,17 @@ public class SanPhamController {
 	@Autowired
 	private SanPhamService SanPhamService;
 
-
 	@Autowired
 	private LoaiSanPhamService LoaiSanPhamService;
 
 	@Autowired
 	private SanPhamRepository SanPhamRepository;
 
+	@GetMapping("/403/SP")
+	public String error403_SP() {
+		return "admin/403";
+	}
+	
 	@GetMapping("/page_sanpham")
 	public String viewListSP(@AuthenticationPrincipal MyUserDetails user, Model model) {
 		model.addAttribute("user", user);

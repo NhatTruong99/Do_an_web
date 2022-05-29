@@ -57,48 +57,51 @@
                     
                    <!--  Request bên Controller rồi gọi lại bên này -->
                    	<form>
-					 		<span style="color: white" class="nav-link">Welcome [[${#request.remoteUser}]]</span>
-					 		<span style="color: white" class="nav-link">Welcome [[${#request.userPrincipal.principal.hoTen}]]</span>
-					 		<span style="color: white" class="nav-link">Welcome [[${#request.userPrincipal.principal.maQuyen}]]</span>
-					 		
-					 		<span style="color: white" class="nav-link" sec:authentication="principal.authorities"></span>
-
+<!-- 					 		<span style="color: white" class="nav-link">Welcome [[${#request.remoteUser}]]</span> -->
+<!-- 					 		<span style="color: white" class="nav-link">Welcome [[${#request.userPrincipal.principal.hoTen}]]</span>		 -->
+<!-- 					 		<span style="color: white" class="nav-link" sec:authentication="principal.authorities"></span> -->
+							<div sec:authorize="isAuthenticated()" style="color: white; text-align: center">
+							    Welcome <b><span sec:authentication="name" >Username</span></b>
+							    &nbsp;
+							    </br>
+							    <i><span sec:authentication="principal.authorities">Roles</span></i>
+							</div>
 					 </form>
                        	<li>
                        		 <a th:href="@{/}"><i class="fas fa-home nav_icon"></i>Trang Chủ</a>
                         </li>
                         <li>
-                            <a th:href="@{/page_sanpham}"><i class="fas fa-laptop nav_icon"></i>Quản Lý Sản Phẩm</a>
+                           <a sec:authorize="hasAnyAuthority('Admin', 'Editor' , 'User_NhapHang', 'User_ThongKe')" th:href="@{/page_sanpham}"><i class="fas fa-laptop nav_icon"></i>Quản Lý Sản Phẩm</a>
                         </li>
                         <li>
-                           <a th:href="@{/page_loaisanpham}"><i class="fas fa-laptop-code nav_icon"></i>Quản Lý Loại Sản Phẩm</a>
+                           <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_loaisanpham}"><i class="fas fa-laptop-code nav_icon"></i>Quản Lý Loại Sản Phẩm</a>
                         </li>
                          <li>
-                            <a th:href="@{/page_nhacungcap}"><i class="fas fa-laptop-code nav_icon"></i>Quản Lý Nhà Cung Cấp</a>
+                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_nhacungcap}"><i class="fas fa-laptop-code nav_icon"></i>Quản Lý Nhà Cung Cấp</a>
                         </li>
                         <li>
-                           <a th:href="@{/page_size}"><i class="fas fa-laptop-code nav_icon"></i>Quản Lý Size</a>
+                           <a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/page_phanquyen}"><i class="fas fa-laptop-code nav_icon"></i>Quản Lý Phân Quyền</a>
                         </li>
                         <li>
-                           <a th:href="@{/page_quyen}"><i class="fas fa-laptop-code nav_icon"></i>Quản Lý Quyền</a>
+                           <a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/page_quyen}"><i class="fas fa-laptop-code nav_icon"></i>Quản Lý Quyền</a>
                         </li>
                         <li>
-                            <a th:href="@{/page_nhanvien}"><i class="fas fa-user-tie nav_icon"></i>Quản Lý Nhân Viên</a>
+                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_nhanvien}"><i class="fas fa-user-tie nav_icon"></i>Quản Lý Nhân Viên</a>
                         </li>
                         <li>
-                            <a th:href="@{/page_khachhang}"><i class="fas fa-user-tie nav_icon"></i>Quản Lý Khách Hàng</a>
+                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_khachhang}"><i class="fas fa-user-tie nav_icon"></i>Quản Lý Khách Hàng</a>
                         </li>
                         <li>
-                            <a th:href="@{/page_hoadon}"><i class="fas fa-file-invoice nav_icon"></i>Quản Lý Hoá Đơn</a>
+                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_hoadon}"><i class="fas fa-file-invoice nav_icon"></i>Quản Lý Hoá Đơn</a>
                         </li>
                         <li>
-                           <a th:href="@{/page_chitiethoadon}"><i class="fas fa-file-invoice-dollar nav_icon"></i>Quản Lý Chi Tiết Hoá Đơn</a>
+                           <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_chitiethoadon}"><i class="fas fa-file-invoice-dollar nav_icon"></i>Quản Lý Chi Tiết Hoá Đơn</a>
                         </li>
                         <li>
-                            <a th:href="@{/page_phieunhap}"><i class="fas fa-file-invoice nav_icon"></i>Quản Lý Phiếu Nhập</a>
+                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_NhapHang', 'User_ThongKe')" th:href="@{/page_phieunhap}"><i class="fas fa-file-invoice nav_icon"></i>Quản Lý Phiếu Nhập</a>
                         </li>
                         <li>
-                            <a th:href="@{/page_chitietphieunhap}"><i class="fas fa-file-invoice-dollar nav_icon"></i>Quản Lý Chi Tiết Phiếu Nhập</a>
+                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_NhapHang', 'User_ThongKe')" th:href="@{/page_chitietphieunhap}"><i class="fas fa-file-invoice-dollar nav_icon"></i>Quản Lý Chi Tiết Phiếu Nhập</a>
                         </li>
                         
                     </ul>
