@@ -75,7 +75,10 @@ public class HomeController {
 		model.addAttribute("listSanPhams", sanPhamService.getAllSanPham());
 		return "admin/layout";
 	}
-
+	@GetMapping("/logout")
+	public String logout() {
+		return "admin/logout";
+	}
 	// Trang liên hệ
 	@GetMapping("/contact")
 	public String Contact() {

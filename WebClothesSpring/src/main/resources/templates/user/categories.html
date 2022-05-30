@@ -28,6 +28,7 @@
 	  <!-- Header -->
       <div th:insert="user/navbar :: copy"></div>
 
+	
 	<div class="container product_section_container">
 		<div class="row">
 			<div class="col product_section clearfix">
@@ -123,7 +124,7 @@
 		                      				<div class="product_price"><span th:text="${#numbers.formatInteger(sanpham.donGia,3,'POINT')}"></span>VND</div>
 										</div>
 										</div>
-										<div class="red_button add_to_cart_button"><a href="#">Thêm vào giỏ hàng</a></div>
+										<div class="red_button add_to_cart_button"><a th:href="@{/addcart/{id}/1 (id = ${sanpham.maSP})}">Thêm vào giỏ hàng</a></div>
 									</div>
 								</th:block>
 

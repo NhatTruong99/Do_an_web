@@ -46,9 +46,12 @@
 								</li>
 								<li><a href="/login"><i class="fa fa-user" aria-hidden="true"></i></a></li>
 								<li class="checkout">
-									<a th:href="@{/shopcart}">
+									<a th:href="@{/cart}">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" class="checkout_items">2</span>
+										<th:block th:if="${session.TongSLGioHang}">
+											<span id="checkout_items" class="checkout_items" th:text="${session.TongSLGioHang}" ></span>
+										</th:block>
+										
 									</a>
 								</li>
 							</ul>
