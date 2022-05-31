@@ -71,6 +71,9 @@
                        	<li>
                        		 <a th:href="@{/}"><i class="fas fa-home nav_icon"></i>Trang Chủ</a>
                         </li>
+                         <li>
+                           <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_thongke}"><i class="fas fa-laptop nav_icon"></i>Thống Kê</a>
+                        </li>
                         <li>
                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor' , 'User_NhapHang', 'User_ThongKe')" th:href="@{/page_sanpham}"><i class="fas fa-laptop nav_icon"></i>Quản Lý Sản Phẩm</a>
                         </li>

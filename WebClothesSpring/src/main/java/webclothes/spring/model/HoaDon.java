@@ -9,12 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 
 @Entity
 @Table(name = "hoadon")
-public class HoaDon {
+public class HoaDon{
 	
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)

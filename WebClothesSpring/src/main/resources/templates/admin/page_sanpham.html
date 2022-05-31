@@ -46,10 +46,8 @@
 			   	</td>
 			   	<td th:text="${SanPham.donGia}"></td>
 <!-- 			   	<td th:text="${SanPham.ghiChu}"></td> -->
-			   	
-			   	
+			   		   	
 			   	<td th:text="${SanPham.maLoaiSP}"></td>
-			   	
 			   	
 			   	<td sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_NhapHang', 'User_ThongKe')">
 			   		<a th:href="@{/showFormForDetailSP/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/details.png}" width="30"/></a>

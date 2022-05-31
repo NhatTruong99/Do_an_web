@@ -1,5 +1,7 @@
 package webclothes.spring.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +58,17 @@ public class SanPhamService {
 	public List<SanPham> getByKeywordWithUserPage(String keyword) {
 		return SanPhamRepository.findByKeywordWithUserPage(keyword);
 	}
+	
+	// Tính tổng doanh thu theo ngày
+	public String tongDoanhThu_Ngay(String date) {
+		return SanPhamRepository.tongDoanhThu_Ngay(date);
+	}
+	
+	// Tính tổng doanh thu theo tháng
+	public String tongDoanhThu_Thang(String month) {
+		return SanPhamRepository.tongDoanhThu_Thang(month);
+	}
+	
 
 	//Tìm theo giá cả
 	public List<SanPham> getByMinMaxPrice(int minPrice, int maxPrice){
@@ -75,6 +88,5 @@ public class SanPhamService {
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
 		return this.SanPhamRepository.findAll(pageable);
 	}
-
 
 }

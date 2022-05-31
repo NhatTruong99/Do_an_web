@@ -1,5 +1,6 @@
 package webclothes.spring.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,4 +24,14 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Long> {
 	
 	@Query(value = "SELECT * FROM sanpham sp WHERE :minPrice < sp.DonGia and sp.DonGia < :maxPrice", nativeQuery = true)
 	List<SanPham> findByPrice(@Param("minPrice") int minPrice, @Param("maxPrice") int maxPrice );
+
+	@Query(value ="Select Sum(DonGia*SoLuong) From chitiethoadon", nativeQuery = true) 
+	String tongDoanhThu();
+	
+	@Query(value ="Select Sum(DonGia*SoLuong) From chitiethoadon cthd JOIN hoadon hd on hd.MaHD = cthd.MaHD WHERE hd.NgayDat like %:date% ", nativeQuery = true) 
+	String tongDoanhThu_Ngay(@Param("date") String date);
+	
+	@Query(value ="Select Sum(DonGia*SoLuong) From chitiethoadon cthd JOIN hoadon hd on hd.MaHD = cthd.MaHD WHERE hd.NgayDat like %:month% ", nativeQuery = true) 
+	String tongDoanhThu_Thang(@Param("month") String month);
+
 }

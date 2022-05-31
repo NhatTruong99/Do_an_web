@@ -11,10 +11,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "chitiethoadon")
-public class ChiTietHoaDon {
+public class ChiTietHoaDon{
 	
 	  @Id
-	  @GeneratedValue(strategy = GenerationType.IDENTITY)
+	  @Column(name = "MaHD")
 	  private long maHD;
 
 	/* Tránh viết cả 2 trùng nhau sẽ bị lỗi */
