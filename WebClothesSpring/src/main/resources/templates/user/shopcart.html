@@ -92,11 +92,18 @@
                  
 					
 
+					<div class="d-flex justify-content-between row">
+					     <div class="col-3" style="padding-top: 30px;" >
+                    		<h6 class="mb-0"><a th:href="@{/}" class="text-body"><i
+                          	class="fas fa-long-arrow-alt-left me-2"></i>Trở về trang chủ</a></h6>
+                  		</div>
+                  		<div class="col-6 row align-items-center">
+                  			<p class="col-6 mb-0" style=" color:black;font-size: 1.1rem;">Tổng tiền: <span style="color:#ee4d2d;" >[[${#numbers.formatInteger(session.TongTienGioHang,3,'POINT')}]] VND</span></p>
+                        	<a type="button" class="btn btn-dark btn-block col-5 py-2" style="color:white;" th:href="@{/paybill}" >Mua hàng</a>
+                  		</div>
+                  		
+					</div>
 
-                  <div class="pt-5">
-                    <h6 class="mb-0"><a th:href="@{/}" class="text-body"><i
-                          class="fas fa-long-arrow-alt-left me-2"></i>Trở về trang chủ</a></h6>
-                  </div>
                 </div>
               </div>
               

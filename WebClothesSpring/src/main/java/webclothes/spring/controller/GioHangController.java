@@ -74,4 +74,10 @@ public class GioHangController {
 		session.setAttribute("TongSLGioHang", gioHangService.TotalQuantity(gioHang));
 		return "redirect:" + request.getHeader("Referer");//Refresh lại trang hiện tại
 	}
+	
+	@GetMapping("/paybill")
+	public String PayTheBill() {
+		
+		return "user/paybill";
+	}
 }

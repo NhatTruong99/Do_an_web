@@ -21,7 +21,7 @@
             <input type="text" th:field="*{dacDiem}" placeholder="Đặc Điểm" class="form-control mb-4 col-4">
 
 			<label for="anh"><strong>Ảnh sản phẩm:</strong></label>
-   		 	<input type="file" name="image" accept="image/png, image/jpeg, image/jpg" class="mb-3"/>
+   		 	<input type="file" name="image" th:field="*{anh}" accept="image/png, image/jpeg, image/jpg" class="mb-3"/>
    		 	</br>
 			
             <label for="donGia"><strong>Đơn giá:</strong></label>

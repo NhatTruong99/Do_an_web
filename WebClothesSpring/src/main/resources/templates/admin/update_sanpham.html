@@ -26,7 +26,9 @@
             <input type="text" th:field="*{dacDiem}" class="form-control mb-4 col-4" >
             
 			<label for="anh"><strong>Ảnh sản phẩm:</strong></label>
-			<input type="file" name="image" accept="image/png, image/jpeg, image/jpg" class="mb-3"/>
+					   			<!-- <img th:src ="@{'/images/' + ${sanpham.anh}}" style="width: 200px"/> -->
+			<input type="hidden"  th:field= "*{anh}">
+			<input type="file" name="image"  accept="image/png, image/jpeg, image/jpg" class="mb-3"/>
             </br>
             
             <label for="donGia"><strong>Đơn giá:</strong></label>

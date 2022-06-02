@@ -70,18 +70,26 @@ public class SanPhamController {
 	@PostMapping("/saveSanPham")
     public RedirectView saveSP(SanPham sanpham,
             @RequestParam("image") MultipartFile multipartFile) throws IOException {
-         
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        sanpham.setAnh(fileName);
+        
+		int size = 0;
+		 if (multipartFile != null && !multipartFile.isEmpty()) size++;
+		
+		if (size != 0) {
+	        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+	        String uploadDir1 = "target/classes/static/images";
+	        FileUploadUtil.saveFile(uploadDir1, fileName, multipartFile);
+	        sanpham.setAnh(fileName);
+		}
+
          
         SanPham savedSanPham = SanPhamRepository.save(sanpham);
  
         // Up vào cả 2 folder, để cả 2 hoặc để resources folder sẽ báo lỗi nhưng vẫn được nếu F5 lại  
 //      String uploadDir = "src/main/resources/static/images";
-        String uploadDir1 = "target/classes/static/images";
+        
  
 //        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-        FileUploadUtil.saveFile(uploadDir1, fileName, multipartFile);
+        
          
         return new RedirectView("/page_sanpham", true);
     }

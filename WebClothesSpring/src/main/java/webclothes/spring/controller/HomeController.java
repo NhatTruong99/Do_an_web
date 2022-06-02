@@ -1,5 +1,6 @@
 package webclothes.spring.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,14 +64,21 @@ public class HomeController {
     
 	@GetMapping("/")
 	public String viewIndex(Model model) {
+		List<SanPham> list = sanPhamService.getAllSanPham();
+		List<SanPham> listSP = new ArrayList<SanPham>();
+		for(int i=0;i< 10;i++) {
+			listSP.add(list.get(i));
+		}
 		model.addAttribute("listLoaiSanPhams", loaiSanPhamService.getAllLoaiSanPham());
-		model.addAttribute("listSanPhams", sanPhamService.getAllSanPham());
+		model.addAttribute("listSanPhams",listSP );
+		model.addAttribute("listSanPhams2",sanPhamService.getAllSanPham() );
 		return "user/index";
 	}
 
 	// Trang Admin
 	@GetMapping("/admin")
 	public String viewAdmin(Model model) {
+		
 		model.addAttribute("listLoaiSanPhams", loaiSanPhamService.getAllLoaiSanPham());
 		model.addAttribute("listSanPhams", sanPhamService.getAllSanPham());
 		return "admin/layout";

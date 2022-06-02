@@ -40,6 +40,9 @@ public class ThongKeController {
 		model.addAttribute("countKH", KhachHangRepository.count());
 		model.addAttribute("countNV", NhanVienRepository.count());
 		model.addAttribute("tongDoanhThu", SanPhamRepository.tongDoanhThu());
+		String Date = java.time.LocalDate.now().toString();
+		model.addAttribute("date",Date);
+		model.addAttribute("tongDoanhThu_Ngay", SanPhamService.tongDoanhThu_Ngay(Date));
 		return "admin/page_thongke";
 	}
 	

@@ -97,7 +97,7 @@
                 data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'
               >
               	<th:block th:each="sanpham : ${listSanPhams}">
-	              	<!-- Product 1 -->
+	              	<!-- Product -->
 	
 	                <div class="product-item">
 	                  <div class="product product_filter">
@@ -116,7 +116,6 @@
 	                    <a th:href="@{/addcart/{id}/1 (id = ${sanpham.maSP})}">Thêm vào giỏ hàng</a>
 	                  </div>
 	                </div>
-	                <!-- Product 1 -->
               	</th:block>
  
                 
@@ -168,7 +167,7 @@
               <div class="product_slider_container">
                 <div class="owl-carousel owl-theme product_slider">
                   <!-- Hiển thị sản phẩm -->
-					<th:block th:each="sanpham : ${listSanPhams}">
+					<th:block th:each="sanpham : ${listSanPhams2}">
 						<div class="owl-item product_slider_item">
 	                    <div class="product-item ">
 	                      <div class="product">

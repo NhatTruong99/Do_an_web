@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        ** để tự động lấy nốt VD: NV, SP, HD, ...
         	.antMatchers("/delete**/**").hasAuthority("Admin")
         	.antMatchers("/showFormForUpdate**/**").hasAnyAuthority("Admin", "Editor")
-	        .anyRequest().authenticated()
+	        .anyRequest().permitAll()
             .and()
             .formLogin()
 //            	.loginPage("/login")
