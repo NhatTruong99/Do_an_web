@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webclothes.spring.model.HoaDon;
-import webclothes.spring.model.NhaCungCap;
 import webclothes.spring.service.HoaDonService;
 import webclothes.spring.service.KhachHangService;
 

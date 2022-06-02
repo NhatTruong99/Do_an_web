@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import webclothes.spring.model.NhaCungCap;
 import webclothes.spring.model.NhanVien;
 import webclothes.spring.service.NhanVienService;
 import webclothes.spring.service.QuyenService;

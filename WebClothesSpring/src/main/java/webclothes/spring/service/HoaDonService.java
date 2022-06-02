@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import webclothes.spring.model.HoaDon;
-import webclothes.spring.model.NhaCungCap;
 import webclothes.spring.repository.HoaDonRepository;
 
 @Service

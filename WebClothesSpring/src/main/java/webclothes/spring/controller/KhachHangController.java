@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webclothes.spring.model.KhachHang;
-import webclothes.spring.model.NhaCungCap;
 import webclothes.spring.service.KhachHangService;
 
 @Controller

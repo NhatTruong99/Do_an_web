@@ -80,9 +80,7 @@
                         <li>
                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_loaisanpham}"><i class="fas fa-laptop-code nav_icon"></i>Quản Lý Loại Sản Phẩm</a>
                         </li>
-                         <li>
-                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_nhacungcap}"><i class="fas fa-laptop-code nav_icon"></i>Quản Lý Nhà Cung Cấp</a>
-                        </li>
+
                         <li>
                            <a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/page_phanquyen}"><i class="fas fa-laptop-code nav_icon"></i>Quản Lý Phân Quyền</a>
                         </li>
@@ -98,15 +96,10 @@
                         <li>
                             <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_hoadon}"><i class="fas fa-file-invoice nav_icon"></i>Quản Lý Hoá Đơn</a>
                         </li>
-                        <li>
+<!--                         <li>
                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_chitiethoadon}"><i class="fas fa-file-invoice-dollar nav_icon"></i>Quản Lý Chi Tiết Hoá Đơn</a>
-                        </li>
-                        <li>
-                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_NhapHang', 'User_ThongKe')" th:href="@{/page_phieunhap}"><i class="fas fa-file-invoice nav_icon"></i>Quản Lý Phiếu Nhập</a>
-                        </li>
-                        <li>
-                            <a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_NhapHang', 'User_ThongKe')" th:href="@{/page_chitietphieunhap}"><i class="fas fa-file-invoice-dollar nav_icon"></i>Quản Lý Chi Tiết Phiếu Nhập</a>
-                        </li>
+                        </li> -->
+                        
                         
                     </ul>
                     <!-- //sidebar-collapse -->
