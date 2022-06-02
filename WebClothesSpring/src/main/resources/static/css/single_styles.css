@@ -1024,8 +1024,10 @@ section
 }
 .single_product_image img
 {
-	height: 527px;
-	width: 453px;
+	
+	width: 460px;
+	background-size: cover;
+	
 }
 .single_product_image_background
 {

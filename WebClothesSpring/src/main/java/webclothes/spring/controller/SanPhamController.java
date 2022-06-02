@@ -71,17 +71,18 @@ public class SanPhamController {
     public RedirectView saveSP(SanPham sanpham,
             @RequestParam("image") MultipartFile multipartFile) throws IOException {
         
+		//kiểm tra có chọn file hay không 
 		int size = 0;
 		 if (multipartFile != null && !multipartFile.isEmpty()) size++;
 		
+		//Nếu có thì cập nhập, không thì lấy lại giá trị anh của sanPham truyền vào 
 		if (size != 0) {
 	        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 	        String uploadDir1 = "target/classes/static/images";
 	        FileUploadUtil.saveFile(uploadDir1, fileName, multipartFile);
 	        sanpham.setAnh(fileName);
 		}
-
-         
+        
         SanPham savedSanPham = SanPhamRepository.save(sanpham);
  
         // Up vào cả 2 folder, để cả 2 hoặc để resources folder sẽ báo lỗi nhưng vẫn được nếu F5 lại  
@@ -139,6 +140,7 @@ public class SanPhamController {
 
 		Page<SanPham> page = SanPhamService.findPaginatedSanPham(pageNo, pageSize, sortField, sortDir);
 		List<SanPham> listSanPhams = page.getContent();
+		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());

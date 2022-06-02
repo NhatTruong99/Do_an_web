@@ -39,6 +39,27 @@ body a:hover{
 .main-content {
     position: relative;
 }
+/*********************************
+## Pagination
+*********************************/
+.page-list{
+    color: rgb(122, 113, 113) !important;
+    margin-top: 30px;
+}
+.page-list .active a{
+    background: rgba(109, 81, 81) !important;
+    background-color: rgb(92, 170, 235) !important;
+}
+.page-list ul li a{
+   
+    color: rgb(32, 87, 136) !important;
+    padding: 10px 12px;
+    font-size: 1.1rem;
+}
+.page-list .disable{
+	color: rgb(212, 220, 227) !important;
+	
+}
 /*-------HEADER SECTION------*/
 /* ----STICKY HEADER----*/
 .sticky-header{

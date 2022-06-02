@@ -46,8 +46,14 @@
 			   	</td>
 			   	<td th:text="${SanPham.donGia}"></td>
 <!-- 			   	<td th:text="${SanPham.ghiChu}"></td> -->
-			   		   	
-			   	<td th:text="${SanPham.maLoaiSP}"></td>
+
+				<th:block th:each="loaiSP: ${listLoaiSanPhams}">
+					<th:block th:if= "${SanPham.maLoaiSP == loaiSP.maLoaiSP}">  
+						<td th:text="${loaiSP.tenLoaiSP}"></td> 		
+			   		</th:block>
+				</th:block>
+	   	
+			   	
 			   	
 			   	<td sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_NhapHang', 'User_ThongKe')">
 			   		<a th:href="@{/showFormForDetailSP/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/details.png}" width="30"/></a>
@@ -58,28 +64,30 @@
 		   </tbody>
 		  </table>
 		 
-		 <div th:if = "${totalPages > 1}">
-		   <div class = "row col-sm-10">
-		    <div class = "col-sm-2">
-		     Total Rows: [[${totalItems}]] 
-		    </div>
-		    <div class = "col-sm-1">
-		     <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-		      <a th:if="${currentPage != i}" th:href="@{'/pageSP/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-		      <span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
-		     </span>
-		    </div>
-		    <div class = "col-sm-1">
-		     <a th:if="${currentPage < totalPages}" th:href="@{'/pageSP/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
-		     <span th:unless="${currentPage < totalPages}">Next</span>
-		    </div>
-		    
-		     <div class="col-sm-1">
-		        <a th:if="${currentPage < totalPages}" th:href="@{'/pageSP/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
-		     <span th:unless="${currentPage < totalPages}">Last</span>
-		        </div>
-		   </div>
- 		 </div>	
+<div class="d-flex page-list justify-content-center">
+				<div th:if="${totalPages > 1}">
+            <ul class="pagination col-sm-10">
+                <li class="page-item">
+                    <a th:if="${currentPage >= totalPages}" th:href="@{'/pageSP/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" class="page-link"><i class="fa fa-angle-double-left"></i></a>
+                    <a th:unless="${currentPage >= totalPages}" class="page-link disable"><i class="fa fa-angle-double-left"></i></a>
+                </li>
+                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                    <li class="page-item ">
+                          <a th:if="${currentPage != i}" th:href="@{'/pageSP/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" class="page-link ">[[${i}]]</a>
+                    </li>
+                    <li class="page-item active">
+                    		<a th:unless="${currentPage != i}" class="page-link">[[${i}]]</a>
+                    </li>
+                    </span>
+                <li class="page-item">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/pageSP/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" class="page-link"><i class="fa fa-angle-double-right"></i></a>
+                    <a th:unless="${currentPage < totalPages}" class="page-link disable"><i class="fa fa-angle-double-right"></i></a>
+                </li>
+
+
+            </ul>
+        </div>
+			</div>
  	</div>
 </div>
 </body>
