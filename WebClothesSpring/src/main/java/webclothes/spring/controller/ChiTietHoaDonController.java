@@ -27,10 +27,10 @@ public class ChiTietHoaDonController {
 	@Autowired
 	private SanPhamService SanPhamService;
 	
-	@GetMapping("/page_chitiethoadon")
-	public String viewListCTHD(Model model) {
+	@GetMapping("/page_chitiethoadon/{maHD}")
+	public String viewListCTHD(@PathVariable ( value = "maHD") long maHD, Model model) {
 		model.addAttribute("listChiTietHoaDons", ChiTietHoaDonService.getAllChiTietHoaDon());
-		model.addAttribute("listHoaDons", HoaDonService.getAllHoaDon());
+		model.addAttribute("listHoaDons", HoaDonService.getHoaDonById(maHD));
 		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
 		return "admin/page_chitiethoadon";
 	}

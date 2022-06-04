@@ -78,10 +78,14 @@ public class PhanQuyenController {
 	public String home(PhanQuyen PhanQuyen, Model model, String keyword) {
 		if(keyword!=null) {
 			model.addAttribute("listPhanQuyens", PhanQuyenService.getByKeyword(keyword));
+			model.addAttribute("listNhanViens", NhanVienService.getAllNhanVien());
+			model.addAttribute("listQuyens", QuyenService.getAllQuyen());
 		}
 		else
 		{
 			model.addAttribute("listPhanQuyens", PhanQuyenService.getAllPhanQuyen());}
+			model.addAttribute("listNhanViens", NhanVienService.getAllNhanVien());
+			model.addAttribute("listQuyens", QuyenService.getAllQuyen());
 		return "admin/page_phanquyen";
 	 }
 	
@@ -104,6 +108,8 @@ public class PhanQuyenController {
 	    model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
 	    model.addAttribute("listPhanQuyens", listPhanQuyens);
+		model.addAttribute("listNhanViens", NhanVienService.getAllNhanVien());
+		model.addAttribute("listQuyens", QuyenService.getAllQuyen());
 	    return "admin/page_phanquyen";
 	}
 }

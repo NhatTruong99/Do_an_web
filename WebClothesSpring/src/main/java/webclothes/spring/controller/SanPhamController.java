@@ -75,7 +75,7 @@ public class SanPhamController {
 		int size = 0;
 		 if (multipartFile != null && !multipartFile.isEmpty()) size++;
 		
-		//Nếu có thì cập nhập, không thì lấy lại giá trị anh của sanPham truyền vào 
+		//Nếu có thì cập nhập, không thì lấy lại giá trị ảnh của SanPham truyền vào 
 		if (size != 0) {
 	        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 	        String uploadDir1 = "target/classes/static/images";
@@ -125,8 +125,10 @@ public class SanPhamController {
 	public String home(SanPham SanPham, Model model, String keyword) {
 		if (keyword != null) {
 			model.addAttribute("listSanPhams", SanPhamService.getByKeyword(keyword));
+			model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 		} else {
 			model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
+			model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 		}
 		return "admin/page_sanpham";
 	}
@@ -140,7 +142,6 @@ public class SanPhamController {
 
 		Page<SanPham> page = SanPhamService.findPaginatedSanPham(pageNo, pageSize, sortField, sortDir);
 		List<SanPham> listSanPhams = page.getContent();
-		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
@@ -151,6 +152,7 @@ public class SanPhamController {
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
 		model.addAttribute("listSanPhams", listSanPhams);
+		model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
 		return "admin/page_sanpham";
 	}
 

@@ -13,8 +13,10 @@
 	<!--Content of the page-->
 
 	<div class="container">
- 		<h3>DANH SÁCH CHI TIẾT HOÁ ĐƠN</h1> 
- 		<form th:action="@{searchCTHD}" method="get">
+ 		<h3 class="mb-4 pt-4">DANH SÁCH CHI TIẾT HOÁ ĐƠN</h1> 
+ 		
+ <!--  	Thêm / để luôn về đúng url  -->
+ 		<form th:action="@{/searchCTHD}" method="get">
 		 	<input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Keyword" size="50">
 		 	<button type="submit" class="btn btn-primary">Search</button>
 		 	<button type="submit" class="btn btn-danger">Reset</button>

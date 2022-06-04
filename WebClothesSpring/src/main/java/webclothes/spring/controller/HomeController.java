@@ -36,8 +36,12 @@ public class HomeController {
 	
 	@Autowired
 	private NhanVienRepository NhanVienRepository;
-
 	
+	 @GetMapping("/layout") 
+	 public String LayoutPage(){
+	        return "admin/layout";
+	 }
+	  
     @GetMapping("/login") 
     public String getLogin() {
         return "login";

@@ -17,6 +17,7 @@ import webclothes.spring.model.SanPham;
 import webclothes.spring.repository.KhachHangRepository;
 import webclothes.spring.repository.NhanVienRepository;
 import webclothes.spring.repository.SanPhamRepository;
+import webclothes.spring.repository.HoaDonRepository;
 import webclothes.spring.service.SanPhamService;
 
 @Controller
@@ -34,11 +35,15 @@ public class ThongKeController {
 	@Autowired
 	private NhanVienRepository NhanVienRepository;
 	
+	@Autowired
+	private HoaDonRepository HoaDonRepository;
+	
 	@GetMapping("/page_thongke")
 	public String viewPageThongKe(Model model) {
 		model.addAttribute("countSP", SanPhamRepository.count());
 		model.addAttribute("countKH", KhachHangRepository.count());
 		model.addAttribute("countNV", NhanVienRepository.count());
+		model.addAttribute("countHD", HoaDonRepository.count());
 		model.addAttribute("tongDoanhThu", SanPhamRepository.tongDoanhThu());
 		String Date = java.time.LocalDate.now().toString();
 		model.addAttribute("date",Date);
@@ -53,6 +58,7 @@ public class ThongKeController {
 			model.addAttribute("countSP", SanPhamRepository.count());
 			model.addAttribute("countKH", KhachHangRepository.count());
 			model.addAttribute("countNV", NhanVienRepository.count());
+			model.addAttribute("countHD", HoaDonRepository.count());
 			model.addAttribute("tongDoanhThu", SanPhamRepository.tongDoanhThu());
 			
 			model.addAttribute("tongDoanhThu_Ngay", SanPhamService.tongDoanhThu_Ngay(date));
@@ -69,6 +75,7 @@ public class ThongKeController {
 			model.addAttribute("countSP", SanPhamRepository.count());
 			model.addAttribute("countKH", KhachHangRepository.count());
 			model.addAttribute("countNV", NhanVienRepository.count());
+			model.addAttribute("countHD", HoaDonRepository.count());
 			model.addAttribute("tongDoanhThu", SanPhamRepository.tongDoanhThu());
 			
 			model.addAttribute("tongDoanhThu_Thang", SanPhamService.tongDoanhThu_Ngay(month));

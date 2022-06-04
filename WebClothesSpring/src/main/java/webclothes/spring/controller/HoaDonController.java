@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webclothes.spring.model.HoaDon;
+import webclothes.spring.repository.HoaDonRepository;
 import webclothes.spring.service.HoaDonService;
+import webclothes.spring.service.ChiTietHoaDonService;
 import webclothes.spring.service.KhachHangService;
+import webclothes.spring.service.SanPhamService;
 
 @Controller
 public class HoaDonController {
@@ -26,7 +29,16 @@ public class HoaDonController {
 	private HoaDonService HoaDonService;
 	
 	@Autowired
+	private HoaDonRepository HoaDonRepository;
+	
+	@Autowired
 	private KhachHangService KhachHangService;
+	
+	@Autowired
+	private ChiTietHoaDonService ChiTietHoaDonService;
+	
+	@Autowired
+	private SanPhamService SanPhamService;
 	
 	@GetMapping("/403/HD")
 	public String error403_HD() {
@@ -55,6 +67,15 @@ public class HoaDonController {
 		return "redirect:/page_hoadon";
 	 }
 	
+	
+	@GetMapping("/showFormForDetailHD/{maHD}")
+	public String showFormForDetailHD(@PathVariable ( value = "maHD") long maHD, Model model) {
+		model.addAttribute("listHoaDons", HoaDonService.getHoaDonById(maHD));
+		model.addAttribute("listKhachHangs", KhachHangService.getAllKhachHang());
+		model.addAttribute("listSanPhams", SanPhamService.getAllSanPham());
+		return "admin/page_chitiethoadon";
+	}
+	
 	@GetMapping("/showFormForUpdateHD/{maHD}")
 	public String showFormForUpdateHD(@PathVariable ( value = "maHD") long maHD, Model model) {
 		HoaDon hoadon = HoaDonService.getHoaDonById(maHD);
@@ -74,10 +95,13 @@ public class HoaDonController {
 	public String home(HoaDon HoaDon, Model model, String keyword) {
 		if(keyword!=null) {
 			model.addAttribute("listHoaDons", HoaDonService.getByKeyword(keyword));
+			model.addAttribute("listKhachHangs", KhachHangService.getAllKhachHang());
 		}
 		else
 		{
-			model.addAttribute("listHoaDons", HoaDonService.getAllHoaDon());}
+			model.addAttribute("listHoaDons", HoaDonService.getAllHoaDon());
+			model.addAttribute("listKhachHangs", KhachHangService.getAllKhachHang());
+		}
 		return "admin/page_hoadon";
 	 }
 	
@@ -100,6 +124,7 @@ public class HoaDonController {
 	    model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
 	    model.addAttribute("listHoaDons", listHoaDons);
+	    model.addAttribute("listKhachHangs", KhachHangService.getAllKhachHang());
 	    return "admin/page_hoadon";
 	}
 }
