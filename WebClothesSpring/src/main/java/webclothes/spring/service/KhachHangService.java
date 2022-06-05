@@ -19,6 +19,9 @@ public class KhachHangService{
 	@Autowired
 	private KhachHangRepository KhachHangRepository;
 	
+	public long getLastIdKhachHang(){
+		return KhachHangRepository.LastIdKhachHang();
+	}
 
 	public List<KhachHang> getAllKhachHang() {
 		return KhachHangRepository.findAll();

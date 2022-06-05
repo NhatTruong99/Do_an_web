@@ -15,6 +15,10 @@ public class KhachHang {
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	  private long maKH;
 
+	public KhachHang() {
+		
+	}
+
 	/* Tránh viết cả 2 trùng nhau sẽ bị lỗi */
 	  @Column(name = "HoTen")
 	  private String hoTen;
@@ -23,7 +27,7 @@ public class KhachHang {
 	  private String email;
 
 	  @Column(name = "SDT")
-	  private long sdt;
+	  private String sdt;
 	  
 	  @Column(name = "DiaChi")
 	  private String diaChi;
@@ -32,41 +36,43 @@ public class KhachHang {
 		return maKH;
 	}
 
-	public void setMaKH(long maKH) {
-		this.maKH = maKH;
-	}
-
 	public String getHoTen() {
 		return hoTen;
-	}
-
-	public void setHoTen(String hoTen) {
-		this.hoTen = hoTen;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public long getSdt() {
+	public String getSdt() {
 		return sdt;
-	}
-
-	public void setSdt(long sdt) {
-		this.sdt = sdt;
 	}
 
 	public String getDiaChi() {
 		return diaChi;
 	}
 
+	public void setMaKH(long maKH) {
+		this.maKH = maKH;
+	}
+
+	public void setHoTen(String hoTen) {
+		this.hoTen = hoTen;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setSdt(String sdt) {
+		this.sdt = sdt;
+	}
+
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
 	}
+
+	
 
 	
 

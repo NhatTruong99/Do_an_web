@@ -42,7 +42,9 @@
       			Tình Trạng</a></th>
 		      <th> <a th:href="@{'/pageHD/' + ${currentPage} + '?sortField=maKH&sortDir=' + ${reverseSortDir}}">
       			Khách Hàng</a></th>
+      		
 		     <th sec:authorize="hasAnyAuthority('Admin', 'Editor')">Chức Năng</th>
+		     <th></th>
 		    </tr>
 		   </thead>
 		   <tbody>
@@ -66,6 +68,7 @@
 			   		<a th:href="@{/showFormForUpdateHD/{maHD}(maHD=${HoaDon.maHD})}"><img th:src ="@{/images/edit.png}" width="35"/></a>
 			   		<a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/deleteHoaDon/{maHD}(maHD=${HoaDon.maHD})}"><img th:src ="@{/images/delete.png}" width="35"/></a>
 			   	</td>
+			   	<td><a th:href="@{/page_chitiethoadon/{maHD} (maHD=${HoaDon.maHD})}" >Xem chi tiết</a></td>
 		    </tr>
 		   </tbody>
 		  </table>

@@ -94,6 +94,10 @@ public class HoaDon{
 		this.maKH = maKH;
 	}
 
+	public HoaDon() {
+		
+	}
+
 	
 
 	

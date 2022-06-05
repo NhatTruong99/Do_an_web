@@ -18,7 +18,10 @@ public class HoaDonService{
 	@Autowired
 	private HoaDonRepository HoaDonRepository;
 	
-
+	public long getLastIdHoaDon() {
+		return HoaDonRepository.LastIdHoaDon();
+	}
+	
 	public List<HoaDon> getAllHoaDon() {
 		return HoaDonRepository.findAll();
 	}

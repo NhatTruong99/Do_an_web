@@ -19,33 +19,13 @@ public class ChiTietHoaDonService{
 		return ChiTietHoaDonRepository.findAll();
 	}
 
-
-	public void saveChiTietHoaDon(ChiTietHoaDon chitiethoadon) {
-		this.ChiTietHoaDonRepository.save(chitiethoadon);
-		
+	public List<ChiTietHoaDon> getChiTietHDByMaHD(long maHD){
+		return ChiTietHoaDonRepository.fintByMaHD(maHD);
 	}
 
-
-	public ChiTietHoaDon getChiTietHoaDonById(long maHD) {
-		Optional<ChiTietHoaDon> optional = ChiTietHoaDonRepository.findById(maHD);
-		ChiTietHoaDon chitiethoadon = null;
-		if (optional.isPresent()) {
-			chitiethoadon = optional.get();
-		}
-		else 
-		{
-			throw new RuntimeException(" Không tìm thấy chi tiết hoá đơn với mã hoá đơn: " + maHD);    
-		}
-		return chitiethoadon;
+	public void addChiTietHoaDonUseQuery(ChiTietHoaDon cthd) {
+		ChiTietHoaDonRepository.addCTHD(cthd.getMaHD(), cthd.getMaSP(), cthd.getSoLuong(), cthd.getDonGia());
 	}
+	
 
-
-	public void deleteChiTietHoaDonById(long maHD) {
-		this.ChiTietHoaDonRepository.deleteById(maHD);
-	}
-
-
-	public List<ChiTietHoaDon> getByKeyword(String keyword) {
-		return ChiTietHoaDonRepository.findByKeyword(keyword);
-	}
 }

@@ -61,12 +61,10 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="sidebar-menu">
 <!--               <li class="header">MAIN NAVIGATION</li> -->
-             	<li class="treeview">
-                    <a th:href="@{/}"><i class="fas fa-home nav_icon"></i>Trang Chủ</a>
-                </li>
+
                 
                 <li>
-                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_thongke}"><i class="fas fa-tasks nav_icon"></i>Thống Kê</a>
+                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_thongke}"><i class="fas fa-home nav_icon"></i>Trang chủ</a>
                 </li>
                 
                 <li>
@@ -96,6 +94,9 @@
                 <li>
                 	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_hoadon}"><i class="fas fa-file-invoice nav_icon"></i>Quản Lý Hoá Đơn</a>
                 </li>
+                <li class="treeview">
+                    <a th:href="@{/}"><i class="fas fa-tasks nav_icon"></i>Trang bán hàng</a>
+                </li>
 <!--            <li> -->
 <!--            	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_chitiethoadon}"><i class="fas fa-file-invoice-dollar nav_icon"></i>Quản Lý Chi Tiết Hoá Đơn</a> -->
 <!--            </li> -->
@@ -112,14 +113,14 @@
 			<div class="header-right">
 				
 				<div class="profile_details">		
-					<ul>
+					<ul class="mb-0">
 						<li class="dropdown profile_details_drop">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">	
 									<span class="prfil-img"><img src="/images/2.jpg" alt=""> </span> 
 									<div class="user-name">
 										<div sec:authorize="isAuthenticated()">
-									    <b><span sec:authentication="name" style="color: blue; font-size:20px" >Username</span></b>
+									    <b><span sec:authentication="name" th:text="${#authentication.getPrincipal().getHoTen()}" style="color: blue; font-size:20px" >Username</span></b>
 									    &nbsp;
 									    </br>
 							  		  <i><span sec:authentication="principal.authorities">Roles</span></i>

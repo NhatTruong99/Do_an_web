@@ -78,7 +78,9 @@ public class SanPhamController {
 		//Nếu có thì cập nhập, không thì lấy lại giá trị ảnh của SanPham truyền vào 
 		if (size != 0) {
 	        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+	        String uploadDir = "src/main/resources/static/images";
 	        String uploadDir1 = "target/classes/static/images";
+	        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 	        FileUploadUtil.saveFile(uploadDir1, fileName, multipartFile);
 	        sanpham.setAnh(fileName);
 		}

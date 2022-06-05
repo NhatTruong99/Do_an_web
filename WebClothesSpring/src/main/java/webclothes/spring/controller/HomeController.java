@@ -93,14 +93,9 @@ public class HomeController {
 	}
 	// Trang liên hệ
 	@GetMapping("/contact")
-	public String Contact() {
+	public String Contact(Model model) {
+		model.addAttribute("listLoaiSanPhams", loaiSanPhamService.getAllLoaiSanPham());
 		return "user/contact";
-	}
-
-	// Trang chi tiết sản phẩm
-	@GetMapping("/single")
-	public String Single() {
-		return "user/single";
 	}
 
 	// Trang tất cả sản phẩm

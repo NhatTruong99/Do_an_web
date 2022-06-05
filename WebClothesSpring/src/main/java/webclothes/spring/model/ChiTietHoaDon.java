@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
+@IdClass(ChiTietHoaDonId.class)
 @Table(name = "chitiethoadon")
 public class ChiTietHoaDon{
 	
@@ -18,6 +20,8 @@ public class ChiTietHoaDon{
 	  private long maHD;
 
 	/* Tránh viết cả 2 trùng nhau sẽ bị lỗi */
+	  
+	  @Id
 	  @Column(name = "MaSP")
 	  private long maSP;
 
@@ -57,6 +61,18 @@ public class ChiTietHoaDon{
 
 	public void setDonGia(long donGia) {
 		this.donGia = donGia;
+	}
+
+	public ChiTietHoaDon(long maHD, long maSP, long soLuong, long donGia) {
+		
+		this.maHD = maHD;
+		this.maSP = maSP;
+		this.soLuong = soLuong;
+		this.donGia = donGia;
+	}
+
+	public ChiTietHoaDon() {
+		
 	}
 	  
 	  
