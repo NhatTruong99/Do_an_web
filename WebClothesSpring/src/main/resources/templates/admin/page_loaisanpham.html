@@ -23,7 +23,7 @@
 		 </form>
 		 </br>
 		 
-		<a th:href = "@{/showNewLoaiSanPhamForm}" class="btn btn-primary btn-sm mb-3"> Thêm Loại Sản Phẩm</a>
+		<a sec:authorize="hasAnyAuthority('Admin', 'Editor')" th:href = "@{/showNewLoaiSanPhamForm}" class="btn btn-primary btn-sm mb-3"> Thêm Loại Sản Phẩm</a>
 	
 		  <table border="1" class = "table table-striped table-responsive-md">
 		   <thead>

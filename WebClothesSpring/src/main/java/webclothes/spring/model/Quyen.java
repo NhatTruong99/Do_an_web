@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table (name = "quyen")
 public class Quyen{
+	
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	  private long maQuyen;

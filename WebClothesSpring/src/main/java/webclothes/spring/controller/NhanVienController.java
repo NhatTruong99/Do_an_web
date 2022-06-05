@@ -2,11 +2,14 @@ package webclothes.spring.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,16 +50,44 @@ public class NhanVienController {
 	    model.addAttribute("listQuyens", QuyenService.getAllQuyen());
 	    return "admin/new_nhanvien";
 	 }
+	
 	 
 	@PostMapping("/saveNhanVien")
-	public String saveNV(@ModelAttribute("nhanvien") NhanVien nhanvien) {
+	public String saveNV(@ModelAttribute("nhanvien") @Valid NhanVien nhanvien, BindingResult bindingResult) {
 		// Mã hoá mật khẩu lưu vào Database
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(nhanvien.getMatKhau());
         nhanvien.setMatKhau(encodedPassword);
         
-		NhanVienService.saveNhanVien(nhanvien);
-		return "redirect:/page_nhanvien";
+		if (bindingResult.hasErrors()) 
+		{
+			return "admin/new_nhanvien";
+		}
+		else 
+		{
+			NhanVienService.saveNhanVien(nhanvien);
+			return "redirect:/page_nhanvien";
+		}
+		
+	 }
+	
+	@PostMapping("/updateNhanVien")
+	public String updateNV(@ModelAttribute("nhanvien") @Valid NhanVien nhanvien, BindingResult bindingResult) {
+		// Mã hoá mật khẩu lưu vào Database
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(nhanvien.getMatKhau());
+        nhanvien.setMatKhau(encodedPassword);
+        
+		if (bindingResult.hasErrors()) 
+		{
+			return "admin/update_nhanvien";
+		}
+		else 
+		{
+			NhanVienService.saveNhanVien(nhanvien);
+			return "redirect:/page_nhanvien";
+		}
+		
 	 }
 	
 	@GetMapping("/showFormForUpdateNV/{maNV}")

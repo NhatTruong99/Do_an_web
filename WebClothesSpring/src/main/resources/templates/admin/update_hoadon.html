@@ -12,7 +12,7 @@
 	<div class="container">
         <h2 class="mb-3">Cập Nhật Hoá Đơn</h2>
 
-        <form action="#" th:action="@{/saveHoaDon}" th:object="${HoaDon}" method="POST">
+        <form action="#" th:action="@{/updateHoaDon}" th:object="${HoaDon}" method="POST">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maHD}" />
@@ -64,7 +64,7 @@
         </form>
         <hr>
 
-        <a th:href="@{/}"> Quay lại</a>
+        <a th:href="@{/page_hoadon}"> Quay lại</a>
     </div>
 </div>
 </body>

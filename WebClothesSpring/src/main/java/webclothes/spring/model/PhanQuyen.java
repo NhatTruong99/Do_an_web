@@ -1,21 +1,26 @@
 package webclothes.spring.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "nhanvien_quyen")
-public class PhanQuyen {
+//@IdClass(PhanQuyen.class)
+public class PhanQuyen implements Serializable{
 
 	  @Id
 	  @Column(name = "nhanvien_id")
 	  private long maNV;
 
 	/* Tránh viết cả 2 trùng nhau sẽ bị lỗi */
+//	  @Id
 	  @Column(name = "quyen_id")
 	  private long maQuyen;
 
