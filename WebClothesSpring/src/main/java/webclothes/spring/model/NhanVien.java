@@ -39,8 +39,9 @@ public class NhanVien{
 	  @Column(name = "Email")
 	  private String email;
 
+	  @NotBlank(message = "Không được để trống")
 	  @Column(name = "SDT")
-	  private long sdt;
+	  private String sdt;
 	  
 	  @NotBlank(message = "Không được để trống")
 	  @Column(name = "DiaChi")
@@ -100,11 +101,11 @@ public class NhanVien{
 		this.email = email;
 	}
 
-	public long getSdt() {
+	public String getSdt() {
 		return sdt;
 	}
 
-	public void setSdt(long sdt) {
+	public void setSdt(String sdt) {
 		this.sdt = sdt;
 	}
 

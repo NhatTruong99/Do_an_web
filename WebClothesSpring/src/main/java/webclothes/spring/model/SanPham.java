@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,9 +21,11 @@ public class SanPham {
 	  private long maSP;
 
 	/* Tránh viết cả 2 trùng nhau sẽ bị lỗi */
+	  @NotBlank(message = "Không được để trống")
 	  @Column(name = "TenSP")
 	  private String tenSP;
 
+	  @NotBlank(message = "Không được để trống")
 	  @Column(name = "DacDiem")
 	  private String dacDiem;
 
@@ -32,6 +35,7 @@ public class SanPham {
 	  @Column(name = "DonGia")
 	  private int donGia;
 	  
+	  @NotBlank(message = "Không được để trống")
 	  @Column(name = "GhiChu")
 	  private String ghiChu;
 	  

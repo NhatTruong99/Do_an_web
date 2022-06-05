@@ -3,6 +3,8 @@ package webclothes.spring.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -10,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import webclothes.spring.model.FileUploadUtil;
+import webclothes.spring.model.LoaiSanPham;
 import webclothes.spring.model.MyUserDetails;
 import webclothes.spring.model.NhanVien;
 import webclothes.spring.model.SanPham;
@@ -68,34 +72,81 @@ public class SanPhamController {
 	// return "redirect:/page_sanpham";
 	// }
 	@PostMapping("/saveSanPham")
-    public RedirectView saveSP(SanPham sanpham,
-            @RequestParam("image") MultipartFile multipartFile) throws IOException {
+    public String saveSP(@ModelAttribute("sanpham") @Valid SanPham sanpham, BindingResult bindingResult,
+    		Model model,
+    		@RequestParam("image") MultipartFile multipartFile) throws IOException {
         
 		//kiểm tra có chọn file hay không 
 		int size = 0;
-		 if (multipartFile != null && !multipartFile.isEmpty()) size++;
+		if (multipartFile != null && !multipartFile.isEmpty()) size++;
 		
 		//Nếu có thì cập nhập, không thì lấy lại giá trị ảnh của SanPham truyền vào 
 		if (size != 0) {
 	        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-	        String uploadDir = "src/main/resources/static/images";
+//	        String uploadDir = "src/main/resources/static/images";
 	        String uploadDir1 = "target/classes/static/images";
-	        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+//	        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 	        FileUploadUtil.saveFile(uploadDir1, fileName, multipartFile);
 	        sanpham.setAnh(fileName);
 		}
-        
-        SanPham savedSanPham = SanPhamRepository.save(sanpham);
- 
+	
         // Up vào cả 2 folder, để cả 2 hoặc để resources folder sẽ báo lỗi nhưng vẫn được nếu F5 lại  
 //      String uploadDir = "src/main/resources/static/images";
         
  
 //        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-        
-         
-        return new RedirectView("/page_sanpham", true);
+ 
+        if (bindingResult.hasErrors()) 
+		{
+        	model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
+			return "admin/new_sanpham";
+			
+		}
+		else 
+		{
+			SanPham savedSanPham = SanPhamRepository.save(sanpham);
+			return "redirect:/page_sanpham";
+		}
     }
+	
+	@PostMapping("/updateSanPham")
+    public String updateSP(@ModelAttribute("sanpham") @Valid SanPham sanpham, BindingResult bindingResult,
+    		Model model,
+    		@RequestParam("image") MultipartFile multipartFile) throws IOException {
+        
+		//kiểm tra có chọn file hay không 
+		int size = 0;
+		if (multipartFile != null && !multipartFile.isEmpty()) size++;
+		
+		//Nếu có thì cập nhập, không thì lấy lại giá trị ảnh của SanPham truyền vào 
+		if (size != 0) {
+	        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//	        String uploadDir = "src/main/resources/static/images";
+	        String uploadDir1 = "target/classes/static/images";
+//	        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+	        FileUploadUtil.saveFile(uploadDir1, fileName, multipartFile);
+	        sanpham.setAnh(fileName);
+		}
+        // Up vào cả 2 folder, để cả 2 hoặc để resources folder sẽ báo lỗi nhưng vẫn được nếu F5 lại  
+//      String uploadDir = "src/main/resources/static/images";
+        
+ 
+//        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+ 
+        if (bindingResult.hasErrors()) 
+		{
+        	model.addAttribute("listLoaiSanPhams", LoaiSanPhamService.getAllLoaiSanPham());
+			return "admin/update_sanpham";
+			
+		}
+		else 
+		{
+			SanPham savedSanPham = SanPhamRepository.save(sanpham);
+			return "redirect:/page_sanpham";
+		}
+    }
+	
+	
 	@GetMapping("/showFormForDetailSP/{maSP}")
 	public String showFormForDetailSP(@PathVariable(value = "maSP") long maSP, Model model) {
 		SanPham sanpham = SanPhamService.getSanPhamById(maSP);

@@ -12,28 +12,36 @@
 	<div class="container">
         <h2 class="mb-3">Cập Nhật Khách Hàng</h2>
 
-        <form action="#" th:action="@{/saveKhachHang}" th:object="${khachhang}" method="POST">
+        <form action="#" th:action="@{/updateKhachHang}" th:object="${khachhang}" method="POST">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maKH}" />
 
 			<label for="hoTen"><strong>Khách hàng:</strong></label>
-            <input type="text" th:field="*{hoTen}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{hoTen}" placeholder="Họ Tên" class="form-control mb-4 col-4">
+            <span style="color:red;" th:if="${#fields.hasErrors('hoTen')}" th:errors="*{hoTen}">Full Name error</span>
+            </br>
 
 			<label for="email"><strong>Email:</strong></label>
-            <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
+            <span style="color:red;" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</span>
+            </br>
 
 			<label for="sdt"><strong>SĐT:</strong></label>
-            <input type="text" th:field="*{sdt}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{sdt}" placeholder="SDT" class="form-control mb-4 col-4">
+            <span style="color:red" th:if="${#fields.hasErrors('sdt')}" th:errors="*{sdt}">SDT Error</span>
+            </br>
             
             <label for="diaChi"><strong>Địa chỉ:</strong></label>
-            <input type="text" th:field="*{diaChi}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{diaChi}" placeholder="Địa Chỉ" class="form-control mb-4 col-4">
+            <span style="color:red;" th:if="${#fields.hasErrors('diaChi')}" th:errors="*{diaChi}">Dia Chi error</span>
+            </br>
             
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>
         </form>
         <hr>
 
-        <a th:href="@{/}"> Quay lại</a>
+        <a th:href="@{/page_khachhang}"> Quay lại</a>
     </div>
 </div>
 </body>

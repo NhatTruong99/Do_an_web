@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "khachhang")
@@ -20,15 +22,20 @@ public class KhachHang {
 	}
 
 	/* Tránh viết cả 2 trùng nhau sẽ bị lỗi */
+	  @NotBlank(message = "Không được để trống")
 	  @Column(name = "HoTen")
 	  private String hoTen;
 
+	  @NotBlank(message = "Không được để trống")
+	  @Email(message = "Nhập đúng định dạng Email")
 	  @Column(name = "Email")
 	  private String email;
 
+	  @NotBlank(message = "Không được để trống")
 	  @Column(name = "SDT")
 	  private String sdt;
 	  
+	  @NotBlank(message = "Không được để trống")
 	  @Column(name = "DiaChi")
 	  private String diaChi;
 

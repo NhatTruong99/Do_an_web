@@ -2,10 +2,14 @@ package webclothes.spring.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import webclothes.spring.model.KhachHang;
 import webclothes.spring.model.LoaiSanPham;
+import webclothes.spring.model.NhanVien;
 import webclothes.spring.model.SanPham;
 import webclothes.spring.service.LoaiSanPhamService;
 
@@ -43,11 +48,40 @@ public class LoaiSanPhamController {
 	    return "admin/new_loaisanpham";
 	 }
 	
+//	@PostMapping("/saveLoaiSanPham")
+//	public String saveLSP(@ModelAttribute("loaisanpham") LoaiSanPham loaisanpham) {
+//		LoaiSanPhamService.saveLoaiSanPham(loaisanpham);
+//		return "redirect:/page_loaisanpham";
+//	 }
+	
 	@PostMapping("/saveLoaiSanPham")
-	public String saveLSP(@ModelAttribute("loaisanpham") LoaiSanPham loaisanpham) {
-		LoaiSanPhamService.saveLoaiSanPham(loaisanpham);
-		return "redirect:/page_loaisanpham";
+	public String saveLSP(@ModelAttribute("loaisanpham") @Valid LoaiSanPham loaisanpham, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) 
+		{
+			return "admin/new_loaisanpham";
+		}
+		else 
+		{
+			LoaiSanPhamService.saveLoaiSanPham(loaisanpham);
+			return "redirect:/page_loaisanpham";
+		}
+		
 	 }
+	
+	@PostMapping("/updateLoaiSanPham")
+	public String updateLSP(@ModelAttribute("loaisanpham") @Valid LoaiSanPham loaisanpham, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) 
+		{
+			return "admin/update_loaisanpham";
+		}
+		else 
+		{
+			LoaiSanPhamService.saveLoaiSanPham(loaisanpham);
+			return "redirect:/page_loaisanpham";
+		}
+		
+	 }
+	
 	
 	@GetMapping("/showFormForUpdateLSP/{maLoaiSP}")
 	public String showFormForUpdateLSP(@PathVariable ( value = "maLoaiSP") long maLoaiSP, Model model) {

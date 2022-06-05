@@ -51,6 +51,11 @@ public class NhanVienController {
 	    return "admin/new_nhanvien";
 	 }
 	
+//	@PostMapping("/saveNhanVien")
+//	public String saveNV(@ModelAttribute("nhanvien") NhanVien nhanvien) {
+//		NhanVienService.saveNhanVien(nhanvien);
+//		return "redirect:/page_nhanvien";
+//	 }
 	 
 	@PostMapping("/saveNhanVien")
 	public String saveNV(@ModelAttribute("nhanvien") @Valid NhanVien nhanvien, BindingResult bindingResult) {

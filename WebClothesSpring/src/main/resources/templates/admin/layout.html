@@ -62,17 +62,20 @@
             <ul class="sidebar-menu">
 <!--               <li class="header">MAIN NAVIGATION</li> -->
 
-                
                 <li>
-                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_thongke}"><i class="fas fa-home nav_icon"></i>Trang chủ</a>
+                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User')" th:href="@{/}"><i class="fas fa-home nav_icon"></i>Trang bán hàng</a>
+                </li>
+                
+                <li class="treeview">
+                    <a th:href="@{/page_thongke}"><i class="fas fa-tasks nav_icon"></i>Thống kê</a>
                 </li>
                 
                 <li>
-                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor' , 'User_NhapHang', 'User_ThongKe')" th:href="@{/page_sanpham}"><i class="fas fa-tshirt nav_icon"></i>Quản Lý Sản Phẩm</a>
+                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor' , 'User', 'User')" th:href="@{/page_sanpham}"><i class="fas fa-tshirt nav_icon"></i>Quản Lý Sản Phẩm</a>
                 </li>
                 
                 <li>
-                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_loaisanpham}"><i class="fas fa-tshirt nav_icon"></i>Quản Lý Loại Sản Phẩm</a>
+                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User')" th:href="@{/page_loaisanpham}"><i class="fas fa-tshirt nav_icon"></i>Quản Lý Loại Sản Phẩm</a>
                 </li>
                 
                 <li>
@@ -84,19 +87,17 @@
                 </li>
                 
                 <li>
-                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_nhanvien}"><i class="fas fa-users nav_icon"></i>Quản Lý Nhân Viên</a>
+                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User')" th:href="@{/page_nhanvien}"><i class="fas fa-users nav_icon"></i>Quản Lý Nhân Viên</a>
                 </li>
                        
                 <li>
-                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_khachhang}"><i class="fas fa-user nav_icon"></i>Quản Lý Khách Hàng</a>
+                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User')" th:href="@{/page_khachhang}"><i class="fas fa-user nav_icon"></i>Quản Lý Khách Hàng</a>
                 </li>
                 
                 <li>
-                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_hoadon}"><i class="fas fa-file-invoice nav_icon"></i>Quản Lý Hoá Đơn</a>
+                	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User')" th:href="@{/page_hoadon}"><i class="fas fa-file-invoice nav_icon"></i>Quản Lý Hoá Đơn</a>
                 </li>
-                <li class="treeview">
-                    <a th:href="@{/}"><i class="fas fa-tasks nav_icon"></i>Trang bán hàng</a>
-                </li>
+                
 <!--            <li> -->
 <!--            	<a sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_ThongKe')" th:href="@{/page_chitiethoadon}"><i class="fas fa-file-invoice-dollar nav_icon"></i>Quản Lý Chi Tiết Hoá Đơn</a> -->
 <!--            </li> -->

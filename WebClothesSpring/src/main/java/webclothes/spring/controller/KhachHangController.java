@@ -2,10 +2,14 @@ package webclothes.spring.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webclothes.spring.model.KhachHang;
+import webclothes.spring.model.NhanVien;
 import webclothes.spring.service.KhachHangService;
 
 @Controller
@@ -41,10 +46,38 @@ public class KhachHangController {
 	    return "admin/new_khachhang";
 	 }
 	 
+//	@PostMapping("/saveKhachHang")
+//	public String saveKH(@ModelAttribute("khachhang") KhachHang khachhang) {
+//		KhachHangService.saveKhachHang(khachhang);
+//		return "redirect:/page_khachhang";
+//	 }
+	
 	@PostMapping("/saveKhachHang")
-	public String saveKH(@ModelAttribute("khachhang") KhachHang khachhang) {
-		KhachHangService.saveKhachHang(khachhang);
-		return "redirect:/page_khachhang";
+	public String saveKH(@ModelAttribute("khachhang") @Valid KhachHang khachhang, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) 
+		{
+			return "admin/new_khachhang";
+		}
+		else 
+		{
+			KhachHangService.saveKhachHang(khachhang);
+			return "redirect:/page_khachhang";
+		}
+		
+	 }
+	
+	@PostMapping("/updateKhachHang")
+	public String updateNV(@ModelAttribute("khachhang") @Valid KhachHang khachhang, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) 
+		{
+			return "admin/update_khachhang";
+		}
+		else 
+		{
+			KhachHangService.saveKhachHang(khachhang);
+			return "redirect:/page_khachhang";
+		}
+		
 	 }
 	
 	@GetMapping("/showFormForUpdateKH/{maKH}")

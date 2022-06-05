@@ -12,13 +12,15 @@
 	<div class="container">
         <h2 class="mb-3">Cập Nhật Loại sản phẩm</h2>
 
-        <form action="#" th:action="@{/saveLoaiSanPham}" th:object="${loaisanpham}" method="POST">
+        <form action="#" th:action="@{/updateLoaiSanPham}" th:object="${loaisanpham}" method="POST">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maLoaiSP}" />
 
 			<label for="tenLoaiSP"><strong>Loại sản phẩm:</strong></label>
             <input type="text" th:field="*{tenLoaiSP}" class="form-control mb-4 col-4">
+            <span style="color:red" th:if="${#fields.hasErrors('tenLoaiSP')}" th:errors="*{tenLoaiSP}">Error</span>
+            </br>
             
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>
         </form>
