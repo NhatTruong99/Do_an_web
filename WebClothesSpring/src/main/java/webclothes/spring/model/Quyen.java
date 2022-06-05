@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table (name = "quyen")
@@ -20,6 +21,7 @@ public class Quyen{
 	  private long maQuyen;
 
 	/* Tránh viết cả 2 trùng nhau sẽ bị lỗi */
+	  @NotBlank(message = "Tên Quyền không được để trống")
 	  @Column(name = "TenQuyen")
 	  private String tenQuyen;
 

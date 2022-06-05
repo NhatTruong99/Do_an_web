@@ -18,38 +18,38 @@
             <input type="hidden" th:field="*{maNV}" />
 
 			<label for="hoTen"><strong>Nhân viên:</strong></label>
-            <input type="text" th:field="*{hoTen}" placeholder="Họ Tên" class="form-control mb-4 col-4">
-            <span style="color:red;" th:if="${#fields.hasErrors('hoTen')}" th:errors="*{hoTen}">Full Name error</span>
+            <input type="text" th:field="*{hoTen}" placeholder="Họ Tên" class="form-control col-4">
+            <p style="color:red;" th:if="${#fields.hasErrors('hoTen')}" th:errors="*{hoTen}">Full Name error</p>
             </br>
 
 			<label for="email"><strong>Email:</strong></label>
-            <input type="email" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
-            <span style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
+            <input type="email" th:field="*{email}" placeholder="Email" class="form-control col-4">
+            <p style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p>
             </br>
 
 			<label for="sdt"><strong>SĐT:</strong></label>
-            <input type="text" th:field="*{sdt}" placeholder="SDT" class="form-control mb-4 col-4">
-            <span style="color:red" th:if="${#fields.hasErrors('sdt')}" th:errors="*{sdt}">SDT Error</span>
+            <input type="text" th:field="*{sdt}" placeholder="SDT" class="form-control col-4">
+            <p style="color:red" th:if="${#fields.hasErrors('sdt')}" th:errors="*{sdt}">SDT Error</p>
             </br>
             
             <label for="diaChi"><strong>Địa chỉ:</strong></label>
-            <input type="text" th:field="*{diaChi}" placeholder="Địa Chỉ" class="form-control mb-4 col-4">
-            <span style="color:red" th:if="${#fields.hasErrors('diaChi')}" th:errors="*{diaChi}">Dia Chi Error</span>
+            <input type="text" th:field="*{diaChi}" placeholder="Địa Chỉ" class="form-control col-4">
+            <p style="color:red" th:if="${#fields.hasErrors('diaChi')}" th:errors="*{diaChi}">Dia Chi Error</p>
             </br>
             
             <label for="cmnd"><strong>CMND:</strong></label>
-            <input type="text" th:field="*{cmnd}" placeholder="CMND" class="form-control mb-4 col-4">
-            <span style="color:red" th:if="${#fields.hasErrors('cmnd')}" th:errors="*{cmnd}">CMND Error</span>
+            <input type="text" th:field="*{cmnd}" placeholder="CMND" class="form-control col-4">
+            <p style="color:red" th:if="${#fields.hasErrors('cmnd')}" th:errors="*{cmnd}">CMND Error</p>
             </br>
             
             <label for="taiKhoan"><strong>Tài khoản:</strong></label>
-            <input type="text" th:field="*{taiKhoan}" placeholder="Tài Khoản" class="form-control mb-4 col-4">
-            <span style="color:red" th:if="${#fields.hasErrors('taiKhoan')}" th:errors="*{taiKhoan}">Tai Khoan Error</span>
+            <input type="text" th:field="*{taiKhoan}" placeholder="Tài Khoản" class="form-control col-4">
+            <p style="color:red" th:if="${#fields.hasErrors('taiKhoan')}" th:errors="*{taiKhoan}">Tai Khoan Error</p>
             </br>
             
             <label for="matKhau"><strong>Mật khẩu:</strong></label>
-            <input type="text" th:field="*{matKhau}" placeholder="Mật Khẩu" class="form-control mb-4 col-4">
-            <span style="color:red" th:if="${#fields.hasErrors('matKhau')}" th:errors="*{matKhau}">Mat Khau Error</span>
+            <input type="text" th:field="*{matKhau}" placeholder="Mật Khẩu" class="form-control col-4">
+            <p style="color:red" th:if="${#fields.hasErrors('matKhau')}" th:errors="*{matKhau}">Mat Khau Error</p>
             </br>
             
 <!--             <label for="maQuyen"><strong>Tên quyền:</strong></label> -->

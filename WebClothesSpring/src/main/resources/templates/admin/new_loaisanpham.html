@@ -14,8 +14,8 @@
 
         <form action="#" th:action="@{/saveLoaiSanPham}" th:object="${loaisanpham}" method="POST">
         	<label for="tenLoaiSP"><strong>Loại sản phẩm:</strong></label>
-            <input type="text" th:field="*{tenLoaiSP}" placeholder="Tên Loại Sản Phẩm" class="form-control mb-4 col-4">
-			<span style="color:red" th:if="${#fields.hasErrors('tenLoaiSP')}" th:errors="*{tenLoaiSP}">Error</span>
+            <input type="text" th:field="*{tenLoaiSP}" placeholder="Tên Loại Sản Phẩm" class="form-control col-4">
+			<p style="color:red" th:if="${#fields.hasErrors('tenLoaiSP')}" th:errors="*{tenLoaiSP}">Error</p>
             </br>
             
             <button type="submit" class="btn btn-info col-2"> Thêm</button>
@@ -23,7 +23,7 @@
 
         <hr>
 
-        <a th:href="@{/}"> Quay lại</a>
+        <a th:href="@{/page_loaisanpham}"> Quay lại</a>
     </div>
 </div>
 </body>

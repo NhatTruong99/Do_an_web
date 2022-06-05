@@ -18,23 +18,23 @@
             <input type="hidden" th:field="*{maKH}" />
 
 			<label for="hoTen"><strong>Khách hàng:</strong></label>
-            <input type="text" th:field="*{hoTen}" placeholder="Họ Tên" class="form-control mb-4 col-4">
-            <span style="color:red;" th:if="${#fields.hasErrors('hoTen')}" th:errors="*{hoTen}">Full Name error</span>
-            </br>
-
+            <input type="text" th:field="*{hoTen}" placeholder="Họ Tên" class="form-control col-4">
+            <p style="color:red;" th:if="${#fields.hasErrors('hoTen')}" th:errors="*{hoTen}">Full Name error</p>
+			</br>
+			
 			<label for="email"><strong>Email:</strong></label>
-            <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
-            <span style="color:red;" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</span>
-            </br>
-
+            <input type="text" th:field="*{email}" placeholder="Email" class="form-control col-4">
+            <p style="color:red;" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</p>
+			</br>
+			
 			<label for="sdt"><strong>SĐT:</strong></label>
-            <input type="text" th:field="*{sdt}" placeholder="SDT" class="form-control mb-4 col-4">
-            <span style="color:red" th:if="${#fields.hasErrors('sdt')}" th:errors="*{sdt}">SDT Error</span>
+            <input type="text" th:field="*{sdt}" placeholder="SDT" class="form-control col-4">
+            <p style="color:red" th:if="${#fields.hasErrors('sdt')}" th:errors="*{sdt}">SDT Error</p>
             </br>
             
             <label for="diaChi"><strong>Địa chỉ:</strong></label>
-            <input type="text" th:field="*{diaChi}" placeholder="Địa Chỉ" class="form-control mb-4 col-4">
-            <span style="color:red;" th:if="${#fields.hasErrors('diaChi')}" th:errors="*{diaChi}">Dia Chi error</span>
+            <input type="text" th:field="*{diaChi}" placeholder="Địa Chỉ" class="form-control col-4">
+            <p style="color:red;" th:if="${#fields.hasErrors('diaChi')}" th:errors="*{diaChi}">Dia Chi error</p>
             </br>
             
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>

@@ -12,19 +12,21 @@
 	<div class="container">
         <h2 class="mb-3">Cập Nhật Quyền</h2>
 
-        <form action="#" th:action="@{/saveQuyen}" th:object="${quyen}" method="POST">
+        <form action="#" th:action="@{/updateQuyen}" th:object="${quyen}" method="POST">
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{maQuyen}" />
 
 			<label for="tenQuyen"><strong>Quyền:</strong></label>
-            <input type="text" th:field="*{tenQuyen}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{tenQuyen}" class="form-control col-4">
+            <p style="color:red;" th:if="${#fields.hasErrors('tenQuyen')}" th:errors="*{tenQuyen}">Ten Quyen error</p>
+			</br>
             
             <button type="submit" class="btn btn-info col-2">Cập nhật</button>
         </form>
         <hr>
 
-        <a th:href="@{/}"> Quay lại</a>
+        <a th:href="@{/page_quyen}"> Quay lại</a>
     </div>
 </div>
 </body>

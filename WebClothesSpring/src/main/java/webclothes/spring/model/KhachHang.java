@@ -23,21 +23,21 @@ public class KhachHang {
 	}
 
 	/* Tránh viết cả 2 trùng nhau sẽ bị lỗi */
-	  @NotBlank(message = "Không được để trống")
+	  @NotBlank(message = "Họ tên không được để trống")
 	  @Column(name = "HoTen")
 	  private String hoTen;
 
-	  @NotBlank(message = "Không được để trống")
+	  @NotBlank(message = "Email không được để trống")
 	  @Email(message = "Nhập đúng định dạng Email")
 	  @Column(name = "Email")
 	  private String email;
 
-	  @NotBlank(message = "Không được để trống")
+	  @NotBlank(message = "SĐT không được để trống")
 	  @Pattern(regexp="(^$|[0-9]{10})", message="Nhập đúng 10 số") /* Validate SĐT nhập đủ 10 số */
 	  @Column(name = "SDT")
 	  private String sdt;
 	  
-	  @NotBlank(message = "Không được để trống")
+	  @NotBlank(message = "Địa chỉ không được để trống")
 	  @Column(name = "DiaChi")
 	  private String diaChi;
 
