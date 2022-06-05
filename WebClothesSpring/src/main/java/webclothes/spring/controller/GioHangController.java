@@ -2,6 +2,7 @@ package webclothes.spring.controller;
 
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -116,10 +117,28 @@ public class GioHangController {
 	@PostMapping("/checkoutbill")
 	public String CheckOutBill(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("khachHang") KhachHang khachhang) {
+		List<KhachHang> listKHs = khachHangService.getAllKhachHang();
+		boolean chooseMaKH = false;
+		long maKH = 1;
 		
-		khachHangService.saveKhachHang(khachhang);
-		long maKH = khachHangService.getLastIdKhachHang();
+		//Nếu có khách hàng trùng tên,email,sdt,diachi với khách hàng có trong database thì lấy khách hàng trong database
+		for(int i=0;i<listKHs.size(); i++) {
+			if (khachhang.getHoTen().equals(listKHs.get(i).getHoTen())
+				&& khachhang.getEmail().equals(listKHs.get(i).getEmail())	
+				&& khachhang.getSdt().equals(listKHs.get(i).getSdt())
+				&& khachhang.getDiaChi().equals(listKHs.get(i).getDiaChi())
+				) 
+			{
+				maKH = listKHs.get(i).getMaKH();
+				chooseMaKH = true;
+				break;
+			}
+		}
 		
+		if (chooseMaKH == false) {
+			khachHangService.saveKhachHang(khachhang);
+			maKH = khachHangService.getLastIdKhachHang();
+		}
 		HoaDon hoaDon = new HoaDon();
 		//Số hóa đơn
 		long millis=System.currentTimeMillis();  
