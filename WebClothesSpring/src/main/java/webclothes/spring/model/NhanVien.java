@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
@@ -40,6 +41,7 @@ public class NhanVien{
 	  private String email;
 
 	  @NotBlank(message = "Không được để trống")
+	  @Pattern(regexp="(^$|[0-9]{10})", message="Nhập đúng 10 số") /* Validate SĐT nhập đủ 10 số */
 	  @Column(name = "SDT")
 	  private String sdt;
 	  
