@@ -1,0 +1,123 @@
+
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Glance Design Dashboard an Admin Panel Category Flat Bootstrap Responsive Website Template | Login Page :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+
+<!-- Custom CSS -->
+<!-- <link href="css/style.css" rel='stylesheet' type='text/css' /> -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
+<!-- font-awesome icons CSS -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.css}" />
+<!-- //font-awesome icons CSS-->
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 15px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid dodgerblue;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+</style>
+
+
+
+
+</head> 
+<body>
+	<div class="container"> 
+		<div class="main-content" >
+			<div class="main-page login-page">
+				<h2 class="title1">Login</h2>
+				<div class="widget-shadow">
+					<div class="login-body">
+					
+						<form th:action="@{/login}" method="post">
+						
+						 <div th:if="${param.error}">
+				            <p  style ="text-align: center; margin-bottom: 10px" class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+				        </div>
+				         
+				        <div th:if="${param.logout}">
+				            <p style="text-align: center; margin-bottom:10px" class="text-warning">You have been logged out.</p>
+				        </div>
+				        
+			     			<div class="input-container">
+							    <i class="fa fa-user icon"></i>
+<!-- 							 name ="..." tuỳ vào đăng nhập = email hay username trong database VD: email, taiKhoan-->
+							    <input class="input-field" type="text" placeholder="Username" name="taiKhoan">
+						    </div>
+						
+						   <div class="input-container">
+							    <i class="fa fa-key icon"></i>
+							    <input class="input-field" type="password" placeholder="Password" name="password">
+						   </div>
+					   
+					 <button type="submit" class="btn">Sign In</button>
+					 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			     	 	</form>
+			
+					</div>
+				</div>	
+			</div>
+	</div>
+
+	<!-- Bootstrap Core JavaScript -->
+   <script src="js/bootstrap.js"> </script>
+	<!-- //Bootstrap Core JavaScript -->
+   
+</body>
+</html>

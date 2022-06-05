@@ -26,11 +26,13 @@ public class MyUserDetails implements UserDetails {
     }
  
     @Override
+//  Lấy mật khẩu trong Database để đăng nhập
     public String getPassword() {
         return user.getMatKhau();
     }
  
     @Override
+//  Lấy email hoặc tài khoản trong Database để đăng nhập
     public String getUsername() {
         return user.getTaiKhoan();
     }

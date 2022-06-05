@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import webclothes.spring.model.LoaiSanPham;
@@ -41,11 +45,25 @@ public class HomeController {
 	 public String LayoutPage(){
 	        return "admin/layout";
 	 }
+	 
+	@GetMapping("/logout")
+	public String logout() {
+		 return "admin/logout";
+	}
 	  
     @GetMapping("/login") 
-    public String getLogin() {
-        return "login";
+    public String showLoginPage() {
+    	
+    	return "admin/login";
+    	
+    	// Để lưu đăng nhập không cần đăng nhập lại
+//    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//    	if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+//    		return "admin/login";
+//    	}
+//    	return "redirect:/";
     }
+
     
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -87,10 +105,7 @@ public class HomeController {
 		model.addAttribute("listSanPhams", sanPhamService.getAllSanPham());
 		return "admin/layout";
 	}
-	@GetMapping("/logout")
-	public String logout() {
-		return "admin/logout";
-	}
+
 	// Trang liên hệ
 	@GetMapping("/contact")
 	public String Contact(Model model) {
