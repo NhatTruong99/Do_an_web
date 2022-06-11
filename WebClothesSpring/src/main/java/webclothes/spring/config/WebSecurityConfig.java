@@ -55,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	            .defaultSuccessUrl("/page_thongke")
             .and()
             .logout()
+            	.logoutUrl("/logout")
             	.permitAll()
             .and()
             .rememberMe().tokenRepository(persistentTokenRepository())

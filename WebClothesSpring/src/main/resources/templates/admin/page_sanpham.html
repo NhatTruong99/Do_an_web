@@ -18,8 +18,8 @@
 <!--  		Thêm / để luôn về đúng url  -->
  		   <form th:action="@{/searchSP}" method="get">
 		 	<input type="text" name="keyword" th:value="${keyword}" placeholder="Find by Keyword" size="50">
-		 	<button type="submit" class="btn btn-primary">Search</button>
-		 	<button type="submit" class="btn btn-danger">Reset</button>
+		 	<button type="submit" class="btn btn-primary">TÌM KIẾM</button>
+<!-- 		 	<button type="submit" class="btn btn-danger">Reset</button> -->
 		 </form>
 		 </br>
 		<a th:href = "@{/showNewSanPhamForm}" class="btn btn-primary btn-sm mb-3"> Thêm Sản Phẩm </a>
@@ -57,7 +57,7 @@
 	   	
 			   	
 			   	
-			   	<td sec:authorize="hasAnyAuthority('Admin', 'Editor', 'User_NhapHang', 'User_ThongKe')">
+			   	<td sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 			   		<a th:href="@{/showFormForDetailSP/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/details.png}" width="30"/></a>
 			   		<a sec:authorize="hasAnyAuthority('Admin', 'Editor')" th:href="@{/showFormForUpdateSP/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/edit.png}" width="30"/></a>
 			   		<a sec:authorize="hasAnyAuthority('Admin')" th:href="@{/deleteSanPham/{maSP}(maSP=${SanPham.maSP})}"><img th:src ="@{/images/delete.png}" width="30"/></a>
