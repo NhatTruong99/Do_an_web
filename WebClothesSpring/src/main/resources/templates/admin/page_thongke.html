@@ -21,7 +21,7 @@
         		<div class="r3_counter_box">
                     <i class="pull-left fa fa-dollar icon-rounded"></i>
                     <div class="stats">
-                      <p th:text="${tongDoanhThu}" style="color:black; font-weight: bold;" ></p>
+                      <p  style="color:black; font-weight: bold;" >[[${#numbers.formatInteger(tongDoanhThu,3,'POINT')}]] VND</p>
                       <span>Tổng Doanh Thu</span>
                     </div>
                 </div>
@@ -79,9 +79,11 @@
 					<div class="col-12 widget mt-4 ms-4 me-4">
 						<div class="stats-left ">
 							<h4>Tổng Doanh Thu Theo Ngày</h4>
-						</div>
+						</div>						
 						<div class="stats-right">
-							<p th:text="${tongDoanhThu_Ngay}" style="color:white"></p>			
+						<th:block th:if="${tongDoanhThu_Ngay}">
+							<p  style="color:white"> [[${tongDoanhThu_Ngay} ]] VND</p>			
+						</th:block>
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
@@ -97,7 +99,9 @@
 							<h4>Tổng Doanh Thu Theo Tháng</h4>
 						</div>
 						<div class="stats-right">
-							<p th:text="${tongDoanhThu_Thang}" style="color:white"></p>			
+						<th:block th:if="${tongDoanhThu_Thang}">
+							<p  style="color:white"> [[${tongDoanhThu_Thang} ]] VND</p>			
+						</th:block>		
 						</div>
 						<div class="clearfix"> </div>	
 					</div>

@@ -29,92 +29,228 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+body {
+  margin: 0;
+  padding: 0;
+  color: #6a6f8c;
+  background: #c8c8c8;
+  font: 600 16px/18px "Open Sans", sans-serif;
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+.clearfix:after,
+.clearfix:before {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-.input-container {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
+.login-wrap {
   width: 100%;
+  margin: auto;
+  max-width: 525px;
+  min-height: 700px;
+  position: relative;
+  background: url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg)
+    no-repeat center;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.login-html {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 90px 70px 50px 70px;
+  background: rgba(40, 57, 101, 0.9);
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  transition: all 0.4s linear;
+}
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check {
+  display: none;
+}
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button {
+  text-transform: uppercase;
+}
+.login-html .tab {
+  font-size: 22px;
+  margin-right: 15px;
+  padding-bottom: 5px;
+  margin: 0 15px 10px 0;
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab {
+  color: #fff;
+  border-color: #1161ee;
+}
+.login-form {
+  min-height: 345px;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.login-form .group {
   margin-bottom: 15px;
 }
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button {
+  width: 100%;
+  color: #fff;
+  display: block;
+}
+.login-form .group .input,
+.login-form .group .button {
+  border: none;
+  padding: 15px 20px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.login-form .group input[data-type="password"] {
+  text-security: circle;
+  -webkit-text-security: circle;
+}
+.login-form .group .label {
+  color: #aaa;
+  font-size: 12px;
+}
+.login-form .group .button {
+  background: #1161ee;
+}
+.login-form .group label .icon {
+  width: 15px;
+  height: 15px;
+  border-radius: 2px;
+  position: relative;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+}
+.login-form .group label .icon:before,
+.login-form .group label .icon:after {
+  content: "";
+  width: 10px;
+  height: 2px;
+  background: #fff;
+  position: absolute;
+  transition: all 0.2s ease-in-out 0s;
+}
+.login-form .group label .icon:before {
+  left: 3px;
+  width: 5px;
+  bottom: 6px;
+  transform: scale(0) rotate(0);
+}
+.login-form .group label .icon:after {
+  top: 6px;
+  right: 0;
+  transform: scale(0) rotate(0);
+}
+.login-form .group .check:checked + label {
+  color: #fff;
+}
+.login-form .group .check:checked + label .icon {
+  background: #1161ee;
+}
+.login-form .group .check:checked + label .icon:before {
+  transform: scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after {
+  transform: scale(1) rotate(-45deg);
+}
+.login-html
+  .sign-in:checked
+  + .tab
+  + .sign-up
+  + .tab
+  + .login-form
+  .sign-in-htm {
+  transform: rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm {
+  transform: rotate(0);
+}
 
-.icon {
-  padding: 15px;
-  background: dodgerblue;
-  color: white;
-  min-width: 50px;
+.hr {
+  height: 2px;
+  margin: 60px 0 50px 0;
+  background: rgba(255, 255, 255, 0.2);
+}
+.foot-lnk {
   text-align: center;
 }
-
-.input-field {
-  width: 100%;
-  padding: 10px;
-  outline: none;
-}
-
-.input-field:focus {
-  border: 2px solid dodgerblue;
-}
-
-/* Set a style for the submit button */
-.btn {
-  background-color: dodgerblue;
-  color: white;
-  padding: 15px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-.btn:hover {
-  opacity: 1;
+h2{
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    font-size: 30px;
 }
 </style>
 
 
 
-
 </head> 
 <body>
-	<div class="container"> 
-		<div class="main-content" >
-			<div class="main-page login-page">
-				<h2 class="title1">Login</h2>
-				<div class="widget-shadow">
-					<div class="login-body">
-					
-						<form th:action="@{/login}" method="post">
-						
-						 <div th:if="${param.error}">
+	<div class="container-fluid h-100" style="margin-top: 0px;">
+	<div class="login-wrap">
+        <div class="login-html">
+            <div><h2>ĐĂNG NHẬP</h2></div>
+            <input id="tab-1"  type="radio" name="tab" class="sign-in" checked><label style="text-align: center;margin: auto;" for="tab-1" class="tab"></label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+            <div class="login-form">
+                <div class="sign-in-htm">
+                <form th:action="@{/login}" method="post">
+                		<div th:if="${param.error}">
 				            <p  style ="text-align: center; margin-bottom: 10px" class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
 				        </div>
 				         
 				        <div th:if="${param.logout}">
 				            <p style="text-align: center; margin-bottom:10px" class="text-warning">You have been logged out.</p>
 				        </div>
-				        
-			     			<div class="input-container">
-							    <i class="fa fa-user icon"></i>
-<!-- 							 name ="..." tuỳ vào đăng nhập = email hay username trong database VD: email, taiKhoan-->
-							    <input class="input-field" type="text" placeholder="Username" name="taiKhoan">
-						    </div>
-						
-						   <div class="input-container">
-							    <i class="fa fa-key icon"></i>
-							    <input class="input-field" type="password" placeholder="Password" name="password">
-						   </div>
-					   
-					 <button type="submit" class="btn">Sign In</button>
-					 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-			     	 	</form>
-			
-					</div>
-				</div>	
-			</div>
-	</div>
+                	<div class="group">
+                        <label for="user" class="label" >Tài khoản </label>
+                        <input id="user" type="text" class="input" name="taiKhoan">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Mật khẩu</label>
+                        <input id="pass" type="password" class="input" data-type="password" name="password">
+                    </div>
+                    <div class="group d-flex justify-content-center">
+                        <button class="btn btn-lg btn-primary btn-block mt-5 w-50" type="submit" value="Logout">Đăng nhập</button>
+						 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </div>
+                    <div class="hr"></div>
+                </form>
 
+                </div>
+            </div>
+        </div>
+    </div>
+	</div>
+    
 	<!-- Bootstrap Core JavaScript -->
    <script src="js/bootstrap.js"> </script>
 	<!-- //Bootstrap Core JavaScript -->

@@ -64,6 +64,11 @@ public class SanPhamService {
 		return SanPhamRepository.tongDoanhThu_Ngay(date);
 	}
 	
+	// Tính tổng doanh thu
+	public int tongDoanhThu() {
+		return SanPhamRepository.tongDoanhThu();
+	}
+	
 	// Tính tổng doanh thu theo tháng
 	public String tongDoanhThu_Thang(String month) {
 		return SanPhamRepository.tongDoanhThu_Thang(month);

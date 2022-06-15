@@ -26,7 +26,7 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Long> {
 	List<SanPham> findByPrice(@Param("minPrice") int minPrice, @Param("maxPrice") int maxPrice );
 
 	@Query(value ="Select Sum(DonGia*SoLuong) From chitiethoadon", nativeQuery = true) 
-	String tongDoanhThu();
+	int tongDoanhThu();
 	
 	@Query(value ="Select Sum(DonGia*SoLuong) From chitiethoadon cthd JOIN hoadon hd on hd.MaHD = cthd.MaHD WHERE hd.NgayDat like %:date% ", nativeQuery = true) 
 	String tongDoanhThu_Ngay(@Param("date") String date);

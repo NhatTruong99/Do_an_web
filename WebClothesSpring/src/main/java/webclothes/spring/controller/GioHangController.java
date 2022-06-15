@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 import webclothes.spring.model.ChiTietHoaDon;
 import webclothes.spring.model.GioHangItem;
@@ -116,65 +118,71 @@ public class GioHangController {
 	
 	@PostMapping("/checkoutbill")
 	public String CheckOutBill(HttpServletRequest request, HttpSession session,
-			@ModelAttribute("khachHang") KhachHang khachhang) {
-		List<KhachHang> listKHs = khachHangService.getAllKhachHang();
-		boolean chooseMaKH = false;
-		long maKH = 1;
-		
-		//Nếu có khách hàng trùng tên,email,sdt,diachi với khách hàng có trong database thì lấy khách hàng trong database
-		for(int i=0;i<listKHs.size(); i++) {
-			if (khachhang.getHoTen().equals(listKHs.get(i).getHoTen())
-				&& khachhang.getEmail().equals(listKHs.get(i).getEmail())	
-				&& khachhang.getSdt().equals(listKHs.get(i).getSdt())
-				&& khachhang.getDiaChi().equals(listKHs.get(i).getDiaChi())
-				) 
-			{
-				maKH = listKHs.get(i).getMaKH();
-				chooseMaKH = true;
-				break;
-			}
-		}
-		
-		if (chooseMaKH == false) {
-			khachHangService.saveKhachHang(khachhang);
-			maKH = khachHangService.getLastIdKhachHang();
-		}
-		HoaDon hoaDon = new HoaDon();
-		//Số hóa đơn
-		long millis=System.currentTimeMillis();  
-		java.sql.Date today=new java.sql.Date(millis); 
-		String toDayString = today.toString().replaceAll("-","");
-		long lastIDHoaDon = hoaDonService.getLastIdHoaDon() + 1;
-		String soHD = "HD" + toDayString + "0" + lastIDHoaDon;
-		hoaDon.setShd(soHD);
-		//Ngày đặt 
-		hoaDon.setNgayDat(today);
-		//Địa chỉ nhận
-		String diaChi = khachHangService.getKhachHangById(maKH).getDiaChi();
-		hoaDon.setDiaChiNhan(diaChi);
-		//Tình trạng
-		hoaDon.setTinhTrang("Chưa xác nhận");
-		//Mã khách hàng
-		hoaDon.setMaKH(maKH);
-		//Lưu hóa đơn
-		hoaDonService.saveHoaDon(hoaDon);
-		//Lưu chi tiết hóa đơn
-		long maHD = hoaDonService.getLastIdHoaDon();
-		HashMap<Long,GioHangItem> gioHang = (HashMap<Long,GioHangItem>)session.getAttribute("GioHang");
-		for(Map.Entry<Long, GioHangItem> gioHangItem : gioHang.entrySet()) {
-			ChiTietHoaDon cthd = new ChiTietHoaDon();
-			cthd.setMaHD(maHD);
-			cthd.setMaSP(gioHangItem.getValue().getSanPham().getMaSP());
-			cthd.setSoLuong(gioHangItem.getValue().getSoLuong());
-			cthd.setDonGia(gioHangItem.getValue().getSanPham().getDonGia());
+			@ModelAttribute("khachhang") @Valid  KhachHang khachhang, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) 
+		{
+			return "user/paybill";
+		} else {
+			List<KhachHang> listKHs = khachHangService.getAllKhachHang();
+			boolean chooseMaKH = false;
+			long maKH = 1;
 			
-			chiTietHoaDonService.addChiTietHoaDonUseQuery(cthd);
+			//Nếu có khách hàng trùng tên,email,sdt,diachi với khách hàng có trong database thì lấy khách hàng trong database
+			for(int i=0;i<listKHs.size(); i++) {
+				if (khachhang.getHoTen().equals(listKHs.get(i).getHoTen())
+					&& khachhang.getEmail().equals(listKHs.get(i).getEmail())	
+					&& khachhang.getSdt().equals(listKHs.get(i).getSdt())
+					&& khachhang.getDiaChi().equals(listKHs.get(i).getDiaChi())
+					) 
+				{
+					maKH = listKHs.get(i).getMaKH();
+					chooseMaKH = true;
+					break;
+				}
+			}
+			
+			if (chooseMaKH == false) {
+				khachHangService.saveKhachHang(khachhang);
+				maKH = khachHangService.getLastIdKhachHang();
+			}
+			HoaDon hoaDon = new HoaDon();
+			//Số hóa đơn
+			long millis=System.currentTimeMillis();  
+			java.sql.Date today=new java.sql.Date(millis); 
+			String toDayString = today.toString().replaceAll("-","");
+			long lastIDHoaDon = hoaDonService.getLastIdHoaDon() + 1;
+			String soHD = "HD" + toDayString + "0" + lastIDHoaDon;
+			hoaDon.setShd(soHD);
+			//Ngày đặt 
+			hoaDon.setNgayDat(today);
+			//Địa chỉ nhận
+			String diaChi = khachHangService.getKhachHangById(maKH).getDiaChi();
+			hoaDon.setDiaChiNhan(diaChi);
+			//Tình trạng
+			hoaDon.setTinhTrang("Chưa xác nhận");
+			//Mã khách hàng
+			hoaDon.setMaKH(maKH);
+			//Lưu hóa đơn
+			hoaDonService.saveHoaDon(hoaDon);
+			//Lưu chi tiết hóa đơn
+			long maHD = hoaDonService.getLastIdHoaDon();
+			HashMap<Long,GioHangItem> gioHang = (HashMap<Long,GioHangItem>)session.getAttribute("GioHang");
+			for(Map.Entry<Long, GioHangItem> gioHangItem : gioHang.entrySet()) {
+				ChiTietHoaDon cthd = new ChiTietHoaDon();
+				cthd.setMaHD(maHD);
+				cthd.setMaSP(gioHangItem.getValue().getSanPham().getMaSP());
+				cthd.setSoLuong(gioHangItem.getValue().getSoLuong());
+				cthd.setDonGia(gioHangItem.getValue().getSanPham().getDonGia());
+				
+				chiTietHoaDonService.addChiTietHoaDonUseQuery(cthd);
+			}
+			//Xóa session
+			session.removeAttribute("GioHang");
+			session.removeAttribute("TongTienGioHang");
+			session.removeAttribute("TongSLGioHang");
+			
+			return "user/paydone";
 		}
-		//Xóa session
-		session.removeAttribute("GioHang");
-		session.removeAttribute("TongTienGioHang");
-		session.removeAttribute("TongSLGioHang");
-		
-		return "user/paydone";
+
 	 }
 }

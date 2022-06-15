@@ -41,7 +41,7 @@ public class NhanVien{
 	  private String email;
 
 	  @NotBlank(message = "SĐT không được để trống")
-	  @Pattern(regexp="(^$|[0-9]{10})", message="Nhập đúng 10 số") /* Validate SĐT nhập đủ 10 số */
+	  @Pattern(regexp="^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$", message="Số điện thoại không hợp lệ") /* Validate SĐT nhập đủ 10 số */
 	  @Column(name = "SDT")
 	  private String sdt;
 	  

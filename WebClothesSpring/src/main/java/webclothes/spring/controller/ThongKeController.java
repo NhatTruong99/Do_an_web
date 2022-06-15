@@ -60,7 +60,6 @@ public class ThongKeController {
 			model.addAttribute("countNV", NhanVienRepository.count());
 			model.addAttribute("countHD", HoaDonRepository.count());
 			model.addAttribute("tongDoanhThu", SanPhamRepository.tongDoanhThu());
-			
 			model.addAttribute("tongDoanhThu_Ngay", SanPhamService.tongDoanhThu_Ngay(date));
 		}
 		else {

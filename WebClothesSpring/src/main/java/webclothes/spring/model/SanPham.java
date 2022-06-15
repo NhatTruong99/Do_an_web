@@ -37,7 +37,6 @@ public class SanPham {
 	  @Column(name = "DonGia")
 	  private int donGia;
 	  
-	  @NotBlank(message = "Ghi chú không được để trống")
 	  @Column(name = "GhiChu")
 	  private String ghiChu;
 	  

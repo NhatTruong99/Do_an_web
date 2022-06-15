@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+
+<body>
+    <header class="header trans_300" th:fragment="copy">
+
+		<!-- Main Navigation -->
+
+		<div class="main_nav_container">
+			<div class="container-fluid">
+					<div class="row d-flex justify-content-end ">
+						<div class="logo_container pl-5  col-4">
+							<a th:href="@{/}">candy<span>shop</span></a>
+						</div>
+						<nav class="navbar col-7 mr-5" >
+							<ul class="navbar_menu">
+								<li><a th:href="@{/}">Trang chủ</a></li>
+								<li><a th:href="@{/categories}" style="padding-right: 5px;">Sản phẩm</a></li>
+								<li class="dropdown" style="cursor: pointer">
+									<a  class="dropdown-toggle p-0"  id="dropdownMenuButton" data-toggle="dropdown" ></a>
+									<div class="dropdown-menu">
+										<th:block th:each="loaiSP : ${listLoaiSanPhams}">										
+											<a class="dropdown-item p-3" th:href="@{/categories/{maLoaiSP}(maLoaiSP=${loaiSP.maLoaiSP})}" th:text = "${loaiSP.tenLoaiSP}"></a>
+										</th:block>
+									</div>
+								</li>
+								<li><a href="#">Giới thiệu</a></li>
+								<li><a th:href="@{/contact}">Liên hệ</a></li>
+							</ul>
+							<ul class="navbar_user">				
+								<li>
+									<div>
+									 	<form th:action="@{/searchSpUser}" method="get">
+									 	<div class="d-flex">
+									 		<input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="Nhập nội dung cần tìm" >
+										 	<button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+									 	</div>
+
+		 								</form>
+									</div>
+								</li>
+								<li><a href="/login"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+								<li class="checkout">
+									<a th:href="@{/cart}">
+										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+										<th:block th:if="${session.TongSLGioHang}">
+											<span id="checkout_items" class="checkout_items" th:text="${session.TongSLGioHang}" ></span>
+										</th:block>
+										
+									</a>
+								</li>
+							</ul>
+							<div class="hamburger_container">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+							</div>
+						</nav>
+					</div>
+				</div>
+		</div>
+
+	</header>
+
+	<div class="fs_menu_overlay"></div>
+
+	<!-- Hamburger Menu -->
+
+	<div class="hamburger_menu">
+		<div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
+		<div class="hamburger_menu_content text-right">
+			<ul class="menu_top_nav">
+				<li class="menu_item has-children">
+					<a href="#">
+						My Account
+						<i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="menu_selection">
+						<li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+						<li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+					</ul>
+				</li>
+				<li class="menu_item"><a th:href="@{/}">home</a></li>
+				<li class="menu_item"><a href="#">shop</a></li>
+				<li class="menu_item"><a href="#">promotion</a></li>
+				<li class="menu_item"><a href="#">pages</a></li>
+				<li class="menu_item"><a href="#">blog</a></li>
+				<li class="menu_item"><a th:href="@{/contact}">contact</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
