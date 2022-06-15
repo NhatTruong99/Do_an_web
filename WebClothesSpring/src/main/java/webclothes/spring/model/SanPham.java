@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,6 +35,7 @@ public class SanPham {
 	  @Column(name = "Anh")
 	  private String anh;
 	  
+	  @Positive(message = "Đơn giá phải lớn hơn 0")
 	  @Column(name = "DonGia")
 	  private int donGia;
 	  
