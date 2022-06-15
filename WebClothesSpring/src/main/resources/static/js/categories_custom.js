@@ -80,7 +80,7 @@ jQuery(document).ready(function($)
 		{
 			if($(window).scrollTop() > 100)
 			{
-				header.css({'top':"-50px"});
+				header.css({'top':"0"});
 			}
 			else
 			{

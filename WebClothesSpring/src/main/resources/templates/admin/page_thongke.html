@@ -84,6 +84,9 @@
 						<th:block th:if="${tongDoanhThu_Ngay}">
 							<p  style="color:white"> [[${#numbers.formatInteger(tongDoanhThu_Ngay,3,'POINT')}]] VND</p>			
 						</th:block>
+						<th:block th:unless="${tongDoanhThu_Ngay}">
+							<p  style="color:white"> 0 VND</p>			
+						</th:block>
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
@@ -100,15 +103,18 @@
 						</div>
 						<div class="stats-right">
 						<th:block th:if="${tongDoanhThu_Thang}">
-							<p  style="color:white"> [[${#numbers.formatInteger(tongDoanhThu_Thang,3,'POINT')}]] VND</p>			
+							<p  style="color:white"> [[${#numbers.formatInteger(tongDoanhThu_Thang,3,'POINT')}]] VND</p>										
 						</th:block>		
+						<th:block th:unless="${tongDoanhThu_Thang}">
+							<p  style="color:white"> 0 VND</p>										
+						</th:block>	
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
 					
 					<form th:action="@{searchDoanhThu_Thang}" method="get" class="mt-2" style="text-align: center">
 						 	<label for="month"><strong style="color: black">Ngày:</strong></label>
-						 	<input type="month" name="month" th:value="${month}" size="50">
+						 	<input type="month" name="month" th:value="${month}" size="50">						 	
 						 	<button type="submit" class="btn btn-primary">Thống kê</button>
 						</form>
 					
