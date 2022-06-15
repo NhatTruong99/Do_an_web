@@ -60,7 +60,9 @@ public class ThongKeController {
 			model.addAttribute("countNV", NhanVienRepository.count());
 			model.addAttribute("countHD", HoaDonRepository.count());
 			model.addAttribute("tongDoanhThu", SanPhamRepository.tongDoanhThu());
-			model.addAttribute("tongDoanhThu_Ngay", SanPhamService.tongDoanhThu_Ngay(date));
+			String tongDoanhThuNgay = SanPhamService.tongDoanhThu_Ngay(date);
+			int tongDTNgay = Integer.parseInt(tongDoanhThuNgay);
+			model.addAttribute("tongDoanhThu_Ngay", tongDTNgay);
 		}
 		else {
 			return "admin/page_thongke";
@@ -76,8 +78,9 @@ public class ThongKeController {
 			model.addAttribute("countNV", NhanVienRepository.count());
 			model.addAttribute("countHD", HoaDonRepository.count());
 			model.addAttribute("tongDoanhThu", SanPhamRepository.tongDoanhThu());
-			
-			model.addAttribute("tongDoanhThu_Thang", SanPhamService.tongDoanhThu_Ngay(month));
+			String tongDoanhThuThang = SanPhamService.tongDoanhThu_Thang(month);
+			int tongDTThang = Integer.parseInt(tongDoanhThuThang);
+			model.addAttribute("tongDoanhThu_Thang", tongDTThang);
 		}
 		else {
 			return "admin/page_thongke";
